@@ -5,6 +5,7 @@ import axios from "axios";
 import { useState, useEffect, useCallback } from "react";
 import {IoMdClose} from 'react-icons/io'
 import Button from "../Button";
+import Logo from "../navbars/Logo";
 
 interface ModalsProps {
     isOpen: boolean;
@@ -101,7 +102,7 @@ const Modals:React.FC<ModalsProps> = ({
            xl:w-2/6
            my-6
            mx-auto
-           px-2 
+           px-2
            py-4
            h-full
            md:h-auto
@@ -113,18 +114,21 @@ const Modals:React.FC<ModalsProps> = ({
              className={`
                translate
                duration-300
+               
                ${showModal ? 'translate-y-0' : 'translate-y-full'}
                ${showModal ? 'opacity-100': 'opacity-0'}
              `}
             >
               <div
                className="
-                
+                px-3
+                py-4
                 h-full
                 lg:h-auto
                 md:h-auto
                 border-0
                 bg-white
+                rounded-lg
                "
               >
                 {/* Header */}
@@ -138,7 +142,9 @@ const Modals:React.FC<ModalsProps> = ({
                   py-1
                  "
                 >
-                   <div> {title}</div>
+                   <div>
+                    <Logo />
+                   </div>
                   <button
                    onClick={handleCloseModal}
                    className="hover:text-neutral-400 transition"
@@ -158,7 +164,8 @@ const Modals:React.FC<ModalsProps> = ({
                     flex-row
                     justify-between
                     items-center
-                    px-2 
+                    my-4
+                    mb-6
                     py-2
                   "
                 >
@@ -175,8 +182,8 @@ const Modals:React.FC<ModalsProps> = ({
                       onClick={handleSecondaryAction}
                     />
                   ) }
-                   
                 </div>
+                   {footer}
               </div>
             </div>
          </div>

@@ -3,16 +3,21 @@
 import {AiOutlineMenu} from 'react-icons/ai'
 import Avatar from './Avatar'
 import { useCallback, useState } from 'react'
+import useRegisterModal from '@/app/hooks/useRegisterModal'
 
 const UserMenu = () =>{
 
     const [isOpen,setIsOpen] = useState<boolean>(false);
+    const registerModal = useRegisterModal()
 
     const toggle = useCallback(()=>{
         setIsOpen((isOpen) => !isOpen)
     },[])
 
-
+    const handleOpenRegisterModal = useCallback(()=>{
+        registerModal.onOpen();
+        toggle()
+    },[registerModal])
     return (
        <div className='flex flex-row justify-between items-center relative'>
         <div className='mx-4 hover:bg-neutral-100 rounded-full px-4 py-1 transiton cursor-pointer hidden md:block'>
@@ -46,7 +51,9 @@ const UserMenu = () =>{
                <div className='hover:text-neutral-900 text-neutral-600 cursor-pointer hover:font-semibold transition'>
                     Login
                 </div>
-                <div className='hover:text-neutral-900 text-neutral-600 cursor-pointer hover:font-semibold transition'>
+                <div 
+                onClick={handleOpenRegisterModal}
+                className='hover:text-neutral-900 text-neutral-600 cursor-pointer hover:font-semibold transition'>
                     Register
                 </div>
             </div>

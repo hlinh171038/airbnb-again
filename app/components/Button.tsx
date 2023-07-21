@@ -20,7 +20,6 @@ const Button:React.FC<ButtonProps> =({
     return (
         <button
           onClick={onClick}
-
           className={`
           relative
           disabled:opacity-70
@@ -29,8 +28,9 @@ const Button:React.FC<ButtonProps> =({
           hover:opacity-80
           px-2 
           py-1
+         
           ${outline ? 'bg-white': 'bg-rose-600'}
-          ${outline ? 'border-black': 'border-none'}
+          ${outline ? 'border-2 border-black hover:border-neutral-500': 'border-none'}
           ${outline ? 'text-black': 'text-white'}
           
           `}
@@ -41,7 +41,7 @@ const Button:React.FC<ButtonProps> =({
                  className="
                   absolute
                   left-4
-                  top-3
+                  top-1
                  "
                 />
             )}
