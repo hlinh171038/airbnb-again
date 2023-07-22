@@ -4,8 +4,15 @@ import {AiOutlineMenu} from 'react-icons/ai'
 import Avatar from './Avatar'
 import { useCallback, useState } from 'react'
 import useRegisterModal from '@/app/hooks/useRegisterModal'
+import { User } from '@prisma/client'
 
-const UserMenu = () =>{
+interface UserMenuProps {
+    session?: User | null
+}
+
+const UserMenu:React.FC<UserMenuProps> = ({
+    session
+}) =>{
 
     const [isOpen,setIsOpen] = useState<boolean>(false);
     const registerModal = useRegisterModal()
@@ -22,6 +29,7 @@ const UserMenu = () =>{
        <div className='flex flex-row justify-between items-center relative'>
         <div className='mx-4 hover:bg-neutral-100 rounded-full px-4 py-1 transiton cursor-pointer hidden md:block'>
             Airbnb your home
+            {JSON.stringify(session)}
         </div>
         <div
             onClick={toggle}
