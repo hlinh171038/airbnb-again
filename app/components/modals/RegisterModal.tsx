@@ -117,7 +117,7 @@ const RegisterModal =() =>{
         <Modals 
             isOpen={registerModal.isOpen}
             onClose={registerModal.onClose}
-            onSubmit={()=>{}}
+            onSubmit={handleSubmit(onSubmit)}
             title="Register"
             actionLabel="Register"
             body={bodyContent}

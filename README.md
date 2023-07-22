@@ -1,6 +1,4 @@
-3. set up prisma
-    - follow the prisma document to install prisma
-    - prisma/schema.prisma --> create (genarate/datasourse/ schema)
-    - install and import prisma-client ( libs/prisma client)
-        (method allow you generate and use prisma schema)
+4. modified register and update next-auth
+    - first time i push name string 'jsmith"
+    - change to name retrive when user type login
     
