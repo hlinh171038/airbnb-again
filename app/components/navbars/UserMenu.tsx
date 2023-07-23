@@ -8,9 +8,10 @@ import { User } from '@prisma/client'
 import useLoginModal from '@/app/hooks/useLoginModal'
 import MenuItem from './MenuItem'
 import {signOut} from 'next-auth/react'
+import { SafeUser } from '@/app/types'
 
 interface UserMenuProps {
-    session?: User | null
+    session?: SafeUser | null
 }
 
 const UserMenu:React.FC<UserMenuProps> = ({

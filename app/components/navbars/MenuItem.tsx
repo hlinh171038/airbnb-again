@@ -19,6 +19,7 @@ const MenuItem:React.FC<MenuItemProps> =({
                 transition
                 font-semibold
                 cursor-pointer
+                
             "
         >
             {label}
