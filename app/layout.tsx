@@ -8,6 +8,7 @@ import RegisterModal from './components/modals/RegisterModal'
 
 import LoginModal from './components/modals/LoginModal'
 import getCurrentUser from './actions/getCurrentUser'
+import ToasterProvider from './providers/toasterProvider'
 
 
 
@@ -29,6 +30,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ClientOnly>
+          <ToasterProvider />
           <Navbar session={session}/>
          <RegisterModal />
          <LoginModal />
