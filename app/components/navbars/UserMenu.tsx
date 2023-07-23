@@ -5,6 +5,9 @@ import Avatar from './Avatar'
 import { useCallback, useState } from 'react'
 import useRegisterModal from '@/app/hooks/useRegisterModal'
 import { User } from '@prisma/client'
+import useLoginModal from '@/app/hooks/useLoginModal'
+import MenuItem from './MenuItem'
+import {signOut} from 'next-auth/react'
 
 interface UserMenuProps {
     session?: User | null
@@ -16,6 +19,7 @@ const UserMenu:React.FC<UserMenuProps> = ({
 
     const [isOpen,setIsOpen] = useState<boolean>(false);
     const registerModal = useRegisterModal()
+    const loginModal = useLoginModal()
 
     const toggle = useCallback(()=>{
         setIsOpen((isOpen) => !isOpen)
@@ -24,12 +28,17 @@ const UserMenu:React.FC<UserMenuProps> = ({
     const handleOpenRegisterModal = useCallback(()=>{
         registerModal.onOpen();
         toggle()
-    },[registerModal])
+    },[registerModal,toggle])
+
+    const handleOpenLoginModal =useCallback(()=>{
+        loginModal.onOpen();
+        toggle()
+    },[loginModal,toggle])
     return (
        <div className='flex flex-row justify-between items-center relative'>
         <div className='mx-4 hover:bg-neutral-100 rounded-full px-4 py-1 transiton cursor-pointer hidden md:block'>
             Airbnb your home
-            {JSON.stringify(session)}
+            {/* {JSON.stringify(session)} */}
         </div>
         <div
             onClick={toggle}
@@ -56,14 +65,46 @@ const UserMenu:React.FC<UserMenuProps> = ({
         </div>
         {isOpen && (
             <div className='absolute top-12 right-0 bg-white border-[1px] px-4 py-4 w-[200px] rounded-lg shadow-md'>
-               <div className='hover:text-neutral-900 text-neutral-600 cursor-pointer hover:font-semibold transition'>
-                    Login
-                </div>
-                <div 
-                onClick={handleOpenRegisterModal}
-                className='hover:text-neutral-900 text-neutral-600 cursor-pointer hover:font-semibold transition'>
-                    Register
-                </div>
+                {session ? (
+                    <>
+                        <MenuItem
+                            label='My trips'
+                            onClick={()=>{}}
+                        />
+                        <MenuItem
+                            label='My favorites'
+                            onClick={()=>{}}
+                        />
+                        <MenuItem
+                            label='My reservations'
+                            onClick={()=>{}}
+                        />
+                        <MenuItem
+                            label='My properties'
+                            onClick={()=>{}}
+                        />
+                        <MenuItem
+                            label='Airbnb my house'
+                            onClick={()=>{}}
+                        />
+                        <MenuItem 
+                                 onClick={() =>signOut()}
+                                 label='Logout'
+                             />
+                    </>
+                ):(
+                    <>
+                        <MenuItem 
+                            label='Login'
+                            onClick={()=>loginModal.onOpen()}
+                        />
+                         <MenuItem 
+                            label='Sign up'
+                            onClick={()=>registerModal.onOpen()}
+                        />
+                    </>
+                )}
+              
             </div>
         )}
        </div>

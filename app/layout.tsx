@@ -5,8 +5,10 @@ import Navbar from './components/navbars/Navbar'
 import ClientOnly from './components/ClientOnly'
 import Modals from './components/modals/Modals'
 import RegisterModal from './components/modals/RegisterModal'
-import { getServerSession } from "next-auth/next"
-import { authOptions } from './api/auth/[...nextauth]/route'
+
+import LoginModal from './components/modals/LoginModal'
+import getCurrentUser from './actions/getCurrentUser'
+
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -21,7 +23,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const session = await getServerSession(authOptions);
+  const session = await getCurrentUser()
 
   return (
     <html lang="en">
@@ -29,6 +31,7 @@ export default async function RootLayout({
         <ClientOnly>
           <Navbar session={session}/>
          <RegisterModal />
+         <LoginModal />
         </ClientOnly>
         {children}
         </body>

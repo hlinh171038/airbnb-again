@@ -30,7 +30,7 @@ const Button:React.FC<ButtonProps> =({
           py-1
          
           ${outline ? 'bg-white': 'bg-rose-600'}
-          ${outline ? 'border-2 border-black hover:border-neutral-500': 'border-none'}
+          ${outline ? 'border-2 border-neutral-200 hover:border-neutral-400': 'border-none'}
           ${outline ? 'text-black': 'text-white'}
           
           `}

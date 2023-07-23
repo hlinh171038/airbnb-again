@@ -2,8 +2,8 @@ import { create } from 'zustand'
 
 interface LoginModalProps {
     isOpen: boolean;
-    onOpen?: () => void;
-    onClose?: () => void;
+    onOpen: () => void;
+    onClose: () => void;
 }
 
 const useLoginModal = create<LoginModalProps>((set)=>({

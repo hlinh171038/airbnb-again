@@ -8,7 +8,7 @@ import UserMenu from "./UserMenu"
 import { User } from "@prisma/client"
 
 interface NavbarProps {
-    session?: User | null
+    session?: User | null 
 }
 
 const Navbar:React.FC<NavbarProps> = ({
