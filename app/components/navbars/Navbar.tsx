@@ -6,6 +6,7 @@ import Container from "../Container"
 import Logo from "./Logo"
 import Search from "./Search"
 import UserMenu from "./UserMenu"
+import Categories from "./Categories"
 
 
 interface NavbarProps {
@@ -44,6 +45,7 @@ const Navbar:React.FC<NavbarProps> = ({
                     </div>
                 </Container>
             </div>
+            <Categories />
         </div>
     )
 }
