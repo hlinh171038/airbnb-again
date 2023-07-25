@@ -61,7 +61,7 @@ const UserMenu:React.FC<UserMenuProps> = ({
         >
             <AiOutlineMenu />
             <div className='hidden sm:block'>
-                <Avatar />
+                <Avatar session={session}/>
             </div>
         </div>
         {isOpen && (

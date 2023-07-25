@@ -1,14 +1,21 @@
 "use client"
 
+import { SafeUser } from "@/app/types"
 import Image from "next/image"
 
-const Avatar =() =>{
+
+interface AvatarProps {
+    session?: SafeUser | null;
+}
+const Avatar:React.FC<AvatarProps> =({
+    session
+}) =>{
     return (
         <Image
-            src="/placeholder.jpg"
+            src={session ? session?.image as string : "/placeholder.jpg"}
             alt="Avatar"
-            width={30}
-            height={30}
+            width={40}
+            height={40}
             className="rounded-full ml-2"
         />
     )

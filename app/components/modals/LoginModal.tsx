@@ -99,7 +99,7 @@ const LoginModal =() =>{
         />
         <Button 
           label="Github"
-          onClick={()=>{}}
+          onClick={()=>signIn('github')}
           disabled
           icon={AiFillGithub}
           outline

@@ -1,12 +1,17 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import NextAuth,{AuthOptions} from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials";
+import GitHubProvider from "next-auth/providers/github";
 import prisma from '@/app/libs/prismadb'
 import bcrypt from 'bcrypt'
 
 export const authOptions:AuthOptions =  ({
     adapter: PrismaAdapter(prisma),
     providers: [
+      GitHubProvider({
+        clientId: process.env.GITHUB_ID as string,
+        clientSecret: process.env.GITHUB_SECRET as string
+      }),
         CredentialsProvider({
           // The name to display on the sign in form (e.g. "Sign in with...")
           name: "credentials",
@@ -54,14 +59,14 @@ export const authOptions:AuthOptions =  ({
           }
         })
       ],
-      pages: {
-        signIn: '/'
-      },
+      
       secret: process.env.SECRET,
       session: {
         strategy: 'jwt'
       },
       debug: process.env.NODE_ENV ==='development',
+      
+     
 })
 
 const handler = NextAuth(authOptions)
