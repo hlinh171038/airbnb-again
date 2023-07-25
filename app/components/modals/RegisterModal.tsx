@@ -13,10 +13,12 @@ import Input from "../inputs/Input"
 import {FcGoogle} from 'react-icons/fc'
 import {AiFillGithub} from 'react-icons/ai'
 import Button from "../Button"
+import useLoginModal from "@/app/hooks/useLoginModal"
 
 const RegisterModal =() =>{
     const router = useRouter()
-    const registerModal = useRegisterModal()
+    const registerModal = useRegisterModal();
+    const loginModal = useLoginModal();
     const [isLoading,setIsLoading] = useState(false)
 
     const {
@@ -31,6 +33,13 @@ const RegisterModal =() =>{
             password: ''
         }
       })
+
+      const toggle = useCallback(()=>{
+        loginModal.onOpen();
+        registerModal.onClose();
+      },[loginModal,registerModal]);
+
+
     //handle submit
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true);
@@ -105,7 +114,7 @@ const RegisterModal =() =>{
                     Already have an account ?
                 </div>
                 <div
-                    onClick={()=>registerModal.onClose()}
+                    onClick={toggle}
                     className='text-neutral-800 cursor-pointer hover:underline'
                 >
                     Login
