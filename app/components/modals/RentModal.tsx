@@ -9,6 +9,8 @@ import Header from "../Header"
 import { categories } from "../navbars/Categories"
 import CategoryInput from "../inputs/CategoryInput"
 import CountrySelect from "../inputs/CountrySelect"
+// import Map from "../Map"
+import dynamic from "next/dynamic"
 
 
 enum STEPS {
@@ -57,6 +59,9 @@ const RentModal = () =>{
         })
     }
 
+    const Map = useMemo(()=>dynamic(()=>import('../Map'),{
+        ssr:false
+    }),[location]);
     const onBack = () =>{
         setStep((value)=> value - 1);
     }
@@ -121,6 +126,10 @@ const RentModal = () =>{
                 <CountrySelect 
                     value={location}
                     onChange={(value)=>setCustomValue('location',value)}
+                />
+                {/* Map recive coordination and not support by react */}
+                <Map
+                    center={location?.latlng}
                 />
             </div>
         )

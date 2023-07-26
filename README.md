@@ -1,2 +1,3 @@
-11.1 step 2(selected countries)
-    
+11.1 step 2(map)
+    - rentModal call Map.tsx -->pass coordination 
+    -map (use leaflet and leafletreact) and follow document
