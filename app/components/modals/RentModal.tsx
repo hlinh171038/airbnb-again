@@ -8,6 +8,7 @@ import { useForm, SubmitHandler, FieldValues } from "react-hook-form"
 import Header from "../Header"
 import { categories } from "../navbars/Categories"
 import CategoryInput from "../inputs/CategoryInput"
+import CountrySelect from "../inputs/CountrySelect"
 
 
 enum STEPS {
@@ -45,7 +46,7 @@ const RentModal = () =>{
 
       // the other way to take value without submit
       const category = watch('category'); // watch(pass exactly name of defaultValue)
-      console.log(category)
+      const location = watch('location');
 
       // create specical set value, because method setCustomValue (react-hook-form) by default not set value
       const setCustomValue = (id:string, value: any) =>{
@@ -83,7 +84,7 @@ const RentModal = () =>{
         return 'Back';
     },[]);
 
-    const bodyContent = (
+    let bodyContent = (
         <div className="flex flex-col gap-8">
             <Header 
                 title="Pick a category"
@@ -95,6 +96,7 @@ const RentModal = () =>{
                 {categories.map((item) =>{
                     return <CategoryInput
                                 key={item.label}
+                                
                                 // onClick recive category(watch) --> then, setCustomerValue(id,value)
                                 onClick={(value) =>setCustomValue('category',value)}
                                 // selected to style css
@@ -107,11 +109,28 @@ const RentModal = () =>{
         </div>
     )
 
+    if(step === STEPS.LOCATION)
+    {
+        bodyContent =(
+            <div className="flex flex-col gap-3">
+                <Header 
+                    title="country"
+                    subtitle="pick up your country where you want to visit"
+                    center
+                />
+                <CountrySelect 
+                    value={location}
+                    onChange={(value)=>setCustomValue('location',value)}
+                />
+            </div>
+        )
+    }
+
     return (
         <Modals 
             isOpen={rentModal.isOpen}
             onClose={rentModal.onClose}
-            onSubmit={()=>{}}
+            onSubmit={onNext}
             title="Rent"
             actionLabel={handleActionLabel}
             secondaryActionLabel={secondaryActionLabel}
