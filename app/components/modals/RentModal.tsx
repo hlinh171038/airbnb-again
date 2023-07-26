@@ -11,6 +11,7 @@ import CategoryInput from "../inputs/CategoryInput"
 import CountrySelect from "../inputs/CountrySelect"
 // import Map from "../Map"
 import dynamic from "next/dynamic"
+import Counter from "../inputs/Counter"
 
 
 enum STEPS {
@@ -49,6 +50,9 @@ const RentModal = () =>{
       // the other way to take value without submit
       const category = watch('category'); // watch(pass exactly name of defaultValue)
       const location = watch('location');
+      const guestCount = watch('guestCount');
+      const roomCount = watch('roomCount');
+      const bathroomCount = watch('bathroomCount');
     
       // create specical set value, because method setCustomValue (react-hook-form) by default not set value
       const setCustomValue = (id:string, value: any) =>{
@@ -137,8 +141,43 @@ const RentModal = () =>{
         )
     }
 
-    if(step === STEPS.IMAGES){
-        
+    if(step === STEPS.INFO){
+        bodyContent=(
+            <div className="flex flex-col gap-4 px-3 py-5">
+                <Header 
+                    title ="Room Utility"
+                    subtitle="Share some basic about your place"
+                    center
+                />
+                <Counter
+                    title="Number of guest"
+                    subtitle="How to guest to do allow ?"
+                    value={guestCount}
+                    onChange={(value)=>setCustomValue("guestCount",value)}
+                />
+                <Counter
+                    title="Number of room"
+                    subtitle="How to room to do allow ?"
+                    value={roomCount}
+                    onChange={(value)=>setCustomValue("roomCount",value)}
+                />
+                <Counter
+                    title="Number of bathroomCount"
+                    subtitle="How to bathroom to do allow ?"
+                    value={bathroomCount}
+                    onChange={(value)=>setCustomValue("bathroomCount",value)}
+                />
+            </div>
+        )
+    }
+
+    if(step ===STEPS.IMAGES)
+    {
+        bodyContent = (
+            <div>
+                
+            </div>
+        )
     }
 
     return (
