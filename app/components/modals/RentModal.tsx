@@ -12,6 +12,7 @@ import CountrySelect from "../inputs/CountrySelect"
 // import Map from "../Map"
 import dynamic from "next/dynamic"
 import Counter from "../inputs/Counter"
+import ImageUpload from "../inputs/ImageUpload"
 
 
 enum STEPS {
@@ -53,6 +54,7 @@ const RentModal = () =>{
       const guestCount = watch('guestCount');
       const roomCount = watch('roomCount');
       const bathroomCount = watch('bathroomCount');
+      const imageSrc = watch('imageSrc');
     
       // create specical set value, because method setCustomValue (react-hook-form) by default not set value
       const setCustomValue = (id:string, value: any) =>{
@@ -174,8 +176,15 @@ const RentModal = () =>{
     if(step ===STEPS.IMAGES)
     {
         bodyContent = (
-            <div>
-                
+            <div className="flex flex-col gap-4">
+                <Header 
+                    title="image upload"
+                    subtitle="pick up your picture to upload"
+                />
+                <ImageUpload 
+                    value={imageSrc}
+                    onChange={(value)=>setCustomValue('imageSrc',value)}
+                />
             </div>
         )
     }
