@@ -107,7 +107,7 @@ const Modals:React.FC<ModalsProps> = ({
            h-full
            md:h-auto
            lg:h-auto
-           
+          
           "
          >
             <div

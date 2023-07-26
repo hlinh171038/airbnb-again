@@ -27,7 +27,8 @@ const CategoryInput:React.FC<CategoryInputProps> = ({
             transition
             hover:text-neutral-800
             p-1
-            ${selected ?"bg-neutral-100": "bg-transparent"}
+            bg-neutral-100
+            ${selected ?"bg-neutral-300": "bg-transparent"}
             ${selected ?"text-neutral-800": "text-neutral-500"}
             `}
         >

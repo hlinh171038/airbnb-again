@@ -86,11 +86,12 @@ const RentModal = () =>{
     const bodyContent = (
         <div className="flex flex-col gap-8">
             <Header 
-                title="Which of these best description your place"
-                subtitle="Pick a category"
+                title="Pick a category"
+                subtitle="chose your favorite place"
+                center
             />
             {/* LIST OF CATEGORY */}
-            <div className="grid grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-h-[50vh] overflow-y-auto gap-5">
                 {categories.map((item) =>{
                     return <CategoryInput
                                 key={item.label}

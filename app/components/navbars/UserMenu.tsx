@@ -39,11 +39,20 @@ const UserMenu:React.FC<UserMenuProps> = ({
         loginModal.onOpen();
         toggle()
     },[loginModal,toggle])
+
+    const handleOpenRentModal = useCallback(()=>{
+        if(!session)
+        {
+            return loginModal.onOpen()
+        }
+        rentModal.onOpen()
+    },[])
     return (
        <div 
-       onClick={rentModal.onOpen}
        className='flex flex-row justify-between items-center relative'>
-        <div className='mx-4 hover:bg-neutral-100 rounded-full px-4 py-1 transiton cursor-pointer hidden md:block'>
+        <div 
+         onClick={handleOpenRentModal}
+        className='mx-4 hover:bg-neutral-100 rounded-full px-4 py-1 transiton cursor-pointer hidden md:block'>
             Airbnb your home
             {/* {JSON.stringify(session)} */}
         </div>

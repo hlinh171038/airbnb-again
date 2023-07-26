@@ -92,7 +92,7 @@ const LoginModal =() =>{
       <div className="flex flex-col gap-4">
         <Button 
           label="Google"
-          onClick={()=>{}}
+          onClick={()=>signIn('google')}
           disabled
           icon={FcGoogle}
           outline
