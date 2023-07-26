@@ -4,6 +4,11 @@ import useRentModal from "@/app/hooks/useRentModal"
 import Modals from "./Modals"
 import {useCallback,useState,useMemo} from 'react'
 
+import { useForm, SubmitHandler, FieldValues } from "react-hook-form"
+import Header from "../Header"
+import { categories } from "../navbars/Categories"
+import CategoryInput from "../inputs/CategoryInput"
+
 
 enum STEPS {
     CATEGORY = 0,
@@ -16,6 +21,40 @@ enum STEPS {
 const RentModal = () =>{
     const rentModal = useRentModal();
     const [step, setStep] = useState(STEPS.CATEGORY);
+
+    //react-hook-form
+    const {
+        register,
+        handleSubmit,
+        setValue,
+        watch,
+        formState: { errors },
+      } = useForm<FieldValues>({
+        defaultValues:{
+            category: '',
+            location: null,
+            guestCount: 1,
+            roomCount: 1,
+            bathroomCount: 1,
+            imageSrc: '',
+            Price: 1,
+            title: '',
+            description: ''
+        }
+      })
+
+      // the other way to take value without submit
+      const category = watch('category'); // watch(pass exactly name of defaultValue)
+      console.log(category)
+
+      // create specical set value, because method setCustomValue (react-hook-form) by default not set value
+      const setCustomValue = (id:string, value: any) =>{
+        setValue(id,value, {
+            shouldValidate: true,
+            shouldDirty: true,
+            shouldTouch: true
+        })
+    }
 
     const onBack = () =>{
         setStep((value)=> value - 1);
@@ -42,7 +81,30 @@ const RentModal = () =>{
         }
 
         return 'Back';
-    },[])
+    },[]);
+
+    const bodyContent = (
+        <div className="flex flex-col gap-8">
+            <Header 
+                title="Which of these best description your place"
+                subtitle="Pick a category"
+            />
+            {/* LIST OF CATEGORY */}
+            <div className="grid grid-cols-3 gap-5">
+                {categories.map((item) =>{
+                    return <CategoryInput
+                                key={item.label}
+                                // onClick recive category(watch) --> then, setCustomerValue(id,value)
+                                onClick={(value) =>setCustomValue('category',value)}
+                                // selected to style css
+                                selected ={category === item.label}
+                                label={item.label}
+                                icon ={item.icon}
+                            />
+                })}
+            </div>
+        </div>
+    )
 
     return (
         <Modals 
@@ -53,6 +115,7 @@ const RentModal = () =>{
             actionLabel={handleActionLabel}
             secondaryActionLabel={secondaryActionLabel}
             secondaryAction={step ===STEPS.CATEGORY ? undefined : onBack}
+            body={bodyContent}
         />
         
     )
