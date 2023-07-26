@@ -49,7 +49,7 @@ const Modals:React.FC<ModalsProps> = ({
 
     // handle submit
     const handleSubmit = useCallback(()=>{
-      console.log('try')
+   
         if(disabled) {
             return ;
         }

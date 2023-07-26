@@ -101,7 +101,7 @@ const Categories =() =>{
     const pathname = usePathname(); // take path name exist in url
 
     const categoryLink = params?.get('category');
-    console.log(pathname)
+    // console.log(pathname)
 
     const ismainPage = pathname === '/';
     if(!ismainPage){

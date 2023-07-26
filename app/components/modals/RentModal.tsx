@@ -49,7 +49,7 @@ const RentModal = () =>{
       // the other way to take value without submit
       const category = watch('category'); // watch(pass exactly name of defaultValue)
       const location = watch('location');
-
+    
       // create specical set value, because method setCustomValue (react-hook-form) by default not set value
       const setCustomValue = (id:string, value: any) =>{
         setValue(id,value, {
@@ -80,6 +80,8 @@ const RentModal = () =>{
         return 'Next'
     },[step]);
 
+
+
     const secondaryActionLabel = useMemo(()=>{
         // first steps --> return undefined
         if(step === STEPS.CATEGORY){
@@ -87,7 +89,7 @@ const RentModal = () =>{
         }
 
         return 'Back';
-    },[]);
+    },[step]);
 
     let bodyContent = (
         <div className="flex flex-col gap-8">
@@ -133,6 +135,10 @@ const RentModal = () =>{
                 />
             </div>
         )
+    }
+
+    if(step === STEPS.IMAGES){
+        
     }
 
     return (
