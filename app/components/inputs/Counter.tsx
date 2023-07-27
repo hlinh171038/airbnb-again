@@ -45,7 +45,7 @@ const Counter:React.FC<CounterProps> =({
                     cursor-pointer
                     hover:opacity-80
                     transition
-                    text-white
+                   
                     "
                 >
                    <AiFillMinusCircle />
@@ -61,7 +61,7 @@ const Counter:React.FC<CounterProps> =({
                     cursor-pointer
                     hover:opacity-80
                     transition
-                    text-white
+               
                     "
                 >
                     <BsPlusCircleFill/>

@@ -14,6 +14,9 @@ import dynamic from "next/dynamic"
 import Counter from "../inputs/Counter"
 import ImageUpload from "../inputs/ImageUpload"
 import Input from "../inputs/Input"
+import axios from "axios"
+import { toast } from "react-hot-toast"
+import { useRouter } from "next/navigation"
 
 
 enum STEPS {
@@ -27,7 +30,8 @@ enum STEPS {
 const RentModal = () =>{
     const rentModal = useRentModal();
     const [step, setStep] = useState(STEPS.CATEGORY);
-    const [isLoading,setIsLoading] = useState(false)
+    const [isLoading,setIsLoading] = useState(false);
+    const router = useRouter()
 
     //react-hook-form
     const {
@@ -49,6 +53,29 @@ const RentModal = () =>{
             description: ''
         }
       })
+
+      //submit handler
+      const onSubmit: SubmitHandler<FieldValues> = (data) => {
+        setIsLoading(true)
+
+        if(step !== STEPS.PRICE)
+        {
+            return onNext()
+        }
+
+        axios.post('/api/listings', data)
+            .then(()=>{
+                toast.success('Listing is created');
+                router.refresh();
+                setStep(STEPS.CATEGORY)
+                rentModal.onClose()
+            })
+            .catch(()=>{
+                toast.error("Something went wrong")
+            }).finally(()=>{
+                setIsLoading(false)
+            })
+      }
 
       // the other way to take value without submit
       const category = watch('category'); // watch(pass exactly name of defaultValue)
@@ -206,7 +233,7 @@ const RentModal = () =>{
                     label="Title"
                     register={register}
                     required
-                    disabled={isLoading}
+                   
                     errors={errors}
                 />
                  <Input 
@@ -215,7 +242,7 @@ const RentModal = () =>{
                     label="Description"
                     register={register}
                     required
-                    disabled={isLoading}
+                    
                     errors={errors}
                 />
             </div>
@@ -234,7 +261,7 @@ const RentModal = () =>{
                     id="price"
                     label="Price"
                     type="number"
-                    disabled={isLoading}
+                    
                     register={register}
                     errors={errors}
                     required
@@ -246,7 +273,7 @@ const RentModal = () =>{
         <Modals 
             isOpen={rentModal.isOpen}
             onClose={rentModal.onClose}
-            onSubmit={onNext}
+            onSubmit={handleSubmit(onSubmit)}
             title="Rent"
             actionLabel={handleActionLabel}
             secondaryActionLabel={secondaryActionLabel}
