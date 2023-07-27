@@ -44,7 +44,7 @@ const RentModal = () =>{
             roomCount: 1,
             bathroomCount: 1,
             imageSrc: '',
-            Price: 1,
+            price: 1,
             title: '',
             description: ''
         }
@@ -217,6 +217,27 @@ const RentModal = () =>{
                     required
                     disabled={isLoading}
                     errors={errors}
+                />
+            </div>
+        )
+    }
+
+    if(step === STEPS.PRICE)
+    {
+        bodyContent =(
+            <div>
+                <Header 
+                    title="Price"
+                    subtitle="set up your price"
+                />
+                <Input 
+                    id="price"
+                    label="Price"
+                    type="number"
+                    disabled={isLoading}
+                    register={register}
+                    errors={errors}
+                    required
                 />
             </div>
         )

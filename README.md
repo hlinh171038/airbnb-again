@@ -1,2 +1,2 @@
-14.(step 5) description and title
+14.(step 6) price
     -use input.tsx
