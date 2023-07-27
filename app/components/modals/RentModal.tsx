@@ -13,6 +13,7 @@ import CountrySelect from "../inputs/CountrySelect"
 import dynamic from "next/dynamic"
 import Counter from "../inputs/Counter"
 import ImageUpload from "../inputs/ImageUpload"
+import Input from "../inputs/Input"
 
 
 enum STEPS {
@@ -26,6 +27,7 @@ enum STEPS {
 const RentModal = () =>{
     const rentModal = useRentModal();
     const [step, setStep] = useState(STEPS.CATEGORY);
+    const [isLoading,setIsLoading] = useState(false)
 
     //react-hook-form
     const {
@@ -189,6 +191,36 @@ const RentModal = () =>{
         )
     }
 
+
+    if(step === STEPS.DESCRIPTION)
+    {
+        bodyContent =(
+            <div className="flex flex-col gap-4">
+                <Header 
+                    title="Description"
+                    subtitle="fill out the form"
+                />
+                <Input 
+                    id="title"
+                    type="text"
+                    label="Title"
+                    register={register}
+                    required
+                    disabled={isLoading}
+                    errors={errors}
+                />
+                 <Input 
+                    id="description"
+                    type="text"
+                    label="Description"
+                    register={register}
+                    required
+                    disabled={isLoading}
+                    errors={errors}
+                />
+            </div>
+        )
+    }
     return (
         <Modals 
             isOpen={rentModal.isOpen}
