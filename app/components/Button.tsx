@@ -6,7 +6,7 @@ import { IconType } from "react-icons/lib";
 interface ButtonProps {
     label: string;
     disabled?: boolean;
-    onClick: () =>void;
+    onClick: (e: React.MouseEvent<HTMLButtonElement>) =>void;
     outline?: boolean;
     icon?:IconType
 }

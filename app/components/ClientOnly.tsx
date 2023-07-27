@@ -21,7 +21,7 @@ const ClientOnly:React.FC<ClientOnlyProps> = ({
     }
 
     return (
-        <div>
+        <div className='w-full h-full'>
             {children}
         </div>
     )

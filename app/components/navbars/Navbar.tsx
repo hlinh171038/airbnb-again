@@ -19,7 +19,7 @@ const Navbar:React.FC<NavbarProps> = ({
     return (
         <div
             className="
-                fixed 
+               
                 w-full 
                 bg-white 
                 z-10 
