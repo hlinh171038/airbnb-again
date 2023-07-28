@@ -1,13 +1,14 @@
 "use client"
 
 import { Listing, Reservation } from "@prisma/client";
-import { SafeUser } from "../types"
+import { SafeUser } from "../../types"
 import Image from "next/image";
-import HeartButton from "./HeartButton";
-import useCountries from "../hooks/useCountries";
+import HeartButton from "../HeartButton";
+import useCountries from "../../hooks/useCountries";
 import { compareAsc, format } from 'date-fns'
 import {useCallback,useMemo} from 'react'
-import Button from "./Button";
+import Button from "../Button";
+import { useRouter } from "next/navigation";
 
 interface ListingCardProps {
     currentUser: SafeUser | null;
@@ -29,6 +30,7 @@ const ListingCard:React.FC<ListingCardProps> =({
 }) =>{
     const {getByValue} = useCountries()
     const location = getByValue(data.locationValue);
+    const router = useRouter()
 
     const reservationDate = useMemo(()=>{
         if(!reservation){
@@ -60,6 +62,7 @@ const ListingCard:React.FC<ListingCardProps> =({
     },[actionId,onAction,disabled])
     return (
         <div
+            onClick={()=> router.push(`/listings/${data.id}`)}
             className="
                 col-span-1
                 cursor-pointer
