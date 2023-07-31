@@ -19,6 +19,7 @@ import { toast } from "react-hot-toast"
 import { useRouter } from "next/navigation"
 import RentContent from "../rents/RentContent"
 import { FcDam, FcHome, FcSupport } from "react-icons/fc"
+import Image from "next/image"
 
 
 enum STEPS {
@@ -26,9 +27,10 @@ enum STEPS {
     CATEGORY = 1,
     LOCATION = 2,
     INFO = 3,
-    IMAGES =4,
-    DESCRIPTION = 5,
-    PRICE = 6
+    OVERVIEW = 4,
+    IMAGES =5,
+    DESCRIPTION = 6,
+    PRICE = 7
 }
 const RentModal = () =>{
     const rentModal = useRentModal();
@@ -49,6 +51,7 @@ const RentModal = () =>{
             location: null,
             guestCount: 1,
             roomCount: 1,
+            bed: 1,
             bathroomCount: 1,
             imageSrc: '',
             price: 1,
@@ -85,6 +88,7 @@ const RentModal = () =>{
       const location = watch('location');
       const guestCount = watch('guestCount');
       const roomCount = watch('roomCount');
+      const bed = watch('bed');
       const bathroomCount = watch('bathroomCount');
       const imageSrc = watch('imageSrc');
     
@@ -223,30 +227,60 @@ const RentModal = () =>{
 
     if(step === STEPS.INFO){
         bodyContent=(
-            <div className="flex flex-col gap-4 px-3 py-5">
-                <Header 
-                    title ="Room Utility"
-                    subtitle="Share some basic about your place"
-                    center
-                />
-                <Counter
-                    title="Number of guest"
-                    subtitle="How to guest to do allow ?"
-                    value={guestCount}
-                    onChange={(value)=>setCustomValue("guestCount",value)}
-                />
-                <Counter
-                    title="Number of room"
-                    subtitle="How to room to do allow ?"
-                    value={roomCount}
-                    onChange={(value)=>setCustomValue("roomCount",value)}
-                />
-                <Counter
-                    title="Number of bathroomCount"
-                    subtitle="How to bathroom to do allow ?"
-                    value={bathroomCount}
-                    onChange={(value)=>setCustomValue("bathroomCount",value)}
-                />
+            <div className="flex px-8 py-5 flex justify-center">
+                <div className="w-full sm:w-1/2 flex flex-col gap-8">
+                    <Header 
+                        title ="Chia sẻ thông tin cơ bản về chỗ ở của bạn"
+                        subtitle="Sau này, bạn sẽ bổ sung những thông tin khác, như loại giường chẳng hạn.e"
+                        center
+                        big
+                    />
+                    <Counter
+                        title="Number of guest"
+                        subtitle="How to guest to do allow ?"
+                        value={guestCount}
+                        onChange={(value)=>setCustomValue("guestCount",value)}
+                    />
+                    <Counter
+                        title="Số lượng giường ngủ:"
+                        subtitle="Bao nhiêu giường mỗi phòng"
+                        value={bed}
+                        onChange={(value)=>setCustomValue("bed",value)}
+                    />
+                    <Counter
+                        title="Number of room"
+                        subtitle="How to room to do allow ?"
+                        value={roomCount}
+                        onChange={(value)=>setCustomValue("roomCount",value)}
+                    />
+                    <Counter
+                        title="Number of bathroomCount"
+                        subtitle="How to bathroom to do allow ?"
+                        value={bathroomCount}
+                        onChange={(value)=>setCustomValue("bathroomCount",value)}
+                    />
+                </div>
+            </div>
+        )
+    }
+
+    if(step === STEPS.OVERVIEW)
+    {
+        bodyContent = (
+            <div className="w-full h-full  flex justify-center items-center">
+                <div className=" w-full px-4 sm:w-2/3 flex flex-col lg:flex-row justify-between items-center gap-4 pt-8">
+                    <Header 
+                        title="Làm cho chỗ ở của bạn trở nên nổi bật"
+                        subtitle="Ở bước này, bạn sẽ thêm một số tiện nghi được cung cấp tại chỗ ở của bạn, cùng với 5 bức ảnh trở lên. Sau đó, bạn sẽ soạn tiêu đề và nội dung mô tả."
+                        big
+                    />
+                    <Image 
+                        src="/house-modal.jpg"
+                        alt="House Modal"
+                        width={500}
+                        height={500}
+                    />
+                </div>
             </div>
         )
     }
