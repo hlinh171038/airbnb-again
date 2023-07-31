@@ -1,5 +1,7 @@
 "use client"
 
+import { IconType } from "react-icons/lib";
+
 interface RentContentProps {
     title?: string;
     content?: string;
@@ -7,7 +9,8 @@ interface RentContentProps {
     large?:boolean;
     center?: boolean;
     hidden?: boolean;
-    padding?:boolean
+    padding?:boolean;
+    icon?:IconType
 }
 const RentContent:React.FC<RentContentProps> = ({
     title,
@@ -16,26 +19,34 @@ const RentContent:React.FC<RentContentProps> = ({
     large,
     center, 
     hidden,
-    padding
+    padding,
+    icon:Icon
 }) =>{
     return (
-        <div >
-         <p  
-            className={`
-                ${!padding && "py-3"}
-                ${large ?"text-4xl":"text-md"}
-                ${bold ?"font-semibold": "font-normal"}
-                ${center ?"text-center": "text-start"}
-            `}
-         >{title}</p>
-            <p className={`
-                text-sm
-              text-neutral-600
-                text-start
-                ${hidden && "hidden md:block"}
-            `}>
-                {content}
-             </p>
+        <div  className={`
+            ${Icon && "flex justify-between items-center gap-3"}
+        `}>
+            <div>
+                    <p  
+                    className={`
+                        ${!padding && "py-3"}
+                        ${large ?"text-4xl":"text-md"}
+                        ${bold ?"font-semibold": "font-normal"}
+                        ${center ?"text-center": "text-start"}
+                    `}
+                >{title}</p>
+                    <p className={`
+                        text-sm
+                    text-neutral-600
+                        text-start
+                        ${hidden && "hidden md:block"}
+                    `}>
+                        {content}
+                    </p>
+            </div>
+            {Icon && (
+                <Icon size={100} />
+            )}
         </div>           
     )
 }

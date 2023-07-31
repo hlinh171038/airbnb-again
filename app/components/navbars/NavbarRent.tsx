@@ -9,8 +9,8 @@ import Container from "../Container"
 const NavbarRent = () =>{
     const rentModal = useRentModal()
     return (
-       <Container>
-         <div className="flex flex-row justify-between items-center py-2 ">
+      
+         <div className="fixed  flex flex-row justify-between items-center py-2 px-2 bg-white w-full ">
                <Logo />
                <div className=" flex-row items-center justify-end hidden sm:flex">
                 <span className="text-sm text-muted text-semibold mr-3">Are you ready for rent ?</span>
@@ -23,8 +23,8 @@ const NavbarRent = () =>{
                     </div>
                </div>
                
-            </div>
-       </Container>
+            
+       </div>
     )
 }
 

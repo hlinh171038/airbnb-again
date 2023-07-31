@@ -17,19 +17,22 @@ import Input from "../inputs/Input"
 import axios from "axios"
 import { toast } from "react-hot-toast"
 import { useRouter } from "next/navigation"
+import RentContent from "../rents/RentContent"
+import { FcDam, FcHome, FcSupport } from "react-icons/fc"
 
 
 enum STEPS {
-    CATEGORY = 0,
-    LOCATION = 1,
-    INFO = 2,
-    IMAGES = 3,
-    DESCRIPTION = 4,
-    PRICE = 5
+    START = 0,
+    CATEGORY = 1,
+    LOCATION = 2,
+    INFO = 3,
+    IMAGES =4,
+    DESCRIPTION = 5,
+    PRICE = 6
 }
 const RentModal = () =>{
     const rentModal = useRentModal();
-    const [step, setStep] = useState(STEPS.CATEGORY);
+    const [step, setStep] = useState(STEPS.START);
     const [isLoading,setIsLoading] = useState(false);
     const router = useRouter()
 
@@ -112,6 +115,11 @@ const RentModal = () =>{
             return 'Create'
         }
 
+        if(step === STEPS.START)
+        {
+            return "Bắt đầu"
+        }
+
         return 'Next'
     },[step]);
 
@@ -119,7 +127,7 @@ const RentModal = () =>{
 
     const secondaryActionLabel = useMemo(()=>{
         // first steps --> return undefined
-        if(step === STEPS.CATEGORY){
+        if(step === STEPS.START){
             return undefined;
         }
 
@@ -127,29 +135,68 @@ const RentModal = () =>{
     },[step]);
 
     let bodyContent = (
-        <div className="flex flex-col gap-8">
-            <Header 
-                title="Pick a category"
-                subtitle="chose your favorite place"
-                center
-            />
-            {/* LIST OF CATEGORY */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-h-[50vh] overflow-y-auto gap-5">
-                {categories.map((item) =>{
-                    return <CategoryInput
-                                key={item.label}
-                                
-                                // onClick recive category(watch) --> then, setCustomerValue(id,value)
-                                onClick={(value) =>setCustomValue('category',value)}
-                                // selected to style css
-                                selected ={category === item.label}
-                                label={item.label}
-                                icon ={item.icon}
-                            />
-                })}
+        <div className="md:grid grid-cols-2 gap-8">
+           <div className="flex justify-center items-center">
+                <span className=" mt-4 text-2xl md:text-4xl font-semibold text-center w-full md:w-2/3">Bắt đầu trên Airbnb thật dễ dàng</span>
+           </div>
+           <div className="px-4 py-8">
+            <div className="mb-4">
+                <RentContent 
+                    title="1 Chia sẻ thông tin về chỗ ở của bạn cho chúng tôi"
+                    content="Chia sẻ một số thông tin cơ bản, như vị trí của nhà/phòng cho thuê và số lượng khách có thể ở tại đó."
+                    bold
+                    icon={FcHome}
+                />
             </div>
+            <div className="mb-4">
+                <RentContent 
+                    title="2 Làm cho nhà/phòng cho thuê trở nên nổi bật"
+                    content="Thêm từ 5 ảnh trở lên cùng với tiêu đề và nội dung mô tả – chúng tôi sẽ giúp bạn thực hiện."
+                    bold
+                    icon={FcDam}
+                />
+            </div>
+            <div className="mb-4">
+                <RentContent 
+                    title="3 Hoàn thiện và đăng mục cho thuê"
+                    content="Lựa chọn xem bạn muốn bắt đầu với việc đón tiếp khách có kinh nghiệm, chọn giá khởi điểm hay đăng mục cho thuê."
+                    bold
+                    icon={FcSupport}
+                />
+            </div>
+           </div>
         </div>
     )
+
+
+    if(step ===STEPS.CATEGORY)
+    {
+        bodyContent =(
+            <div className="flex flex-col gap-8">
+                <Header 
+                    title="Điều nào sau đây mô tả chính xác nơi ở của bạn"
+                    subtitle="Chọn một nơi mô tả phù hợp nhất"
+                    center
+                    big
+                />
+                {/* LIST OF CATEGORY */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-h-[50vh] overflow-y-auto gap-5">
+                    {categories.map((item) =>{
+                        return <CategoryInput
+                                    key={item.label}
+                                    
+                                    // onClick recive category(watch) --> then, setCustomerValue(id,value)
+                                    onClick={(value) =>setCustomValue('category',value)}
+                                    // selected to style css
+                                    selected ={category === item.label}
+                                    label={item.label}
+                                    icon ={item.icon}
+                                />
+                    })}
+                </div>
+            </div>
+        )
+    }
 
     if(step === STEPS.LOCATION)
     {
@@ -277,8 +324,9 @@ const RentModal = () =>{
             title="Rent"
             actionLabel={handleActionLabel}
             secondaryActionLabel={secondaryActionLabel}
-            secondaryAction={step ===STEPS.CATEGORY ? undefined : onBack}
+            secondaryAction={step ===STEPS.START ? undefined : onBack}
             body={bodyContent}
+            rent
         />
         
     )

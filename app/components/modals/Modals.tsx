@@ -18,6 +18,7 @@ interface ModalsProps {
     disabled?: boolean;
     secondaryAction?: () =>void;
     secondaryActionLabel?:string;
+    rent?:boolean;
 }
 const Modals:React.FC<ModalsProps> = ({
     isOpen,
@@ -29,7 +30,8 @@ const Modals:React.FC<ModalsProps> = ({
     actionLabel,
     disabled,
     secondaryAction,
-    secondaryActionLabel
+    secondaryActionLabel,
+    rent
 }) =>{
 
     const [showModal,setShowModal] = useState(isOpen)
@@ -89,47 +91,33 @@ const Modals:React.FC<ModalsProps> = ({
           items-center
           w-full
           h-[100vh]
-          z-50
+          z-51
           fixed
          "
         >
          <div
-          className="
-         
-           w-full
-           md:w-4/6
-           lg:w-3/6
-           xl:w-2/6
-           my-6
-           mx-auto
-           px-2
-           py-4
-           h-full
-           md:h-auto
-           lg:h-auto
-          
-          "
+          className={`
+            ${!rent ?"w-full md:w-4/6 lg:w-3/6 xl:w-2/6 h-full md:h-auto lg:h-auto  my-6 mx-auto px-2 py-4" : " w-full  h-[100vh]"}
+          `}
          >
             <div
              className={`
                translate
                duration-300
-               
+               ${rent && "w-full h-full"}
                ${showModal ? 'translate-y-0' : 'translate-y-full'}
                ${showModal ? 'opacity-100': 'opacity-0'}
              `}
             >
               <div
-               className="
+               className={`
                 px-3
                 py-4
-                h-full
-                lg:h-auto
-                md:h-auto
                 border-0
                 bg-white
                 rounded-lg
-               "
+                ${rent ?"h-full relative":"h-full md:h-auto lg:h-auto"}
+               `}
               >
                 {/* Header */}
                 <div
@@ -157,21 +145,18 @@ const Modals:React.FC<ModalsProps> = ({
                 <div>
                    {body}
                 </div>
-                <hr />
-                <div
-                  className="
-                    flex
-                    flex-row
-                    justify-between
-                    items-center
-                    my-4
-                    mb-6
-                    py-2
-                  "
+               {!rent && <hr/>}
+                {rent ? (
+                  <div
+                  className={`
+                     absolute 
+                     bottom-2 
+                     right-8
+                  `}
                 >
                     <Button
                      disabled={disabled}
-                     onClick={handleSubmit}
+                     onClick={handleSubmit} 
                      label={actionLabel}
                    />
                   {secondaryAction && secondaryActionLabel  && (
@@ -183,6 +168,37 @@ const Modals:React.FC<ModalsProps> = ({
                     />
                   ) }
                 </div>
+                ):(
+                  
+                  <div
+                  className={`
+                    flex
+                    flex-row
+                    justify-between
+                    items-center
+                    my-4
+                    mb-6
+                    py-2
+                    
+                  `}
+                >
+                    <Button
+                     disabled={disabled}
+                     onClick={handleSubmit} 
+                     label={actionLabel}
+                   />
+                  {secondaryAction && secondaryActionLabel  && (
+                    <Button 
+                      disabled={disabled}
+                      outline
+                      label={secondaryActionLabel}
+                      onClick={handleSecondaryAction}
+                    />
+                  ) }
+                </div>
+                )}
+               
+                
                    {footer}
               </div>
             </div>
