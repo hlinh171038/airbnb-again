@@ -202,11 +202,12 @@ const RentModal = () =>{
     if(step === STEPS.LOCATION)
     {
         bodyContent =(
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 px-4">
                 <Header 
-                    title="country"
-                    subtitle="pick up your country where you want to visit"
+                    title="Quốc gia của bạn ở đâu ?"
+                    subtitle="Chọn quốc gia của bạn..."
                     center
+                    big
                 />
                 <CountrySelect 
                     value={location}
