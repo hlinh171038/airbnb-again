@@ -10,6 +10,7 @@ import LoginModal from './components/modals/LoginModal'
 import getCurrentUser from './actions/getCurrentUser'
 import ToasterProvider from './providers/toasterProvider'
 import RentModal from './components/modals/RentModal'
+import NavMobile from './components/navbars/NavMobile'
 
 
 
@@ -29,7 +30,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className} > 
         <ClientOnly>
           <ToasterProvider />
           <Navbar session={session}/>
@@ -37,9 +38,11 @@ export default async function RootLayout({
           <LoginModal />
           <RentModal />
         </ClientOnly>
-        <div className='pb-20 pt-28'>
+        <div className='pb-20 pt-28 '>
           {children}
+         
         </div>
+        <NavMobile />
         </body>
     </html>
   )

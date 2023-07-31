@@ -7,6 +7,10 @@ import Logo from "./Logo"
 import Search from "./Search"
 import UserMenu from "./UserMenu"
 import Categories from "./Categories"
+import { usePathname } from "next/navigation"
+import Header from "../Header"
+import Button from "../Button"
+import NavbarRent from "./NavbarRent"
 
 
 interface NavbarProps {
@@ -16,10 +20,17 @@ interface NavbarProps {
 const Navbar:React.FC<NavbarProps> = ({
     session
 }) =>{
+    const path = usePathname();
+
+    if(path === '/rent')
+    {
+        return <NavbarRent />
+    }
+   
     return (
         <div
             className="
-               fixed
+                fixed
                 w-full 
                 bg-white 
                 z-10 

@@ -51,7 +51,7 @@ const UserMenu:React.FC<UserMenuProps> = ({
        <div 
        className='flex flex-row justify-between items-center relative'>
         <div 
-         onClick={handleOpenRentModal}
+         onClick={()=>router.push('/rent')}
         className='mx-4 hover:bg-neutral-100 rounded-full px-4 py-1 transiton cursor-pointer hidden md:block'>
             Airbnb your home
             {/* {JSON.stringify(session)} */}

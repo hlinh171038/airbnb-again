@@ -7,7 +7,7 @@ const Logo =() =>{
     const router = useRouter();
     return (
         <Image 
-            className="hidden sm:block"
+            className="block"
             onClick={()=>router.push('/')}
             src="/logo.png"
             alt="Avater"
