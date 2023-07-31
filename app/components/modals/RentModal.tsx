@@ -178,9 +178,10 @@ const RentModal = () =>{
                     subtitle="Chọn một nơi mô tả phù hợp nhất"
                     center
                     big
+                   
                 />
                 {/* LIST OF CATEGORY */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-h-[50vh] overflow-y-auto gap-5">
+                <div className="grid grid-cols-1 px-16 sm:grid-cols-2 md:grid-cols-3 max-h-[50vh] overflow-y-auto gap-5">
                     {categories.map((item) =>{
                         return <CategoryInput
                                     key={item.label}
@@ -327,6 +328,8 @@ const RentModal = () =>{
             secondaryAction={step ===STEPS.START ? undefined : onBack}
             body={bodyContent}
             rent
+            lastStep={step ===STEPS.PRICE ?true:false}
+            firstStep = {step === STEPS.START ? true: false}
         />
         
     )

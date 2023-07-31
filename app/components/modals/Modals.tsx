@@ -19,6 +19,9 @@ interface ModalsProps {
     secondaryAction?: () =>void;
     secondaryActionLabel?:string;
     rent?:boolean;
+    step?:boolean;
+    lastStep?: boolean;
+    firstStep?: boolean
 }
 const Modals:React.FC<ModalsProps> = ({
     isOpen,
@@ -31,7 +34,9 @@ const Modals:React.FC<ModalsProps> = ({
     disabled,
     secondaryAction,
     secondaryActionLabel,
-    rent
+    rent,
+    lastStep,
+    firstStep
 }) =>{
 
     const [showModal,setShowModal] = useState(isOpen)
@@ -91,7 +96,7 @@ const Modals:React.FC<ModalsProps> = ({
           items-center
           w-full
           h-[100vh]
-          z-51
+          z-50
           fixed
          "
         >
@@ -111,12 +116,12 @@ const Modals:React.FC<ModalsProps> = ({
             >
               <div
                className={`
-                px-3
+                
                 py-4
                 border-0
                 bg-white
                 rounded-lg
-                ${rent ?"h-full relative":"h-full md:h-auto lg:h-auto"}
+                ${rent ?"h-full relative":"h-full md:h-auto lg:h-auto px-3"}
                `}
               >
                 {/* Header */}
@@ -150,23 +155,42 @@ const Modals:React.FC<ModalsProps> = ({
                   <div
                   className={`
                      absolute 
-                     bottom-2 
-                     right-8
+                      bottom-4
+                      px-20
+                     w-full
+                     ${firstStep ?"flex justify-end":"flex justify-between gap-8"}
                   `}
                 >
-                    <Button
-                     disabled={disabled}
-                     onClick={handleSubmit} 
-                     label={actionLabel}
-                   />
-                  {secondaryAction && secondaryActionLabel  && (
-                    <Button 
-                      disabled={disabled}
-                      outline
-                      label={secondaryActionLabel}
+                    {secondaryAction && secondaryActionLabel  && (
+                    <button
                       onClick={handleSecondaryAction}
-                    />
+                      className="cursor-pointer underline font-bold"
+                    >
+                     
+                      {secondaryActionLabel}
+                    </button>
+                    
+                      // <Button 
+                      //   disabled={disabled}
+                      //   outline
+                      //   label={secondaryActionLabel}
+                      //   onClick={handleSecondaryAction}
+                      // />
+                    
                   ) }
+                    <button
+                    onClick={handleSubmit}
+                      className={`
+                      px-6
+                      py-2
+                      text-white
+                      rounded-md
+                      ${lastStep ?" bg-rose-600":"bg-neutral-300"}
+                      `}
+                    >
+                       {actionLabel}
+                    </button>
+                  
                 </div>
                 ):(
                   

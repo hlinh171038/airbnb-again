@@ -1,6 +1,7 @@
 "use client"
 
 import { IconType } from "react-icons/lib";
+import {useCallback, useEffect, useRef,useLayoutEffect,useState} from 'react'
 
 
 interface CategoryInputProps {
@@ -15,6 +16,30 @@ const CategoryInput:React.FC<CategoryInputProps> = ({
     label,
     icon:Icon
 }) =>{
+   
+    const [isStyle,setIsStyle] = useState(false);
+
+    // const handleStyle = () =>{
+    //     setIsStyle(true);
+    //     // let style = setTimeout(()=>{
+    //     //     setIsStyle(false)
+    //     // },1000);
+    //     //  clearTimeout(style);
+    // }
+
+    const handleStyle = useCallback(()=>{
+        console.log('try')
+         setIsStyle(true)
+          setTimeout(()=>{
+            setIsStyle(false)
+         },200)
+    },[isStyle])
+    useEffect(()=>{
+       if(selected)
+       {
+        handleStyle()
+       }
+    },[selected])
     return (
         <div
             onClick={()=>onClick(label)}
@@ -26,16 +51,20 @@ const CategoryInput:React.FC<CategoryInputProps> = ({
             gap-2
             transition
             hover:text-neutral-800
-            p-1
-            bg-neutral-100
-            ${selected ?"bg-neutral-300": "bg-transparent"}
-            ${selected ?"text-neutral-800": "text-neutral-500"}
+            hover:border-neutral-800
+            
+            py-4
+            border-[1px]
+            rounded-lg
+            ${selected && "border-neutral-800"}
+            
+            ${selected ?"text-neutral-800 bg-neutral-100" : "text-neutral-500"}
             `}
         >
-            <Icon size={34} />
-            <span className="text-sm font-medium">{label}</span>
+            <Icon size={34} className={`transition ${isStyle ?"scale-75 ": "scale-100 "}`} />
+            <span className="text-sm font-medium" >{label}</span>
         </div>
     )
 }
-
+ 
 export default CategoryInput

@@ -40,9 +40,9 @@ export default async function RootLayout({
         </ClientOnly>
         <div className='pb-20 pt-28 '>
           {children}
-         
         </div>
         <NavMobile />
+        
         </body>
     </html>
   )
