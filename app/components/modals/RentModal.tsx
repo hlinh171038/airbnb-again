@@ -20,6 +20,39 @@ import { useRouter } from "next/navigation"
 import RentContent from "../rents/RentContent"
 import { FcDam, FcHome, FcSupport } from "react-icons/fc"
 import Image from "next/image"
+import { TbBeach, TbMountain } from "react-icons/tb"
+import { GiWindmill } from "react-icons/gi"
+import { MdOutlineVilla } from "react-icons/md"
+import UtilitiesInput from "../inputs/UtilitiesInput"
+
+
+
+ export const utilitiesArr =[
+    {
+        label: 'Beach',
+        icon: TbBeach,
+        description: 'This property is close to the beach!',
+        selected:false,
+      },
+      {
+        label: 'Windmills',
+        icon: GiWindmill,
+        description: 'This property is has windmills!',
+        selected:false,
+      },
+      {
+        label: 'Modern',
+        icon: MdOutlineVilla,
+        description: 'This property is modern!',
+        selected:false,
+      },
+      {
+        label: 'Countryside',
+        icon: TbMountain,
+        description: 'This property is in the countryside!',
+        selected:false,
+      },
+]
 
 
 enum STEPS {
@@ -28,9 +61,10 @@ enum STEPS {
     LOCATION = 2,
     INFO = 3,
     OVERVIEW = 4,
-    IMAGES =5,
-    DESCRIPTION = 6,
-    PRICE = 7
+    UTILITIES = 5,
+    IMAGES = 6,
+    DESCRIPTION = 7,
+    PRICE = 8
 }
 const RentModal = () =>{
     const rentModal = useRentModal();
@@ -54,6 +88,7 @@ const RentModal = () =>{
             bed: 1,
             bathroomCount: 1,
             imageSrc: '',
+            utilities:[],
             price: 1,
             title: '',
             description: ''
@@ -91,6 +126,9 @@ const RentModal = () =>{
       const bed = watch('bed');
       const bathroomCount = watch('bathroomCount');
       const imageSrc = watch('imageSrc');
+      const utilities = watch('utilities');
+      console.log(utilities);
+      console.log(utilitiesArr)
     
       // create specical set value, because method setCustomValue (react-hook-form) by default not set value
       const setCustomValue = (id:string, value: any) =>{
@@ -111,6 +149,8 @@ const RentModal = () =>{
         setStep((value)=> value + 1);
     }
 
+    
+    
 
     const handleActionLabel = useMemo(()=>{
         //last steps --> return create
@@ -137,6 +177,64 @@ const RentModal = () =>{
 
         return 'Back';
     },[step]);
+
+    // handle add utilities
+
+    const handleUtilities = (value:string) =>{
+        let sel ;
+        // create variabel 
+        let result:string[] =[...utilities];
+        console.log(result)
+       
+        //check 
+        if(result.length === 0)
+        {
+            result.push(value);
+            sel = utilitiesArr.find((item)=>item.label === value)
+            if(sel)
+            {
+                sel.selected = true;
+            }
+        }else{
+            for(let i=0;i<result.length;i++)
+            {
+                if(result[i] === value)
+                {
+                    // set selected = false
+                    let sal = utilitiesArr.find((item)=>item.label === value)
+                    if(sal)
+                    {
+                        sal.selected = false;
+                    }
+                    //toggle
+                   let re = result.filter((item:any) =>item !== value);
+                   console.log(re);
+                    setCustomValue("utilities", re);
+                    return;
+                }
+            }
+           result.push(value);
+           sel = utilitiesArr.find((item)=>item.label === value)
+            if(sel)
+            {
+                sel.selected = true;
+            }
+        }
+        setCustomValue("utilities", result);
+        
+    }
+
+    const checkSelected =(item:string)=>{
+       let result = utilitiesArr.find(it=>it.label === item);
+       if(result)
+       {
+        if(result.selected )
+        {
+            return true;
+        }
+       }
+       return false;
+    }
 
     let bodyContent = (
         <div className="md:grid grid-cols-2 gap-8">
@@ -193,7 +291,7 @@ const RentModal = () =>{
                                     // onClick recive category(watch) --> then, setCustomerValue(id,value)
                                     onClick={(value) =>setCustomValue('category',value)}
                                     // selected to style css
-                                    selected ={category === item.label}
+                                    selected ={item.label = category}
                                     label={item.label}
                                     icon ={item.icon}
                                 />
@@ -281,6 +379,26 @@ const RentModal = () =>{
                         height={500}
                     />
                 </div>
+            </div>
+        )
+    }
+
+    if(step === STEPS.UTILITIES)
+    {
+        bodyContent = (
+            <div className="flex flex-col gap-4">
+                linh thai
+                { utilitiesArr.map((utility ) =>{
+                    return <UtilitiesInput 
+                                key={utility.label}
+                                onClick={(value)=>handleUtilities(value)}
+                                label={utility.label}
+                                icon = {utility.icon}
+                                selected={checkSelected(utility.label)}
+                             
+                             />
+                })}
+
             </div>
         )
     }

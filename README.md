@@ -1,1 +1,25 @@
 21. modify rent modal
+ wifi Boolean
+  tivi Boolean
+  kitchen Boolean
+  watchMachine Boolean
+  paking Boolean
+  airConditioner Boolean
+  saperateSpace Boolean
+  pool Boolean
+  bath Boolean
+  yard Boolean
+  bbq Boolean
+  outsideSpace Boolean
+  camping Boolean
+  bida Boolean
+  heater Boolean
+  piano Boolean
+  gymMachine Boolean
+  beach Boolean
+  iceBoard Boolean
+  shower Boolean
+  smokeAlarm Boolean
+  aidKit Boolean
+  fireextinguisher Boolean
+  coMachine Boolean

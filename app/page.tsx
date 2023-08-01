@@ -10,17 +10,17 @@ import ListingCard from './components/listings/ListingCard'
 
 
 export default async function Home() {
-  const listing = await getListing();
+  //const listing = await getListing();
   const currentUser = await getCurrentUser()
 
-  if(listing.length === 0)
-  {
-    return (
-      <ClientOnly>
-        <EmptyState showReset />
-      </ClientOnly>
-    )
-  }
+  // if(listing.length === 0)
+  // {
+  //   return (
+  //     <ClientOnly>
+  //       <EmptyState showReset />
+  //     </ClientOnly>
+  //   )
+  // }
   
   return (
    <ClientOnly>
@@ -38,7 +38,7 @@ export default async function Home() {
           gap-8
         '
        >
-        {listing && listing.map((item:any)=>{
+        {/* {listing && listing.map((item:any)=>{
             return (
               <ListingCard
                 currentUser = {currentUser}
@@ -46,7 +46,7 @@ export default async function Home() {
                 data ={item}
               />
             )
-          })}
+          })} */}
        </div>
         
       </Container>
