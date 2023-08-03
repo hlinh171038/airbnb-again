@@ -2,31 +2,29 @@
 
 import { IconType } from "react-icons/lib";
 import {useCallback, useEffect, useRef,useLayoutEffect,useState} from 'react'
+import Header from "../Header";
 
 
 interface CategoryInputProps {
     onClick: (value:string)=>void;
     selected: boolean;
     label: string;
-    icon:IconType
+    icon:IconType;
+    house?:boolean;
+    description?:string;
 }
 const CategoryInput:React.FC<CategoryInputProps> = ({
     onClick,
     selected,
     label,
-    icon:Icon
+    icon:Icon,
+    house,
+    description
 }) =>{
    
     const [isStyle,setIsStyle] = useState(false);
 
-    // const handleStyle = () =>{
-    //     setIsStyle(true);
-    //     // let style = setTimeout(()=>{
-    //     //     setIsStyle(false)
-    //     // },1000);
-    //     //  clearTimeout(style);
-    // }
-
+    
     const handleStyle = useCallback(()=>{
         console.log('try')
          setIsStyle(true)
@@ -61,8 +59,21 @@ const CategoryInput:React.FC<CategoryInputProps> = ({
             ${selected ?"text-neutral-800 bg-neutral-100" : "text-neutral-500"}
             `}
         >
-            <Icon size={34} className={`transition ${isStyle ?"scale-75 ": "scale-100 "}`} />
-            <span className="text-sm font-medium" >{label}</span>
+            {house ? (
+                <div className="flex flex-row justify-between items-center w-full px-8">
+                    <Header 
+                        title={label}
+                        subtitle={description as string}
+                        
+                    />
+                    <Icon size={34} className={`transition ${isStyle ?"scale-75 ": "scale-100 "}`} />
+                    </div>
+            ):
+            <div>
+                <Icon size={34} className={`transition ${isStyle ?"scale-75 ": "scale-100 "}`} />
+                <span className="text-sm font-medium" >{label}</span>
+            </div>
+        }
         </div>
     )
 }

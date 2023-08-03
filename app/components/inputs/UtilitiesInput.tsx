@@ -21,24 +21,46 @@ const UtilitiesInput:React.FC<UtilitiesInputProps> = ({
     const [isStyle,setIsStyle] = useState(false);
     const [isSelected,setIsSelected] = useState(false)
 
- console.log(label)
-    const handleStyle = useCallback(()=>{
-        console.log('try')
-         setIsStyle(true)
-          setTimeout(()=>{
-            setIsStyle(false)
-         },200)
-    },[isStyle])
+        console.log(label)
+        const handleStyle = useCallback(()=>{
+            console.log('try')
+            setIsStyle(true)
+            setTimeout(()=>{
+                setIsStyle(false)
+            },200)
+        },[isStyle])
+        useEffect(()=>{
+        if(selected)
+        {
+            handleStyle()
+        }
+        },[selected])
+      
   
     return (
-      <div
+        <div
         onClick={()=>onClick(label)}
         className={`
-            ${selected && 'text-rose-700'}
+        flex
+        flex-col
+        items-center
+        justify-center
+        gap-2
+        transition
+        hover:text-neutral-800
+        hover:border-neutral-800
+        
+        py-4
+        border-[1px]
+        rounded-lg
+        ${selected && "border-neutral-800"}
+        
+        ${selected ?"text-neutral-800 bg-neutral-100" : "text-neutral-500"}
         `}
-      >
-      {label}
-      </div>
+    >
+        <Icon size={34} className={`transition ${isStyle ?"scale-75 ": "scale-100 "}`} />
+        <span className="text-sm font-medium" >{label}</span>
+    </div>
     )
 }
  

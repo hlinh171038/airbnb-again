@@ -49,9 +49,10 @@ const ImageUpload:React.FC<ImageUploadProps> =({
                         items-center
                         gap-4
                         text-neutral-600
+                        h-[450px]
                         "
                     >
-                        <TbPhotoPlus size={50} />
+                        <TbPhotoPlus size={70} />
                         <div className="font-semibold text-lg">
                             Click to upload
                         </div>
