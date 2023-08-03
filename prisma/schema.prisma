@@ -56,9 +56,10 @@ model Listing {
   bed Int
   bathroomCount Int
   guestCount Int
-  ulities String[] @db.ObjectId
+  utilities String[] @db.String
   house String
-  who String[] @db.ObjectId
+  who String[] 
+  type String
   locationValue String
   userId String @db.ObjectId
   price Int

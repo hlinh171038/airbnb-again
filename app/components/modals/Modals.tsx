@@ -120,7 +120,7 @@ const Modals:React.FC<ModalsProps> = ({
                 py-4
                 border-0
                 bg-white
-                rounded-lg
+                ${!rent && "rounded-lg"}
                 ${rent ?"h-full relative":"h-full md:h-auto lg:h-auto px-3"}
                `}
               >

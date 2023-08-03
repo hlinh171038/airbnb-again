@@ -69,7 +69,7 @@ const CategoryInput:React.FC<CategoryInputProps> = ({
                     <Icon size={34} className={`transition ${isStyle ?"scale-75 ": "scale-100 "}`} />
                     </div>
             ):
-            <div>
+            <div className="flex flex-col justify-center items-center">
                 <Icon size={34} className={`transition ${isStyle ?"scale-75 ": "scale-100 "}`} />
                 <span className="text-sm font-medium" >{label}</span>
             </div>

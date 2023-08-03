@@ -20,9 +20,9 @@ import { useRouter } from "next/navigation"
 import RentContent from "../rents/RentContent"
 import { FcDam, FcHome, FcSupport } from "react-icons/fc"
 import Image from "next/image"
-import { TbBeach, TbBeachOff, TbMountain, TbPool, TbSkateboard, TbWashMachine } from "react-icons/tb"
-import { GiCampingTent, GiGasStove, GiHeatHaze, GiPoolDive, GiSmokeBomb, GiWindmill } from "react-icons/gi"
-import { MdFamilyRestroom, MdOutlineFamilyRestroom, MdOutlineVilla, MdYard } from "react-icons/md"
+import { TbBeach, TbBeachOff, TbHorseToy, TbMountain, TbPool, TbSkateboard, TbViewportWide, TbWashMachine } from "react-icons/tb"
+import { GiCampingTent, GiGasStove, GiHeatHaze, GiPeaceDove, GiPoolDive, GiSmokeBomb, GiWatchtower, GiWindmill } from "react-icons/gi"
+import { MdFamilyRestroom, MdOutlineFamilyRestroom, MdOutlineHouseSiding, MdOutlineVilla, MdPlace, MdYard } from "react-icons/md"
 import UtilitiesInput from "../inputs/UtilitiesInput"
 import { FaBath, FaFireExtinguisher, FaShower, FaWifi } from "react-icons/fa"
 import {PiPersonArmsSpreadFill, PiTelevisionSimpleFill} from 'react-icons/pi'
@@ -223,7 +223,7 @@ export const whoArr = [
         selected: false,
     },
     {
-        label:"MdFamilyRestroom",
+        label:"family",
         icon:MdFamilyRestroom,
         description:"gia đình",
         selected: false,
@@ -236,6 +236,33 @@ export const whoArr = [
     },
 
 ]
+
+export const typeArr = [
+    {
+        label:"Yên Bình",
+        icon:GiPeaceDove
+    },
+    {
+        label:"Độc đáo",
+        icon:GiWatchtower
+    },
+    {
+        label:"Phù hợp cho gia đình",
+        icon:TbHorseToy
+    },
+    {
+        label:"Phong cách",
+        icon:MdOutlineHouseSiding
+    },
+    {
+        label:"vị trí trung tâm",
+        icon:MdPlace
+    },
+    {
+        label:"Rộng rãi",
+        icon:TbViewportWide
+    }
+]
 enum STEPS {
     START = 0,
     CATEGORY = 1,
@@ -247,8 +274,9 @@ enum STEPS {
     UTILITIES = 7,
     IMAGES = 8,
     DESCRIPTION = 9,
-    OVERVIEW2= 10,
-    PRICE = 11
+    TYPE = 10,
+    OVERVIEW2 = 11,
+    PRICE = 12
 }
 const RentModal = () =>{
     const rentModal = useRentModal();
@@ -275,6 +303,7 @@ const RentModal = () =>{
             bathroomCount: 1,
             imageSrc: '',
             utilities:[],
+            type: '',
             price: 1,
             title: '',
             description: ''
@@ -290,7 +319,7 @@ const RentModal = () =>{
             return onNext()
         }
 
-        axios.post('/api/listings', data)
+        axios.post('/api/listingstry', data)
             .then(()=>{
                 toast.success('Listing is created');
                 router.refresh();
@@ -315,6 +344,8 @@ const RentModal = () =>{
       const utilities = watch('utilities');
       const house = watch('house');
       const who = watch('who');
+      const type = watch('type');
+      console.log(who);
     
       // create specical set value, because method setCustomValue (react-hook-form) by default not set value
       const setCustomValue = (id:string, value: any) =>{
@@ -423,37 +454,46 @@ const RentModal = () =>{
     }
 
     const handleWho = (value: string) =>{
-        let sel;
-        //shadow coppy default value
-        const result:string[] = [...who]
-        // check if default value is empty 
+        let sel ;
+        // create variabel 
+        let result:string[] =[...who];
+        console.log(result)
+       
+        //check 
         if(result.length === 0)
         {
-            // push value into default value
             result.push(value);
-            // set select  = true
-            sel = whoArr.find((item) => item.label === value);
+            sel = whoArr.find((item)=>item.label === value)
             if(sel)
             {
                 sel.selected = true;
             }
-        }else {
+        }else{
             for(let i=0;i<result.length;i++)
             {
                 if(result[i] === value)
                 {
+                    // set selected = false
+                    let sal = whoArr.find((item)=>item.label === value)
+                    if(sal)
+                    {
+                        sal.selected = false;
+                    }
+                    //toggle
+                   let re = result.filter((item:any) =>item !== value);
+                   console.log(re);
+                    setCustomValue("who", re);
                     return;
                 }
             }
-            sel
-        }
-        result.push(value);
-        sel = whoArr.find((item) => item.label === value);
+           result.push(value);
+           sel = whoArr.find((item)=>item.label === value)
             if(sel)
             {
                 sel.selected = true;
             }
-            setCustomValue("who", result);
+        }
+        setCustomValue("who", result);
     }
 
     const checkWho =(item:string)=>{
@@ -469,11 +509,11 @@ const RentModal = () =>{
      }
 
     let bodyContent = (
-        <div className="md:grid grid-cols-2 gap-8">
+        <div className="md:grid grid-cols-2 gap-8 ">
            <div className="flex justify-center items-center">
                 <span className=" mt-4 text-2xl md:text-4xl font-semibold text-center w-full md:w-2/3">Bắt đầu trên Airbnb thật dễ dàng</span>
            </div>
-           <div className="px-4 py-8">
+           <div className="px-4 py-8 ">
             <div className="mb-4">
                 <RentContent 
                     title="1 Chia sẻ thông tin về chỗ ở của bạn cho chúng tôi"
@@ -683,10 +723,10 @@ const RentModal = () =>{
                         big
                         center
                     />
-                    <div className="max-h-[60vh] overflow-y-auto">
+                    <div className="  max-h-[60vh] overflow-y-auto">
                                 <div className="py-4">
                                     <p className="font-bold py-4">Bạn có nhưng tiện nghi cơ bản nào ?</p>
-                                    <div className="grid grid-cols-3 gap-4">
+                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                                         { utilitiesArr.map((utility ) =>{
                                             return <UtilitiesInput 
                                                         key={utility.label}
@@ -758,6 +798,35 @@ const RentModal = () =>{
         )
     }
 
+    if(step === STEPS.TYPE)
+    {
+        bodyContent =(
+            <div className="flex justify-center items-center w-full h-full px-4">
+                <div>
+                    <div className="mb-8 mt-4">
+                        <Header 
+                            title="Tiếp theo, hãy mô tả chỗ ở thuộc danh mục căn hộ của bạn"
+                            subtitle="Chúng tôi sẽ sử dụng thông tin này để bắt đầu tạo nội dung mô tả của bạn."
+                            big 
+                            center
+                        />
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-h-[50vh] overflow-y-auto">
+                        {typeArr.map((item)=>{
+                            return <CategoryInput 
+                                    key={item.label}
+                                    onClick={(value)=>setCustomValue("type",value)}
+                                    selected ={type === item.label}
+                                    label={item.label}
+                                    icon ={item.icon}
+                                   />
+                        })} 
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
 
     if(step === STEPS.OVERVIEW2)
     {
@@ -782,22 +851,25 @@ const RentModal = () =>{
     if(step === STEPS.PRICE)
     {
         bodyContent =(
-            <div className="flex justify-center items-centerpt-12 px-4">
-               <div className="flex flex-col gap-4 w-full sm:w-1/2">
+            <div className="flex justify-center items-centerpt-12 px-4 w-full h-full">
+               <div className="flex flex-col gap-4 w-full sm:w-1/2 h-full">
                 <Header 
                         title="Bây giờ, hãy đặt mức giá mà bạn muốn"
                         subtitle="Bạn có thể thay đổi giá này bất cứ lúc nào."
                         big 
+                        center
                     />
+                   <div className="w-full h-full">
                     <Input 
-                        id="price"
-                        label="Price"
-                        type="number"
-                        
-                        register={register}
-                        errors={errors}
-                        required
-                    />
+                            id="price"
+                            label="Price"
+                            type="number"
+                            formatPrice
+                            register={register}
+                            errors={errors}
+                            required
+                        />
+                   </div>
                </div>
             </div>
         )

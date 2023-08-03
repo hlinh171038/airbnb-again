@@ -1,6 +1,7 @@
 "use client"
 
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
+import { TbCurrencyDong } from "react-icons/tb";
 
 
 interface InputProps{
@@ -10,7 +11,8 @@ interface InputProps{
     register:UseFormRegister<FieldValues>;
     required?: boolean;
     errors: FieldErrors;
-    disabled?: boolean
+    disabled?: boolean;
+    formatPrice?: boolean
 }
 const Input:React.FC<InputProps> =({
     id,
@@ -19,7 +21,8 @@ const Input:React.FC<InputProps> =({
     register,
     required,
     errors,
-    disabled
+    disabled,
+    formatPrice
 }) =>{
     return (
         <div
@@ -29,6 +32,20 @@ const Input:React.FC<InputProps> =({
                 py-2
             "
         >
+
+            {
+                formatPrice && (
+                    <TbCurrencyDong 
+                        className="
+                            absolute
+                            text-neutral-700
+                            top-5
+                            left-2
+                            z-10
+                        "
+                    />
+                )
+            }
             <input 
                 id={id}
                 type={type}
@@ -46,6 +63,7 @@ const Input:React.FC<InputProps> =({
                     focus:outline-none focus:border-rose-100
                     text-sm
                     p-3
+                    ${formatPrice ? 'pl-9' : 'pl-4'}
                     ${errors[id] ? 'border-rose-500':'border-black-700'}
                     ${errors[id] ? 'focus:border-rose-500':'focus:border-black-700'}
                     ${errors[id] ? 'text-rose-500':'text-zinc-600'}
