@@ -69,18 +69,18 @@ const ListingCard:React.FC<ListingCardProps> =({
                 group
             "
         >
-            <div className="flex flex-col gap-2 w-full relative overflow-hidden rounded-xl">
+            <div className="flex flex-col gap-2 w-full relative overflow-hidden rounded-xl w-full h-full">
                 <Image 
                     src={data.imageSrc}
                     alt="Listing"
-                    width={50}
-                    height={50}
+                    width={300}
+                    height={300}
                     className="
                         group-hover:scale-110
                         transition
                         w-full
                         h-full
-                        
+                        object-cover
                     "
                 />
                 <div className="absolute top-3 right-3">
