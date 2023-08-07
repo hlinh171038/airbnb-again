@@ -8,6 +8,7 @@ import { SafeListing, SafeUser } from "@/app/types";
 import ListingHead from "@/app/components/listings/ListingHead";
 import { categories } from "@/app/components/navbars/Categories";
 import ListingInfo from "@/app/components/listings/ListingInfo";
+import { houseArr } from "@/app/components/modals/RentModal";
 interface ListingClientProps {
     // reservation?: Reservation[];
     listing: SafeListing  & {
@@ -26,6 +27,12 @@ const ListingClient:React.FC<ListingClientProps> =({
             return item.label === listing?.category
         })
     },[listing?.category])
+
+    const house = useMemo(()=>{
+        return houseArr.find((item:any)=>{
+            return item.label === listing?.house
+        })
+    },[listing?.house])
  return (
    <Container >
     <div className="max-w-screen-lg mx-auto">
@@ -51,9 +58,12 @@ const ListingClient:React.FC<ListingClientProps> =({
                     category={category}
                     description = {listing.description}
                     roomCount = {listing.roomCount}
+                    bed = {listing.bed}
                     guestCount = {listing.guestCount}
                     bathroomCount = {listing.bathroomCount}
                     locationValue = {listing.locationValue}
+                    house = {house}
+                    utilities = {listing.utilities }
                 />
             </div>
         </div>

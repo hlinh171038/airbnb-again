@@ -194,17 +194,17 @@ import { TiGroup } from "react-icons/ti"
 ]
 export const houseArr = [
     {
-        label:"whole house",
+        label:"Sử dụng toàn bộ căn hộ",
         icon:BsHouseDoor,
         description:"Khách được sử dụng riêng toàn bộ chổ ở này."
     },
     {
-        label:"seperated room",
+        label:"Phòng riêng và có khu vực chung",
         icon:BsDoorOpen,
         description:"Khách sẽ có phòng riêng tron một ngôi nhà và được sử dụng những khu vực chung."
     },
     {
-        label:"common room",
+        label:"Ngủ trong phòng hoặc khu vực chung",
         icon:MdOutlineFamilyRestroom,
         description:"Khách ngủ trong phòng hoặc một khu vực chung - nơi bạn hoặc những người khác cùng sử dụng."
     }
