@@ -11,6 +11,7 @@ import getCurrentUser from './actions/getCurrentUser'
 import ToasterProvider from './providers/toasterProvider'
 import RentModal from './components/modals/RentModal'
 import NavMobile from './components/navbars/NavMobile'
+import BodyContainer from './components/BodyContainer'
 
 
 
@@ -28,9 +29,12 @@ export default async function RootLayout({
 }) {
   const session = await getCurrentUser()
 
+  
   return (
+
     <html lang="en">
       <body className={inter.className} > 
+        <BodyContainer>
         <ClientOnly>
           <ToasterProvider />
           <Navbar session={session}/>
@@ -42,7 +46,7 @@ export default async function RootLayout({
           {children}
         </div>
         <NavMobile />
-        
+        </BodyContainer>
         </body>
     </html>
   )

@@ -41,7 +41,8 @@ const ListingClient:React.FC<ListingClientProps> =({
     const [isLoading,setIsLoading] = useState(false);
     const [totalPrice,setTotalPrice] = useState(listing.price);
     const [dateRange, setDateRange] = useState(initialDateRange);
-    const [countDay,setCountDay] = useState(1) 
+    const [countDay,setCountDay] = useState(1) ;
+    const [isScroll,setIsScroll] = useState(false);
 
     const disabledDates = useMemo(() =>{
         let dates:Date[] = [];
@@ -97,6 +98,30 @@ const ListingClient:React.FC<ListingClientProps> =({
             return item.label === listing?.house
         })
     },[listing?.house])
+
+
+   
+    // handle scroll listing
+    const scroll = document.getElementById('scroll');
+    
+    const onScroll = useCallback(() => {
+        const scrolls = scroll?.getBoundingClientRect().top;
+        console.log(scrolls)
+        if(scrolls !== undefined)
+        {
+            if(scrolls <= 70)
+            {
+                setIsScroll(true)
+            }else{
+                setIsScroll(false)
+            }
+        }
+
+    }, []);
+    console.log(isScroll)
+    useEffect(() => {
+        window.addEventListener("scroll", onScroll);
+      },[]);
 
     useEffect(()=>{
         if(dateRange.startDate && dateRange.endDate)
@@ -160,8 +185,35 @@ const ListingClient:React.FC<ListingClientProps> =({
                     />
                 </div>
                 
-               <div className="item1" >
-                    linh thai recommend
+               <div 
+               id="scroll"
+                className={`
+                    flex
+                    justify-center
+                   
+                `}
+               >
+                <div
+                   
+                    className={`
+                        
+                       transition
+                        top-16
+                        border-[1px]
+                        w-[80%]
+                        h-[400px]
+                        ${isScroll && " fixed top-3 right-[21%] w-[25%]"}
+                    `}
+                >
+                    <div 
+                        className={`
+                          ${isScroll ?"block": "hidden"}
+                        `}
+                    >
+                        nav bar inside
+                    </div>
+                    <div>linh thai</div>
+                </div>
                </div>
             </div>
             
