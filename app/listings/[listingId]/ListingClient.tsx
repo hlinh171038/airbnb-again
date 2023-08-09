@@ -15,6 +15,7 @@ import { differenceInDays, eachDayOfInterval } from "date-fns";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import ListingReservation from "@/app/components/listings/ListingReservation";
+import ListingBill from "@/app/components/listings/ListingBill";
 
 const initialDateRange = {
     startDate: new Date(),
@@ -42,7 +43,8 @@ const ListingClient:React.FC<ListingClientProps> =({
     const [totalPrice,setTotalPrice] = useState(listing.price);
     const [dateRange, setDateRange] = useState(initialDateRange);
     const [countDay,setCountDay] = useState(1) ;
-    const [isScroll,setIsScroll] = useState(false);
+    const [isFixed, setIsFixed] = useState(false);
+    const scrollThreshold = 70;
 
     const disabledDates = useMemo(() =>{
         let dates:Date[] = [];
@@ -100,29 +102,20 @@ const ListingClient:React.FC<ListingClientProps> =({
     },[listing?.house])
 
 
-   
+   const pageY = document.getElementById('scroll')
     // handle scroll listing
-    const scroll = document.getElementById('scroll');
-    
-    const onScroll = useCallback(() => {
-        const scrolls = scroll?.getBoundingClientRect().top;
-        console.log(scrolls)
-        if(scrolls !== undefined)
-        {
-            if(scrolls <= 70)
-            {
-                setIsScroll(true)
-            }else{
-                setIsScroll(false)
-            }
-        }
-
-    }, []);
-    console.log(isScroll)
     useEffect(() => {
-        window.addEventListener("scroll", onScroll);
-      },[]);
-
+        const handleScroll = () => {
+         setIsFixed(pageY!== null && pageY.getBoundingClientRect().top >= scrollThreshold);
+        };
+   
+       window.addEventListener('scroll', handleScroll);
+   
+       return () => {
+         window.removeEventListener('scroll', handleScroll);
+       };
+     });
+   
     useEffect(()=>{
         if(dateRange.startDate && dateRange.endDate)
         {
@@ -196,23 +189,30 @@ const ListingClient:React.FC<ListingClientProps> =({
                 <div
                    
                     className={`
-                        
-                       transition
+                        rounded-lg
+                        transition
                         top-16
-                        border-[1px]
-                        w-[80%]
-                        h-[400px]
-                        ${isScroll && " fixed top-3 right-[21%] w-[25%]"}
+                        w-[100%]
+                        h-auto
+                        max-h-[100%]
+                        
                     `}
                 >
-                    <div 
-                        className={`
-                          ${isScroll ?"block": "hidden"}
-                        `}
-                    >
-                        nav bar inside
-                    </div>
-                    <div>linh thai</div>
+                    <ListingBill 
+                        price={listing.price}
+                        totalPrice={totalPrice}
+                        countDay ={countDay}
+                        dateRange={dateRange}
+                        onChangeDate = {(value:any)=> setDateRange(value)}
+                        disabled = {isLoading}
+                        onSubmit={onCreateReservation}
+                        isFixed = {isFixed}
+                        who = {listing.who}
+                        guestCount = {listing.guestCount}
+                        disabledDates={disabledDates}
+                        locationValue = {listing.locationValue}
+                    />
+                   
                 </div>
                </div>
             </div>

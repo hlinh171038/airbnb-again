@@ -36,6 +36,19 @@ const ListingReservation:React.FC<ListingReservationProps> =({
     return <div className="mt-6">
                 {/* <div>{price} vnd / night</div> */}
                 <p className='text-lg font-semibold'>Bạn ở đây bao nhiêu đêm</p>
+                <div className='flex items-center'>
+                    <div className='text-sm font-light'>
+                        {dateRange.startDate?.getDate()} thg
+                        {dateRange.startDate?.getMonth()}-
+                        {dateRange.startDate?.getFullYear() } 
+                    </div>
+                    <div className='text-sm font-light'>
+                        {dateRange.endDate?.getDate()} thg
+                        {dateRange.endDate?.getMonth()}-
+                        {dateRange.endDate?.getFullYear() } 
+                        
+                    </div>
+                </div>
                 <div className='font-light py-4'>{countDay} đêm tại {location?.region} - {location?.label} - {price} vnđ / đêm </div>
                 <Calendar
                     value={dateRange}

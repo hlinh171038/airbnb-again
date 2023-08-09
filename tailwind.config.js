@@ -27,7 +27,8 @@ module.exports = {
       animation:{
         'trans-right':'trans-right 1s ',
         'trans-left' : 'trans-left 1s'
-      }
+      },
+      
     },
   },
   plugins: [],

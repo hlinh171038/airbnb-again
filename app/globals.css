@@ -42,4 +42,12 @@
   width: 100% !important;
 }
 
+.checkmark{
+  top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
 

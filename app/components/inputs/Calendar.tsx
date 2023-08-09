@@ -31,6 +31,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
       direction="vertical"
       showDateDisplay={false}
       minDate={new Date()}
+      maxDate={new Date("2023-08-11")}
       disabledDates={disabledDates}
     />
    );
