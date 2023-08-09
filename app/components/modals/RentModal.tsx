@@ -276,7 +276,8 @@ enum STEPS {
     DESCRIPTION = 9,
     TYPE = 10,
     OVERVIEW2 = 11,
-    PRICE = 12
+    NIGHT = 12,
+    PRICE = 13
 }
 const RentModal = () =>{
     const rentModal = useRentModal();
@@ -306,6 +307,7 @@ const RentModal = () =>{
             type: '',
             price: 1,
             title: '',
+            night: '',
             description: ''
         }
       })
@@ -319,7 +321,7 @@ const RentModal = () =>{
             return onNext()
         }
 
-        axios.post('/api/listingstry', data)
+        axios.post('/api/listing3', data)
             .then(()=>{
                 toast.success('Listing is created');
                 router.refresh();
@@ -345,7 +347,7 @@ const RentModal = () =>{
       const house = watch('house');
       const who = watch('who');
       const type = watch('type');
-      console.log(who);
+      
     
       // create specical set value, because method setCustomValue (react-hook-form) by default not set value
       const setCustomValue = (id:string, value: any) =>{
@@ -844,6 +846,39 @@ const RentModal = () =>{
                         width={500}
                         height={500}
                     />
+                </div>
+            </div>
+        )
+    }
+
+    if(step === STEPS.NIGHT)
+    {
+        bodyContent =(
+            <div className="w-full h-full  flex justify-center items-center">
+                <div className=" w-full px-4 sm:w-2/3 flex flex-col lg:flex-col justify-between items-center gap-4 pt-8">
+                <Header 
+                    title="Bạn có sẵn phòng trong khoảng thời gian nào ?"
+                    subtitle="Chọn ngày bạn có thể cho thuê phòng, có thể cập nhật trong thời gian tới."
+                    center
+                    big
+                />
+                   <div>
+                    <div className="flex">
+                        <div>Ngày bắt đầu :</div>
+                        <div>{new Date().getDate()} thg</div>
+                        <div>{new Date().getMonth()}-</div>
+                        <div>{new Date().getFullYear()}</div>
+                    </div>
+                    <div>Ngày kết thúc :</div>
+                    <Input 
+                        id="night"
+                        label="Night"
+                        type="date"
+                        register={register}
+                        required
+                        errors={errors}
+                    />
+                </div>
                 </div>
             </div>
         )

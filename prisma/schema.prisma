@@ -59,6 +59,7 @@ model Listing {
   utilities String[] @db.String
   house String
   who String[] 
+  night String
   type String
   locationValue String
   userId String @db.ObjectId

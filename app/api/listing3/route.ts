@@ -1,15 +1,14 @@
+import getCurrentUser from "@/app/actions/getCurrentUser";
 import { NextResponse } from "next/server";
 import prisma from '@/app/libs/prismadb'
-import getCurrentUser from "@/app/actions/getCurrentUser";
 
-export async function POST(request:Request){
+
+ export  async function POST(request:Request){
     const currentUser = await getCurrentUser();
-    
-    
+
     if(!currentUser ){
         return NextResponse.error();
     }
-   // take body
     const body = await request.json();
     const {
         category,
@@ -28,7 +27,7 @@ export async function POST(request:Request){
         night,
         description,
     } = body;
-    //create listing
+    // create listing 
     const listings = await prisma.listing.create({
         data:{
             category,
@@ -49,5 +48,6 @@ export async function POST(request:Request){
             userId: currentUser.id
         }
     });
-    return NextResponse.json(listings);
-}
+    return NextResponse.json(listings)
+
+ }
