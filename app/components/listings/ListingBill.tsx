@@ -21,6 +21,7 @@ interface ListingBillProps {
     disabled?: boolean;
     disabledDates: Date[];
     locationValue:  string;
+    maxnight: string
 }
 
 const ListingBill:React.FC<ListingBillProps> = ({
@@ -35,7 +36,8 @@ const ListingBill:React.FC<ListingBillProps> = ({
     onChangeDate,
     disabledDates,
     disabled,
-    locationValue
+    locationValue,
+    maxnight
 }) =>{
     const [isSelected , setIsSelected] = useState(false);
     const [isCalendar,setIsCalendar] = useState(false);
@@ -151,8 +153,26 @@ const ListingBill:React.FC<ListingBillProps> = ({
                     "
                 >
                     <div className="grid grid-cols-2" onClick={handleOpenCalendar}>
-                        <div className="border-r-[1px] border-b-[1px] px-2 py-2 uppercase text-[0.6rem]">Nhận phòng:</div>
-                        <div className="border-b-[1px] px-2 py-2 uppercase text-[0.6rem]">Trả phòng:</div>
+                        <div className="border-r-[1px] border-b-[1px]  text-[0.6rem] flex items-center px-2 ">
+                            <div className=" uppercase">Nhận phòng:</div>
+                            <div>
+                                <div className='text-[0.6rem] font-light'>
+                                    {dateRange.startDate?.getDate()} thg
+                                    {dateRange.startDate?.getMonth()}-
+                                    {dateRange.startDate?.getFullYear() } 
+                                </div>
+                            </div>
+                        </div>
+                        <div className="border-r-[1px] border-b-[1px]  text-[0.6rem] flex items-center px-2 py-4">
+                            <div className=" uppercase">Trả phòng:</div>
+                            <div>
+                                <div className='text-[0.6rem] font-light'>
+                                    {dateRange.endDate?.getDate()} thg
+                                    {dateRange.endDate?.getMonth()}-
+                                    {dateRange.endDate?.getFullYear() } 
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div 
                         className={`
@@ -176,6 +196,7 @@ const ListingBill:React.FC<ListingBillProps> = ({
                             onChange={(value) => 
                             onChangeDate(value.selection)}
                             countDay = {countDay}
+                            maxnight={maxnight}
                         />
                         <div className="flex justify-end px-4 py-4 " onClick={()=>setIsCalendar(true)}>
                             <button className="underline font-semibold hover:text-neutral-600">Đóng</button>

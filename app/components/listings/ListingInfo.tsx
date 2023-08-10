@@ -41,7 +41,8 @@ interface ListingInfoProps {
         description: string,
         label: string
     } | undefined;
-    utilities: string[]
+    utilities: string[];
+    
 }
 const ListingInfo:React.FC<ListingInfoProps> = ({
     user,
@@ -53,7 +54,8 @@ const ListingInfo:React.FC<ListingInfoProps> = ({
     category,
     locationValue,
     house,
-    utilities
+    utilities,
+    
 }) =>{
 
     const {getByValue} = useCountries();

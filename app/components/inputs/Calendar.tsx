@@ -10,28 +10,31 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 
 interface DatePickerProps {
-  value: Range,
-  onChange: (value: RangeKeyDict) => void;
+  value?: Range,
+  onChange?: (value: RangeKeyDict) => void;
   disabledDates?: Date[];
-  countDay: number
+  countDay: number,
+  maxnight?: string
 }
 
 const DatePicker: React.FC<DatePickerProps> = ({
   value,
   onChange,
   disabledDates,
-  countDay
+  countDay,
+  maxnight
 }) => {
+  console.log(maxnight)
   return ( 
     <DateRange
       rangeColors={['#262626']}
-      ranges={[value]}
+      ranges={[value as Range]}
       date={new Date()}
       onChange={onChange}
       direction="vertical"
       showDateDisplay={false}
       minDate={new Date()}
-      maxDate={new Date("2023-08-11")}
+      maxDate={maxnight ? new Date(maxnight) : new Date()}
       disabledDates={disabledDates}
     />
    );

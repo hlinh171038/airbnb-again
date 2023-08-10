@@ -76,6 +76,8 @@ model Reservation {
   startDate DateTime
   endDate DateTime
   totalPrice Int
+  child Int
+  pet Int
   createdAt DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)

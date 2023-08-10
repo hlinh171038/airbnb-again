@@ -164,6 +164,7 @@ const ListingClient:React.FC<ListingClientProps> =({
                         locationValue = {listing.locationValue}
                         house = {house}
                         utilities = {listing.utilities }
+                        
                     />
                     <ListingReservation
                         price = {listing.price}
@@ -175,6 +176,7 @@ const ListingClient:React.FC<ListingClientProps> =({
                         disabledDates={disabledDates}
                         countDay = {countDay}
                         locationValue = {listing.locationValue}
+                        maxnight = {listing.night}
                     />
                 </div>
                 
@@ -211,6 +213,7 @@ const ListingClient:React.FC<ListingClientProps> =({
                         guestCount = {listing.guestCount}
                         disabledDates={disabledDates}
                         locationValue = {listing.locationValue}
+                        maxnight = {listing.night}
                     />
                    
                 </div>

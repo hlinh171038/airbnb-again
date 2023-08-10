@@ -1,6 +1,6 @@
 "use client"
 
-import {Range} from 'react-date-range'
+import {DateRange, Range} from 'react-date-range'
 import Calendar from '../inputs/Calendar';
 import useCountries from '@/app/hooks/useCountries';
 
@@ -14,6 +14,7 @@ interface ListingReservationProps {
     disabledDates: Date[];
     countDay: number;
     locationValue:  string;
+    maxnight: string
 }
 
 const ListingReservation:React.FC<ListingReservationProps> =({
@@ -25,7 +26,8 @@ const ListingReservation:React.FC<ListingReservationProps> =({
     disabledDates,
     disabled,
     countDay,
-    locationValue
+    locationValue,
+    maxnight
 }) => {
     const {getByValue} = useCountries()
 
@@ -35,27 +37,25 @@ const ListingReservation:React.FC<ListingReservationProps> =({
     console.log(new Date(dateRange.startDate as Date) )
     return <div className="mt-6">
                 {/* <div>{price} vnd / night</div> */}
-                <p className='text-lg font-semibold'>Bạn ở đây bao nhiêu đêm</p>
+                <p className='text-lg font-semibold'>Dịch vụ sẵn sàng cho những đêm</p>
                 <div className='flex items-center'>
                     <div className='text-sm font-light'>
                         {dateRange.startDate?.getDate()} thg
                         {dateRange.startDate?.getMonth()}-
                         {dateRange.startDate?.getFullYear() } 
                     </div>
+                    <span className='px-4'> - </span>
                     <div className='text-sm font-light'>
-                        {dateRange.endDate?.getDate()} thg
-                        {dateRange.endDate?.getMonth()}-
-                        {dateRange.endDate?.getFullYear() } 
-                        
+                        {new Date(maxnight)?.getDate()} thg
+                        {new Date(maxnight)?.getMonth()} -
+                        {new Date(maxnight)?.getFullYear()} 
                     </div>
                 </div>
-                <div className='font-light py-4'>{countDay} đêm tại {location?.region} - {location?.label} - {price} vnđ / đêm </div>
-                <Calendar
-                    value={dateRange}
-                    disabledDates={disabledDates}
-                    onChange={(value) => 
-                    onChangeDate(value.selection)}
-                    countDay = {countDay}
+                <div className='font-light py-4'> {location?.region} - {location?.label} - {price} vnđ / đêm </div>
+                <DateRange 
+                    rangeColors={["#262626"]}
+                    minDate={dateRange.startDate}
+                    maxDate={maxnight ? new Date(maxnight): new Date()}
                 />
            </div>
 }
