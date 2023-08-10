@@ -9,7 +9,6 @@ interface ListingReservationProps {
     totalPrice: number;
     onChangeDate: (value:Range) =>void;
     dateRange: Range;
-    onSubmit: () => void;
     disabled?: boolean;
     disabledDates: Date[];
     countDay: number;
@@ -21,7 +20,6 @@ const ListingReservation:React.FC<ListingReservationProps> =({
     price,
     totalPrice,
     onChangeDate,
-    onSubmit,
     dateRange,
     disabledDates,
     disabled,

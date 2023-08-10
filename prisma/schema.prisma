@@ -76,6 +76,7 @@ model Reservation {
   startDate DateTime
   endDate DateTime
   totalPrice Int
+  adult Int
   child Int
   pet Int
   createdAt DateTime @default(now())

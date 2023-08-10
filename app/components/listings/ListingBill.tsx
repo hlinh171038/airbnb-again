@@ -8,12 +8,19 @@ import { TbSquareRoundedPlusFilled } from "react-icons/tb";
 import { AiFillMinusCircle } from "react-icons/ai";
 import { BiSolidDownArrow, BiSolidUpArrow } from "react-icons/bi";
 
+import useLoginModal from "@/app/hooks/useLoginModal";
+import axios from "axios";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { SafeUser } from "@/app/types";
+import { initialDateRange } from "@/app/listings/[listingId]/ListingClient";
+// import {initialDateRange} from '@/app/listings/[listingId]/ListingClient'
+
 interface ListingBillProps {
     price: number;
     totalPrice: number;
     countDay: number;
     dateRange: Range;
-    onSubmit: () =>void;
     isFixed: boolean;
     who: string[];
     guestCount: number;
@@ -21,7 +28,10 @@ interface ListingBillProps {
     disabled?: boolean;
     disabledDates: Date[];
     locationValue:  string;
-    maxnight: string
+    maxnight: string;
+    currentUser: SafeUser | null;
+    id:string;
+    setDateRange: any
 }
 
 const ListingBill:React.FC<ListingBillProps> = ({
@@ -29,7 +39,6 @@ const ListingBill:React.FC<ListingBillProps> = ({
     totalPrice,
     countDay,
     dateRange,
-    onSubmit,
     isFixed,
     who,
     guestCount,
@@ -37,13 +46,21 @@ const ListingBill:React.FC<ListingBillProps> = ({
     disabledDates,
     disabled,
     locationValue,
-    maxnight
+    maxnight,
+    currentUser,
+    id,
+    setDateRange
 }) =>{
     const [isSelected , setIsSelected] = useState(false);
     const [isCalendar,setIsCalendar] = useState(false);
     const [countAdult,setCountAdult] = useState(1);
     const [countChild,setCountChild] = useState(0);
     const [countPet,setCountPet] = useState(0);
+    const [isLoading,setIsLoading] = useState(false)
+
+    const router = useRouter();
+    const loginModal = useLoginModal();
+    
    
     // handle open calendar
     const handleOpenCalendar = useCallback(()=>{
@@ -59,7 +76,6 @@ const ListingBill:React.FC<ListingBillProps> = ({
     const handleAdd =useCallback((number:number)=>{
         if(number <=1 || number >guestCount)
         {
-           
             return 
         }
         
@@ -114,6 +130,46 @@ const ListingBill:React.FC<ListingBillProps> = ({
         
         setCountPet(number)
     },[countPet])
+
+    // handle submit reservation
+    const onCreateReservation = useCallback(()=>{
+       if(!currentUser)
+       {
+        return loginModal.onOpen();
+       }
+       setIsLoading(true)
+
+       axios.post('/api/reservations',{
+        listingId: id,
+        userId: currentUser.id,
+        startDate: dateRange.startDate,
+        endDate: dateRange.endDate,
+        totalPrice,
+        adult:countAdult,
+        pet:countPet,
+        child:countChild
+       })
+       .then(()=>{
+        toast.success("reservated!");
+        router.refresh();
+        setDateRange(initialDateRange)
+       })
+       .catch(()=>{
+        toast.error("Something went wrong");
+       }).finally(()=>{
+        setIsLoading(false)
+       })
+    },[
+        totalPrice,
+        currentUser,
+        dateRange,
+        countChild,
+        countPet,
+        countAdult,
+        id,
+        router,
+        loginModal
+    ])
     
     return <div 
                 className={`
@@ -164,12 +220,31 @@ const ListingBill:React.FC<ListingBillProps> = ({
                             </div>
                         </div>
                         <div className="border-r-[1px] border-b-[1px]  text-[0.6rem] flex items-center px-2 py-4">
-                            <div className=" uppercase">Trả phòng:</div>
+
+                            <div className=" uppercase">
+                            {
+                                    dateRange.startDate?.getDate() === dateRange.endDate?.getDate() &&
+                                    dateRange.startDate?.getMonth() === dateRange.endDate?.getMonth() &&
+                                    dateRange.startDate?.getFullYear() === dateRange.endDate?.getFullYear() 
+                                    ?
+                                        ""
+                                    : 
+                                        "trả phòng :"
+                                    }
+                            </div>
                             <div>
                                 <div className='text-[0.6rem] font-light'>
-                                    {dateRange.endDate?.getDate()} thg
-                                    {dateRange.endDate?.getMonth()}-
-                                    {dateRange.endDate?.getFullYear() } 
+                                    {
+                                    dateRange.startDate?.getDate() === dateRange.endDate?.getDate() &&
+                                    dateRange.startDate?.getMonth() === dateRange.endDate?.getMonth() &&
+                                    dateRange.startDate?.getFullYear() === dateRange.endDate?.getFullYear() 
+                                    ?
+                                        "Đặt phòng ở đây"
+                                    : 
+                                    dateRange.endDate?.getDate() +"thg"+
+                                    dateRange.endDate?.getMonth() +"-"+
+                                    dateRange.endDate?.getFullYear() 
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -369,6 +444,7 @@ const ListingBill:React.FC<ListingBillProps> = ({
                     {countDay !== 0 ? (
                         <div>
                             <button 
+                                onClick={onCreateReservation}
                                 className="
                                     rounded-lg
                                     disabled:opacity-70

@@ -17,7 +17,7 @@ import { toast } from "react-hot-toast";
 import ListingReservation from "@/app/components/listings/ListingReservation";
 import ListingBill from "@/app/components/listings/ListingBill";
 
-const initialDateRange = {
+export const initialDateRange = {
     startDate: new Date(),
     endDate: new Date(),
     key: 'selection'
@@ -66,34 +66,34 @@ const ListingClient:React.FC<ListingClientProps> =({
         })
     },[listing?.category])
 
-    const onCreateReservation = useCallback(()=>{
-        if(!currentUser)
-        {
-            return loginModal.onOpen();
-        }
-        setIsLoading(true);
-        axios.post('/api/reservations',{
-            totalPrice,
-            startDate: dateRange.startDate,
-            endDate: dateRange.endDate,
-            listingId: listing?.id
-        }).then(()=>{
-            toast.success('Listing reservated');
-            setDateRange(initialDateRange);
-            router.refresh();
-        }).catch(()=>{
-            toast.error('Something went wrong');
-        }).finally(()=>{
-            setIsLoading(false)
-        })
-    },[
-        totalPrice,
-        currentUser,
-        dateRange,
-        listing?.id,
-        router,
-        loginModal
-    ])
+    // const onCreateReservation = useCallback(()=>{
+    //     if(!currentUser)
+    //     {
+    //         return loginModal.onOpen();
+    //     }
+    //     setIsLoading(true);
+    //     axios.post('/api/reservations',{
+    //         totalPrice,
+    //         startDate: dateRange.startDate,
+    //         endDate: dateRange.endDate,
+    //         listingId: listing?.id
+    //     }).then(()=>{
+    //         toast.success('Listing reservated');
+    //         setDateRange(initialDateRange);
+    //         router.refresh();
+    //     }).catch(()=>{
+    //         toast.error('Something went wrong');
+    //     }).finally(()=>{
+    //         setIsLoading(false)
+    //     })
+    // },[
+    //     totalPrice,
+    //     currentUser,
+    //     dateRange,
+    //     listing?.id,
+    //     router,
+    //     loginModal
+    // ])
 
     const house = useMemo(()=>{
         return houseArr.find((item:any)=>{
@@ -171,12 +171,12 @@ const ListingClient:React.FC<ListingClientProps> =({
                         totalPrice = {totalPrice}
                         onChangeDate = {(value:any)=> setDateRange(value)}
                         dateRange = {dateRange}
-                        onSubmit={onCreateReservation}
                         disabled = {isLoading}
                         disabledDates={disabledDates}
                         countDay = {countDay}
                         locationValue = {listing.locationValue}
                         maxnight = {listing.night}
+                        
                     />
                 </div>
                 
@@ -207,13 +207,15 @@ const ListingClient:React.FC<ListingClientProps> =({
                         dateRange={dateRange}
                         onChangeDate = {(value:any)=> setDateRange(value)}
                         disabled = {isLoading}
-                        onSubmit={onCreateReservation}
                         isFixed = {isFixed}
                         who = {listing.who}
                         guestCount = {listing.guestCount}
                         disabledDates={disabledDates}
                         locationValue = {listing.locationValue}
                         maxnight = {listing.night}
+                        currentUser = {currentUser}
+                        id={listing.id}
+                        setDateRange ={setDateRange}
                     />
                    
                 </div>

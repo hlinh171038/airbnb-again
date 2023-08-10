@@ -144,16 +144,14 @@ const ListingInfo:React.FC<ListingInfoProps> = ({
                             description={category.description}
                         />
                     )}
-                    {/* {house && (
+                    {house && (
                         <ListingCategory 
                             icon={house.icon}
                             label={house.label}
                             description=""
                             houseStep
                         />
-                    )} */}
-                   
-                    <div>{house?.description}</div>
+                    )}
                     <div className="flex items-center">
                         <div className="flex justify-center items-center"><BiMedal size={40} className="text-neutral-700 pr-2 w-full"/></div> 
                         <p className="font-light">{user?.name} là chủ nhà siêu cấp</p>
