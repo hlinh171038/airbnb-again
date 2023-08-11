@@ -11,7 +11,8 @@ import { useRouter } from "next/navigation";
 import { getComment } from "@/app/actions/getComment";
 import CommentItem from "./CommentItem";
 import { User } from "@prisma/client";
-import { COMPILER_INDEXES } from "next/dist/shared/lib/constants";
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 
 
@@ -32,7 +33,9 @@ const CommentSession:React.FC<CommentProps> =({
     const [comment,setComment] =useState('');
     const [label,setLabel] = useState('');
     const [isLoading,setIsLoading] = useState(false);
-    const [countStar, setCountStar] = useState(0)
+    const [currentPage, setCurrentPage] = useState(1);
+    const [countPerPages,setCountPerPage] = useState(5);
+    
     const router = useRouter()
 
     const loginModel = useLoginModal();
@@ -40,45 +43,20 @@ const CommentSession:React.FC<CommentProps> =({
 
     const starts = ['1','2','3','4','5'];
 
-    //handle comment
-    // const handleComment =() =>{
-    //     if(!currentUser)
-    //     {
-    //         return loginModel.onOpen()
-    //     }
+    // pagination
+    const start = currentPage * countPerPages -countPerPages;
+    const end = countPerPages * currentPage;
 
-    //     // check have start all have comment
-    //     if(isStar=== 0 || comment.length <=0)
-    //     {
-    //         toast.error("You havent chose start or comment");
-    //         return
-    //     }
-    //     setIsLoading(true)
-    //     // post comment
-    //     axios.post('/api/comments',{
-    //         listingId,
-    //         userId:currentUser.id,
-    //         label,
-    //         description:comment,
-    //         start:isStar
-    //     })
-    //     .then(()=>{
-    //         toast.success("Commented.");
-    //         setComment('');
-    //         setIsStar(0);
-    //         router.refresh();
-    //     })
-    //     .catch(()=>{
-    //         toast.error("Something went wrong");
-    //     })
-    //     .finally(()=>{
-    //         setIsLoading(false);
-    //         setComment('');
-    //         setIsStar(0);
-    //     })
-    // }
-
-
+    const pagin = [];
+    for(let i=0;i<Math.ceil(comments.length/countPerPages);i++)
+    {
+        pagin.push(i)
+    }
+    console.log(pagin)
+    // handle change pagination
+    const handlePagination = useCallback((e:any,p: any)=>{
+        setCurrentPage(p)
+    },[currentPage])
     // post comment
     const handleComment = useCallback(()=>{
         if(!currentUser)
@@ -212,8 +190,8 @@ const CommentSession:React.FC<CommentProps> =({
                 </button>
             </div>
             {/* comment session */}
-            <div>
-                {comments.length >0 && comments.map((comment)=>{
+            <div className=" h-auto">
+                {comments.length >0 && comments.slice(start,end).map((comment)=>{
                     return (
                         <CommentItem
                             allUser = {allUser}
@@ -225,6 +203,9 @@ const CommentSession:React.FC<CommentProps> =({
                     )
                 })}
             </div>
+            <Stack spacing={2} className="mt-3 mb-3 flex justify-end">
+                    <Pagination count={pagin.length} variant="outlined" shape="rounded" className="flex justify-end" onChange={handlePagination}/>
+            </Stack>
         </div>
     </div>
     )
