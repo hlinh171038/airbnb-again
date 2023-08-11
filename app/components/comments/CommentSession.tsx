@@ -1,7 +1,7 @@
 "use client"
 
 import { AiFillStar } from "react-icons/ai";
-import {useState,useEffect} from 'react'
+import {useState,useEffect,useCallback} from 'react'
 import { SafeComment, SafeUser } from "@/app/types";
 import Header from "../Header";
 import useLoginModal from "@/app/hooks/useLoginModal";
@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { getComment } from "@/app/actions/getComment";
 import CommentItem from "./CommentItem";
 import { User } from "@prisma/client";
+import { COMPILER_INDEXES } from "next/dist/shared/lib/constants";
 
 
 
@@ -30,7 +31,8 @@ const CommentSession:React.FC<CommentProps> =({
     const [isStar, setIsStar] = useState(0);
     const [comment,setComment] =useState('');
     const [label,setLabel] = useState('');
-    const [isLoading,setIsLoading] = useState(false)
+    const [isLoading,setIsLoading] = useState(false);
+    const [countStar, setCountStar] = useState(0)
     const router = useRouter()
 
     const loginModel = useLoginModal();
@@ -87,6 +89,16 @@ const CommentSession:React.FC<CommentProps> =({
         }
         setIsStar(convertNum);
     }
+
+    // handle count all star
+    const handleCountAllStar = useCallback(()=>{
+        let count = 0
+        for(let i=0;i<comments.length;i++)
+        {
+            count += comments[i].start;
+        }
+        return count /comments.length
+    },[comments])
     useEffect(() => {
         axios.get('/api/comments')
         .then((data)=>{
@@ -107,14 +119,15 @@ const CommentSession:React.FC<CommentProps> =({
     >
 
         <div className="flex gap-2 items-center my-4">
-            <div className="font-2xl">
-                <AiFillStar /> 
+            <div className="text-yellow-500">
+                <AiFillStar size={50}/> 
             </div>
-            <div>4,93</div>
-            <div>28 đánh giá</div>
+            <div>{handleCountAllStar()}</div>
+            <div>{comments.length} đánh giá</div>
         </div>
         {/* start and review information */}
-        <div className="flex ">
+        <div className="font-light">Bạn đánh giá chúng tôi bao nhiêu sao</div>
+        <div className="flex cursor-pointer ">
            {starts && starts.map((start)=>{
                  return <div className="start" id={start} onClick={()=>handleFillStar(start)}>
                             <AiFillStar />
@@ -125,7 +138,7 @@ const CommentSession:React.FC<CommentProps> =({
         <div>
            {/* command box */}
            <Header
-            title="Bạn nghĩ gì về nơi này"
+            title="Bạn nghĩ gì về chúng tôi"
             subtitle=""
            />
            <textarea 
@@ -137,6 +150,7 @@ const CommentSession:React.FC<CommentProps> =({
                     shadow-md
                     px-4 
                     py-4
+                    cursor-pointer
                     "
                 placeholder="Để lại một vài cảm nghĩ về khách sạn của chúng tôi..."
                 >
