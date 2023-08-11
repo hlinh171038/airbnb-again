@@ -1,4 +1,4 @@
-import {User} from "@prisma/client"
+import {Comment, User} from "@prisma/client"
 import { Listing } from "@prisma/client";
 
 
@@ -16,5 +16,12 @@ User,
     createdAt: string;
     updatedAt: string;
     emailVerified: string | null
+}
+
+export type SafeComment = Omit<
+Comment,
+"createdAt"
+>& {
+    createdAt:string;
 }
 

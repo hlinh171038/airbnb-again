@@ -1,10 +1,10 @@
 "use client"
 
-import { Listing, Reservation, User } from "@prisma/client"
+import { Comment, Listing, Reservation, User } from "@prisma/client"
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import Container from "@/app/components/Container";
-import { SafeListing, SafeUser } from "@/app/types";
+import { SafeComment, SafeListing, SafeUser } from "@/app/types";
 import ListingHead from "@/app/components/listings/ListingHead";
 import { categories } from "@/app/components/navbars/Categories";
 import ListingInfo from "@/app/components/listings/ListingInfo";
@@ -16,6 +16,10 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import ListingReservation from "@/app/components/listings/ListingReservation";
 import ListingBill from "@/app/components/listings/ListingBill";
+import CommentSession from "@/app/components/comments/CommentSession";
+
+
+
 
 export const initialDateRange = {
     startDate: new Date(),
@@ -28,16 +32,20 @@ interface ListingClientProps {
         user: SafeUser 
     } ;
     currentUser: SafeUser | null;
-
+    comments: SafeComment[],
+    allUser: User[]
 }
 
 const ListingClient:React.FC<ListingClientProps> =({
     listing,
     currentUser,
-    reservation = []
+    comments =[],
+    reservation = [],
+    allUser=[]
 }) =>{
 
     const loginModal = useLoginModal();
+    
     const router = useRouter();
     const [isLoading,setIsLoading] = useState(false);
     const [totalPrice,setTotalPrice] = useState(listing.price);
@@ -65,35 +73,6 @@ const ListingClient:React.FC<ListingClientProps> =({
             return item.label === listing?.category
         })
     },[listing?.category])
-
-    // const onCreateReservation = useCallback(()=>{
-    //     if(!currentUser)
-    //     {
-    //         return loginModal.onOpen();
-    //     }
-    //     setIsLoading(true);
-    //     axios.post('/api/reservations',{
-    //         totalPrice,
-    //         startDate: dateRange.startDate,
-    //         endDate: dateRange.endDate,
-    //         listingId: listing?.id
-    //     }).then(()=>{
-    //         toast.success('Listing reservated');
-    //         setDateRange(initialDateRange);
-    //         router.refresh();
-    //     }).catch(()=>{
-    //         toast.error('Something went wrong');
-    //     }).finally(()=>{
-    //         setIsLoading(false)
-    //     })
-    // },[
-    //     totalPrice,
-    //     currentUser,
-    //     dateRange,
-    //     listing?.id,
-    //     router,
-    //     loginModal
-    // ])
 
     const house = useMemo(()=>{
         return houseArr.find((item:any)=>{
@@ -216,12 +195,18 @@ const ListingClient:React.FC<ListingClientProps> =({
                         currentUser = {currentUser}
                         id={listing.id}
                         setDateRange ={setDateRange}
+                       
                     />
                    
                 </div>
                </div>
             </div>
-            
+            <CommentSession
+                listingId = {listing.id}
+                currentUser = {currentUser}
+                comments = {comments}
+                allUser ={allUser}
+            />
         </div>
     </div>
        
