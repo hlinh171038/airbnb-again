@@ -1,6 +1,6 @@
 "use client"
 
-import {useMemo,useCallback} from 'react';
+import {useMemo,useCallback,useState} from 'react';
 import { User } from "@prisma/client";
 import Image from "next/image";
 import { SafeUser } from '@/app/types';
@@ -21,7 +21,8 @@ const CommentItem:React.FC<CommentItemProps> = ({
     userId,
     allUser =[]
 }) =>{
-    console.log(allUser);
+    const [isReadMore,setIsReadMore] = useState(false)
+    const [isOpen,setIsOpen] = useState(false);
 
     const checkImage = useCallback((item:any) => {
         for(let i=0;i<allUser.length;i++)
@@ -56,6 +57,12 @@ const CommentItem:React.FC<CommentItemProps> = ({
         }
         return star
     },[])
+
+    //handle read more
+    const handleReadMore = useCallback(()=>{
+        setIsReadMore(!isReadMore);
+    },[isReadMore])
+
     console.log(checkImage(userId))
     return (
         <div className='mb-4'>
@@ -90,8 +97,30 @@ const CommentItem:React.FC<CommentItemProps> = ({
                     )
                 })}
             </div>
-            <div className='w-full h-[100px] min-h-[100px] border-[1px] px-4 py-4 rounded-lg'>
-                {description}
+            <div className='
+                    w-full 
+                    h-auto
+                    min-h-[80px] 
+                    border-[1px] 
+                    px-4 
+                    py-4 
+                    rounded-lg
+                    font-light
+                    text-sm
+                    '
+                    >
+                {description.length>235 ? isReadMore? description: description.substring(0,235) +'...': description}
+                {description.length>235 ?(isReadMore?(
+                    <span
+                        onClick={handleReadMore}
+                        className='underline text-sm font-bold ml-2'
+                    >Thu nhỏ</span>
+                ):
+                (<span
+                    onClick={handleReadMore}
+                    className='underline text-sm font-bold'
+                >Đọc thêm</span>)
+                ):""}
             </div>
         </div>
     )

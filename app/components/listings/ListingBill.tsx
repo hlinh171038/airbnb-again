@@ -5,15 +5,16 @@ import Button from "../Button";
 import { useCallback, useState } from "react";
 import Calendar from '@/app/components/inputs/Calendar'
 import { TbSquareRoundedPlusFilled } from "react-icons/tb";
-import { AiFillMinusCircle } from "react-icons/ai";
+import { AiFillMinusCircle, AiFillStar } from "react-icons/ai";
 import { BiSolidDownArrow, BiSolidUpArrow } from "react-icons/bi";
 
 import useLoginModal from "@/app/hooks/useLoginModal";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { SafeUser } from "@/app/types";
+import { SafeComment, SafeUser } from "@/app/types";
 import { initialDateRange } from "@/app/listings/[listingId]/ListingClient";
+import { BsDot } from "react-icons/bs";
 // import {initialDateRange} from '@/app/listings/[listingId]/ListingClient'
 
 interface ListingBillProps {
@@ -31,7 +32,8 @@ interface ListingBillProps {
     maxnight: string;
     currentUser: SafeUser | null;
     id:string;
-    setDateRange: any
+    setDateRange: any;
+    comments: SafeComment[]
 }
 
 const ListingBill:React.FC<ListingBillProps> = ({
@@ -49,10 +51,11 @@ const ListingBill:React.FC<ListingBillProps> = ({
     maxnight,
     currentUser,
     id,
-    setDateRange
+    setDateRange,
+    comments =[]
 }) =>{
     const [isSelected , setIsSelected] = useState(false);
-    const [isCalendar,setIsCalendar] = useState(false);
+    const [isCalendar,setIsCalendar] = useState(true);
     const [countAdult,setCountAdult] = useState(1);
     const [countChild,setCountChild] = useState(0);
     const [countPet,setCountPet] = useState(0);
@@ -170,6 +173,16 @@ const ListingBill:React.FC<ListingBillProps> = ({
         router,
         loginModal
     ])
+
+    // handle count all star
+    const handleCountAllStar = useCallback(()=>{
+        let count = 0
+        for(let i=0;i<comments.length;i++)
+        {
+            count += comments[i].start;
+        }
+        return  (count /comments.length).toFixed(2)
+    },[comments])
     
     return <div 
                 className={`
@@ -196,7 +209,11 @@ const ListingBill:React.FC<ListingBillProps> = ({
                         </span>
                         /đêm
                     </p>
-                    <div className="text-sm font-light">Đánh giá</div>
+                    <div>
+                        <div className="flex gap-1 cursor-pointer">
+                            <div className="text-sm flex"><AiFillStar/>{handleCountAllStar()}<span className="flex items-center"><BsDot/></span><span className="underline font-bold">{comments.length} đánh giá</span></div>
+                        </div>
+                    </div>
                 </div>
                 <div 
                     className="

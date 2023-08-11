@@ -41,7 +41,46 @@ const CommentSession:React.FC<CommentProps> =({
     const starts = ['1','2','3','4','5'];
 
     //handle comment
-    const handleComment =() =>{
+    // const handleComment =() =>{
+    //     if(!currentUser)
+    //     {
+    //         return loginModel.onOpen()
+    //     }
+
+    //     // check have start all have comment
+    //     if(isStar=== 0 || comment.length <=0)
+    //     {
+    //         toast.error("You havent chose start or comment");
+    //         return
+    //     }
+    //     setIsLoading(true)
+    //     // post comment
+    //     axios.post('/api/comments',{
+    //         listingId,
+    //         userId:currentUser.id,
+    //         label,
+    //         description:comment,
+    //         start:isStar
+    //     })
+    //     .then(()=>{
+    //         toast.success("Commented.");
+    //         setComment('');
+    //         setIsStar(0);
+    //         router.refresh();
+    //     })
+    //     .catch(()=>{
+    //         toast.error("Something went wrong");
+    //     })
+    //     .finally(()=>{
+    //         setIsLoading(false);
+    //         setComment('');
+    //         setIsStar(0);
+    //     })
+    // }
+
+
+    // post comment
+    const handleComment = useCallback(()=>{
         if(!currentUser)
         {
             return loginModel.onOpen()
@@ -72,10 +111,11 @@ const CommentSession:React.FC<CommentProps> =({
             toast.error("Something went wrong");
         })
         .finally(()=>{
-            setIsLoading(false)
+            setIsLoading(false);
+            setComment('');
+            setIsStar(0);
         })
-    }
-
+    },[currentUser,loginModel,isStar,isLoading,comment,router])
 
     const handleFillStar =(item:string) =>{
         for(let i=0;i<6;i++)
@@ -97,17 +137,9 @@ const CommentSession:React.FC<CommentProps> =({
         {
             count += comments[i].start;
         }
-        return count /comments.length
+        return (count /comments.length).toFixed(2)
     },[comments])
-    useEffect(() => {
-        axios.get('/api/comments')
-        .then((data)=>{
-            console.log(data)
-        })
-        .catch((err:any)=>{
-            console.log(err)
-        })
-    }, [])
+  
     return (
         <div 
         className="
@@ -164,7 +196,8 @@ const CommentSession:React.FC<CommentProps> =({
             >
                 <button 
                 onClick={handleComment}
-                    className="
+              
+                    className={`
                         px-2 
                         py-2
                         text-center
@@ -172,8 +205,8 @@ const CommentSession:React.FC<CommentProps> =({
                         bg-rose-600
                         text-white
                         hover:opacity-70
-                        
-                    "
+                        ${isLoading &&"cursor-not-allowed opacity-75"}
+                    `}
                 >
                     Comment
                 </button>

@@ -1,6 +1,6 @@
 "use client"
 
-import { SafeUser } from "@/app/types";
+import { SafeComment, SafeUser } from "@/app/types";
 import Header from "../Header";
 import useCountries from "@/app/hooks/useCountries";
 import Image from "next/image";
@@ -31,20 +31,25 @@ import Button from "../Button";
 import { IoShareOutline } from "react-icons/io5";
 import { FcShare } from "react-icons/fc";
 import {RxCross2} from 'react-icons/rx'
+import { Comment } from "@prisma/client";
+import { AiFillStar } from "react-icons/ai";
+import { BsDot } from "react-icons/bs";
 
 interface ListingHeadProps {
     title: string;
     imageSrc : string;
     locationValue: string;
     id: string;
-    currentUser: SafeUser | null
+    currentUser: SafeUser | null;
+    comments: SafeComment[]
 }
 const ListingHead:React.FC<ListingHeadProps> =({
     title,
     imageSrc,
     locationValue,
     id,
-    currentUser
+    currentUser,
+    comments=[],
 }) =>{
     const [isShare, setIsShare] = useState(false);
     const shareUrl = 'https://pakkamarwadi.tk/';
@@ -54,15 +59,28 @@ const ListingHead:React.FC<ListingHeadProps> =({
 
     },[])
 
+     // handle count all star
+     const handleCountAllStar = useCallback(()=>{
+        let count = 0
+        for(let i=0;i<comments.length;i++)
+        {
+            count += comments[i].start;
+        }
+        return  (count /comments.length).toFixed(2)
+    },[comments])
+
     const location = getByValue(locationValue);
     return (
        
         <>
-            <Header 
-                title={title}
-                subtitle={`${location?.region} - ${location?.label}`}
-            />
-             
+             <div>
+                <div className="font-semibold text-4xl uppercase ">{title}</div>
+                <div className="flex gap-1 cursor-pointer">
+                    <div className="text-sm flex"><AiFillStar/>{handleCountAllStar()}<span className="flex items-center"><BsDot/></span><span className="underline font-bold">{comments.length} đánh giá</span></div>
+                    <span className="flex items-center"><BsDot/></span>
+                    <div className="text-sm underline">{location?.region} - {location?.label}</div>
+                </div>
+             </div>
            <div className="relative w-full py-2 h-4 ">
             <div 
                 onClick={()=>setIsShare(!isShare)}

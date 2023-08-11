@@ -121,6 +121,7 @@ const ListingClient:React.FC<ListingClientProps> =({
                 locationValue = {listing.locationValue}
                 id={listing.id}
                 currentUser={currentUser}
+                comments = {comments}
             />
             <div
                 className="
@@ -195,7 +196,7 @@ const ListingClient:React.FC<ListingClientProps> =({
                         currentUser = {currentUser}
                         id={listing.id}
                         setDateRange ={setDateRange}
-                       
+                        comments = {comments}
                     />
                    
                 </div>
