@@ -186,7 +186,7 @@ import { TiGroup } from "react-icons/ti"
         selected:false,
       },
       {
-        label: 'Máy phát hiện  khí CO',
+        label: 'Máy phát hiện khí CO',
         icon: TbWashMachine,
         description: 'This property is in the countryside!',
         selected:false,

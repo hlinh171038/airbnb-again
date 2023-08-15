@@ -34,7 +34,6 @@ export default async function RootLayout({
 
     <html lang="en">
       <body className={inter.className} > 
-        <BodyContainer>
         <ClientOnly>
           <ToasterProvider />
           <Navbar session={session}/>
@@ -42,11 +41,10 @@ export default async function RootLayout({
           <LoginModal />
           <RentModal />
         </ClientOnly>
-        <div className='pb-20 pt-28 '>
+        <div className=' pt-28 '>
           {children}
         </div>
         <NavMobile />
-        </BodyContainer>
         </body>
     </html>
   )

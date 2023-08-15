@@ -7,11 +7,12 @@ import Logo from "./Logo"
 import Search from "./Search"
 import UserMenu from "./UserMenu"
 import Categories from "./Categories"
-import { usePathname } from "next/navigation"
+import { useParams, usePathname } from "next/navigation"
 import Header from "../Header"
 import Button from "../Button"
 import NavbarRent from "./NavbarRent"
 import { useCallback, useEffect, useState } from "react"
+import NavbarListingId from "./NavbarListingId"
 
 
 interface NavbarProps {
@@ -22,6 +23,8 @@ const Navbar:React.FC<NavbarProps> = ({
     session
 }) =>{
     const path = usePathname();
+    const params = useParams();
+    // console.log(params.listingId) // take id of link
 
     if(path === '/rent')
     {

@@ -113,12 +113,12 @@ const CommentItem:React.FC<CommentItemProps> = ({
                 {description.length>235 ?(isReadMore?(
                     <span
                         onClick={handleReadMore}
-                        className='underline text-sm font-bold ml-2'
+                        className='underline text-sm font-bold ml-2 cursor-pointer'
                     >Thu nhỏ</span>
                 ):
                 (<span
                     onClick={handleReadMore}
-                    className='underline text-sm font-bold'
+                    className='underline text-sm font-bold cursor-pointer'
                 >Đọc thêm</span>)
                 ):""}
             </div>

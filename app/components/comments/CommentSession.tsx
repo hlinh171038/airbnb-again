@@ -13,6 +13,7 @@ import CommentItem from "./CommentItem";
 import { User } from "@prisma/client";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import { BsDot } from "react-icons/bs";
 
 
 
@@ -122,21 +123,19 @@ const CommentSession:React.FC<CommentProps> =({
         <div 
         className="
             w-full
-            px-4
             py-8
-
         "
-    >
-
-        <div className="flex gap-2 items-center my-4">
+        >
+        <div className="flex items-end my-4">
             <div className="text-yellow-500">
                 <AiFillStar size={50}/> 
             </div>
-            <div>{handleCountAllStar()}</div>
-            <div>{comments.length} đánh giá</div>
+            <div className="text-sm underline">{handleCountAllStar()}</div>
+            
+            <div className="text-sm underline flex"><BsDot/>{comments.length} đánh giá</div>
         </div>
         {/* start and review information */}
-        <div className="font-light">Bạn đánh giá chúng tôi bao nhiêu sao</div>
+        <div className="font-light text-sm">Bạn đánh giá chúng tôi bao nhiêu sao ?</div>
         <div className="flex cursor-pointer ">
            {starts && starts.map((start)=>{
                  return <div className="start" id={start} onClick={()=>handleFillStar(start)}>
@@ -158,9 +157,11 @@ const CommentSession:React.FC<CommentProps> =({
                     h-[300px]
                     border-[1px]
                     shadow-md
-                    px-4 
-                    py-4
+                    px-2
+                    py-2
                     cursor-pointer
+                    text-sm
+                    font-light
                     "
                 placeholder="Để lại một vài cảm nghĩ về khách sạn của chúng tôi..."
                 >
@@ -170,6 +171,7 @@ const CommentSession:React.FC<CommentProps> =({
                 className="
                     flex
                     justify-end
+                    mb-4
                 "
             >
                 <button 

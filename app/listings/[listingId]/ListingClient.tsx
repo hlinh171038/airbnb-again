@@ -17,6 +17,8 @@ import { toast } from "react-hot-toast";
 import ListingReservation from "@/app/components/listings/ListingReservation";
 import ListingBill from "@/app/components/listings/ListingBill";
 import CommentSession from "@/app/components/comments/CommentSession";
+import ListingRule from "@/app/components/listings/ListingRule";
+import Footer from "@/app/components/Footer";
 
 
 
@@ -112,106 +114,116 @@ const ListingClient:React.FC<ListingClientProps> =({
         }
     },[dateRange, listing.price]);
  return (
-   <Container >
-    <div className="max-w-screen-lg mx-auto">
-        <div className="flex flex-col gap-6">
-            <ListingHead
-                title={listing.title}
-                imageSrc={listing.imageSrc}
-                locationValue = {listing.locationValue}
-                id={listing.id}
-                currentUser={currentUser}
-                comments = {comments}
-            />
-            <div
-                className="
-                   grid
-                   grid-cols-2 
-                   gap-4
-
-                "
-               
-            >
-                <div className="item2" >
-                    <ListingInfo 
-                        user={listing.user}
-                        category={category}
-                        description = {listing.description}
-                        roomCount = {listing.roomCount}
-                        bed = {listing.bed}
-                        guestCount = {listing.guestCount}
-                        bathroomCount = {listing.bathroomCount}
+   <div>
+        <Container >
+            <div className="max-w-screen-lg mx-auto">
+                <div className="flex flex-col gap-6">
+                    <ListingHead
+                        title={listing.title}
+                        imageSrc={listing.imageSrc}
                         locationValue = {listing.locationValue}
-                        house = {house}
-                        utilities = {listing.utilities }
-                        
-                    />
-                    <ListingReservation
-                        price = {listing.price}
-                        totalPrice = {totalPrice}
-                        onChangeDate = {(value:any)=> setDateRange(value)}
-                        dateRange = {dateRange}
-                        disabled = {isLoading}
-                        disabledDates={disabledDates}
-                        countDay = {countDay}
-                        locationValue = {listing.locationValue}
-                        maxnight = {listing.night}
-                        
-                    />
-                </div>
-                
-               <div 
-               id="scroll"
-                className={`
-                    flex
-                    justify-center
-                   
-                `}
-               >
-                <div
-                   
-                    className={`
-                        rounded-lg
-                        transition
-                        top-16
-                        w-[100%]
-                        h-auto
-                        max-h-[100%]
-                        
-                    `}
-                >
-                    <ListingBill 
-                        price={listing.price}
-                        totalPrice={totalPrice}
-                        countDay ={countDay}
-                        dateRange={dateRange}
-                        onChangeDate = {(value:any)=> setDateRange(value)}
-                        disabled = {isLoading}
-                        isFixed = {isFixed}
-                        who = {listing.who}
-                        guestCount = {listing.guestCount}
-                        disabledDates={disabledDates}
-                        locationValue = {listing.locationValue}
-                        maxnight = {listing.night}
-                        currentUser = {currentUser}
                         id={listing.id}
-                        setDateRange ={setDateRange}
+                        currentUser={currentUser}
                         comments = {comments}
                     />
+                    <div
+                        className="
+                        grid
+                        grid-cols-2 
+                        gap-4
+
+                        "
+                    
+                    >
+                        <div className="item2" >
+                            <ListingInfo 
+                                user={listing.user}
+                                category={category}
+                                description = {listing.description}
+                                roomCount = {listing.roomCount}
+                                bed = {listing.bed}
+                                guestCount = {listing.guestCount}
+                                bathroomCount = {listing.bathroomCount}
+                                locationValue = {listing.locationValue}
+                                house = {house}
+                                utilities = {listing.utilities }
+                                
+                            />
+                            <ListingReservation
+                                price = {listing.price}
+                                totalPrice = {totalPrice}
+                                onChangeDate = {(value:any)=> setDateRange(value)}
+                                dateRange = {dateRange}
+                                disabled = {isLoading}
+                                disabledDates={disabledDates}
+                                countDay = {countDay}
+                                locationValue = {listing.locationValue}
+                                maxnight = {listing.night}
+                                
+                            />
+                        </div>
+                        
+                    <div 
+                    id="scroll"
+                        className={`
+                            flex
+                            justify-center
+                        
+                        `}
+                    >
+                        <div
+                        
+                            className={`
+                                rounded-lg
+                                transition
+                                top-16
+                                w-[100%]
+                                h-auto
+                                max-h-[100%]
+                                
+                            `}
+                        >
+                            <ListingBill 
+                                price={listing.price}
+                                totalPrice={totalPrice}
+                                countDay ={countDay}
+                                dateRange={dateRange}
+                                onChangeDate = {(value:any)=> setDateRange(value)}
+                                disabled = {isLoading}
+                                isFixed = {isFixed}
+                                who = {listing.who}
+                                guestCount = {listing.guestCount}
+                                disabledDates={disabledDates}
+                                locationValue = {listing.locationValue}
+                                maxnight = {listing.night}
+                                currentUser = {currentUser}
+                                id={listing.id}
+                                setDateRange ={setDateRange}
+                                comments = {comments}
+                            />
+                        
+                        </div>
+                    </div>
+                    </div>
+                    <CommentSession
+                        listingId = {listing.id}
+                        currentUser = {currentUser}
+                        comments = {comments}
+                        allUser ={allUser}
+                    />
+                    <hr />
+                    <ListingRule
+                        guestCount = {listing.guestCount}
+                        utilities = {listing.utilities}
+
+                    />
                    
                 </div>
-               </div>
             </div>
-            <CommentSession
-                listingId = {listing.id}
-                currentUser = {currentUser}
-                comments = {comments}
-                allUser ={allUser}
-            />
-        </div>
-    </div>
-       
-   </Container>
+           
+        </Container>
+        <Footer/>
+   </div>
  )
 }
 
