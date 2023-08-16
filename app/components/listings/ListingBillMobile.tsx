@@ -1,23 +1,22 @@
-"use client"
+"use client "
 
-import { Range } from "react-date-range";
-import Button from "../Button";
-import { useCallback, useState } from "react";
+import useBook from '@/app/hooks/useBook'
+import useLoginModal from '@/app/hooks/useLoginModal'
+import { SafeComment, SafeUser } from '@/app/types'
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
+import {useState,useEffect,useCallback} from 'react'
+import { Range } from 'react-date-range'
 import Calendar from '@/app/components/inputs/Calendar'
-import { TbSquareRoundedPlusFilled } from "react-icons/tb";
-import { AiFillMinusCircle, AiFillStar } from "react-icons/ai";
-import { BiSolidDownArrow, BiSolidUpArrow } from "react-icons/bi";
+import { AiFillMinusCircle, AiFillStar } from 'react-icons/ai'
+import { BiSolidDownArrow, BiSolidLeftArrow, BiSolidUpArrow } from 'react-icons/bi'
+import { BsChevronCompactDown, BsDot } from 'react-icons/bs'
+import { TbSquareRoundedPlusFilled } from 'react-icons/tb'
+import axios from 'axios'
+import { toast } from 'react-hot-toast'
+import { initialDateRange } from '@/app/listings/[listingId]/ListingClient'
 
-import useLoginModal from "@/app/hooks/useLoginModal";
-import axios from "axios";
-import { toast } from "react-hot-toast";
-import { useRouter } from "next/navigation";
-import { SafeComment, SafeUser } from "@/app/types";
-import { initialDateRange } from "@/app/listings/[listingId]/ListingClient";
-import { BsDot } from "react-icons/bs";
-// import {initialDateRange} from '@/app/listings/[listingId]/ListingClient'
-
-interface ListingBillProps {
+interface ListingBillMobileProps {
     price: number;
     totalPrice: number;
     countDay: number;
@@ -36,7 +35,7 @@ interface ListingBillProps {
     comments: SafeComment[]
 }
 
-const ListingBill:React.FC<ListingBillProps> = ({
+const ListingBillMobile:React.FC<ListingBillMobileProps> =({
     price,
     totalPrice,
     countDay,
@@ -54,6 +53,8 @@ const ListingBill:React.FC<ListingBillProps> = ({
     setDateRange,
     comments =[]
 }) =>{
+    const bookModel = useBook()
+    const [isOpenListing,setIsOpenListing] = useState(bookModel.isOpen)
     const [isSelected , setIsSelected] = useState(false);
     const [isCalendar,setIsCalendar] = useState(true);
     const [countAdult,setCountAdult] = useState(1);
@@ -63,20 +64,38 @@ const ListingBill:React.FC<ListingBillProps> = ({
 
     const router = useRouter();
     const loginModal = useLoginModal();
-    
-   
-    // handle open calendar
+    console.log(isOpenListing)
+    console.log(bookModel.isOpen)
+
+    // handle close book
+    const handleCloseBook =()=>{
+        setTimeout(()=>{
+            bookModel.onClose()
+        },300)
+    }
+
+    // handle count all star
+    const handleCountAllStar = useCallback(()=>{
+        let count = 0
+        for(let i=0;i<comments.length;i++)
+        {
+            count += comments[i].start;
+        }
+        return  (count /comments.length).toFixed(2)
+    },[comments])
+
+   // handle open calendar
     const handleOpenCalendar = useCallback(()=>{
         setIsCalendar(!isCalendar);
     },[isCalendar]);
 
-    // handle selected
-    const handleSelected = useCallback(()=>{
-        setIsSelected(!isSelected)
-    },[isSelected])
+      // handle selected
+      const handleSelected = useCallback(()=>{
+            setIsSelected(!isSelected)
+        },[isSelected])
 
-    // handle add 
-    const handleAdd =useCallback((number:number)=>{
+      // handle add 
+      const handleAdd =useCallback((number:number)=>{
         if(number <=1 || number >guestCount)
         {
             return 
@@ -174,34 +193,64 @@ const ListingBill:React.FC<ListingBillProps> = ({
         loginModal
     ])
 
-    // handle count all star
-    const handleCountAllStar = useCallback(()=>{
-        let count = 0
-        for(let i=0;i<comments.length;i++)
-        {
-            count += comments[i].start;
-        }
-        return  (count /comments.length).toFixed(2)
-    },[comments])
-    
-    return <div 
-                className={`
-                    relative
-                    top-[4rem]
-                    px-4 
-                    py-4  
-                   
-                    w-[100%]
-                    h-auto
-                    rounded-lg
-                    border-[1px]
-                    hidden
-                    sm:block
-                    ${!isFixed  ? " sticky top-3 ":""}
-                    ${!isFixed && "shadow-md"}
-                `}
+
+    useEffect(()=>{
+        setIsOpenListing(bookModel.isOpen)
+        
+      },[bookModel.isOpen])
+  
+      if(!bookModel.isOpen)
+      {
+          return null;
+      }
+    return (
+        <div
+            className={`
+                fixed
+                w-full
+                h-[100vh]
+                top-0
+                left-0
+                bg-white
+                z-50
+               translate
+               duration-500
+                sm:hidden
+               ${isOpenListing ?"translate-y-0":"translate-y-[100%]"}
+               ${isOpenListing ?"opacity-100":"opacity-0"}
+            `}
+        >
+            {/* header */}
+            <div 
+                className='
+                    flex
+                    justify-between
+                    px-4
+                    py-4
+                    border-b-[1px]
+                '
             >
-                <div className="flex justify-between items-center">
+                <div>
+                    <BsChevronCompactDown
+                        size={25}
+                        onClick={handleCloseBook}
+
+                    />
+                </div>
+                <div>
+                    <Image
+                        src="/logo.png"
+                        width={70}
+                        height={70}
+                        alt='logo'
+                    />
+                </div>
+            </div>
+            {/* content */}
+            <div className='max-h-[100vh] overflow-y-auto'>
+            <div>
+
+            <div className="flex justify-between items-center py-4 px-4">
                     {/* header */}
                     <p>
                         <span
@@ -217,18 +266,10 @@ const ListingBill:React.FC<ListingBillProps> = ({
                         </div>
                     </div>
                 </div>
-                <div 
-                    className="
-                        my-4
-                        grid 
-                        grid-cols-1
-                        border-[1px]
-                        rounded-lg
-                        cursor-pointer
-                    "
-                >
-                    <div className="grid grid-cols-2" onClick={handleOpenCalendar}>
-                        <div className="border-r-[1px] border-b-[1px]  text-[0.6rem] flex items-center px-2 ">
+                
+                <div className='w-full h-[7px] bg-neutral-100'></div>
+                    <div className="grid grid-cols-2 m-4" onClick={handleOpenCalendar}>
+                        <div className="border-[1px] border-r-[1px] text-[0.6rem] flex items-center px-2 ">
                             <div className=" uppercase">Nhận phòng:</div>
                             <div>
                                 <div className='text-[0.6rem] font-light'>
@@ -238,7 +279,7 @@ const ListingBill:React.FC<ListingBillProps> = ({
                                 </div>
                             </div>
                         </div>
-                        <div className="border-r-[1px] border-b-[1px]  text-[0.6rem] flex items-center px-2 py-4">
+                        <div className="border-[1px] text-[0.6rem] flex items-center px-2 py-4 ">
 
                             <div className=" uppercase">
                             {
@@ -268,20 +309,16 @@ const ListingBill:React.FC<ListingBillProps> = ({
                             </div>
                         </div>
                     </div>
+
+                    
+                    {/* canlendar */}
                     <div 
                         className={`
-                            absolute
-                            top-[6rem]
-                            right-0
-                           border-[1px]
-                           border-top-none
-                           rounded-lg
+                           px-2
                            shadow-md
                             w-full
                             h-auto
-                            z-60
-                           
-                            ${isCalendar ?"hidden" :"block"}
+                            
                         `} 
                     >
                         <Calendar
@@ -291,53 +328,33 @@ const ListingBill:React.FC<ListingBillProps> = ({
                             onChangeDate(value.selection)}
                             countDay = {countDay}
                             maxnight={maxnight}
+                            
                         />
-                        <div className="flex justify-end px-4 py-4 " onClick={()=>setIsCalendar(true)}>
-                            <button className="underline font-semibold hover:text-neutral-600">Đóng</button>
-                        </div>
-                    </div>
-
-                    <div 
-                        onClick={handleSelected}
-                        className="
-                            text-center 
-                            col-span-2 
-                            uppercase 
-                            text-[0.6rem] 
-                            px-2 py-2 
-                            transition 
-                            cursor-pointer
-                            flex
-                            justify-between
-                            transition
-                            "
-                    >
-                       <div>Khách</div>
-                       {isSelected ? <BiSolidUpArrow/>:<BiSolidDownArrow />}
                         
                     </div>
-                   
-                </div>
-                <div className={`
+                    <div className='w-full h-[7px] bg-neutral-100'></div>
+
+            </div>
+            <div className={`
                         flex
                         justify-center
                         items-center
                         transition
-                        ${isSelected ? "absolute z-50 w-full top-[8rem] left-0":"hidden"
+                       pb-4
                     }`}
                 >
                    <div 
                     className="
-                       border-[1px]
+                       
                        bg-white
                        rounded-lg
-                        w-[90%]
-                        px-2
+                        w-[100%]
+                        px-4
                         py-4
                         
                     "
                    >
-                    <div className="font-semibold py-2 text-center">Chọn thành viên thuê phòng</div>
+                    <div className="font-semibold pb-6 ">Chọn thành viên thuê phòng</div>
                     <div
                         className="
                             grid 
@@ -351,7 +368,7 @@ const ListingBill:React.FC<ListingBillProps> = ({
                         if(item[0])
                         {
                             return (
-                                    <label className="flex justify-between items-center px-2">{item}
+                                    <label className="flex justify-between items-center ">{item}
                                         <input 
                                             type="radio" 
                                             checked={true}
@@ -449,17 +466,12 @@ const ListingBill:React.FC<ListingBillProps> = ({
                     >
                         Chỗ ở này cho phép tối đa {guestCount} khách, không tính em bé. Nếu bạn mang theo nhiều hơn 2 thú cưng, vui lòng báo cho Chủ nhà biết.
                     </div>
-                    <div className="flex justify-end px-4">
-                        <button 
-                            onClick={()=>setIsSelected(false)}
-                            className="underline font-bold"
-                        >
-                            Đóng
-                        </button>
-                    </div>
+                    
                    </div>
                 </div>
-                <div>
+                <div className='w-full h-[7px] bg-neutral-100'></div>
+                {/* TOTAL PRICE */}
+                <div className='p-4 mb-[6rem]'>
                     {countDay !== 0 ? (
                         <div>
                             <button 
@@ -529,8 +541,9 @@ const ListingBill:React.FC<ListingBillProps> = ({
                         </div>
                     )}
                 </div>
-                
             </div>
+        </div>
+    )
 }
 
-export default ListingBill
+export default ListingBillMobile

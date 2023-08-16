@@ -12,6 +12,8 @@ import ToasterProvider from './providers/toasterProvider'
 import RentModal from './components/modals/RentModal'
 import NavMobile from './components/navbars/NavMobile'
 import BodyContainer from './components/BodyContainer'
+import getListingById from './actions/getListingById'
+import { getListing } from './actions/getListing'
 
 
 
@@ -28,7 +30,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const session = await getCurrentUser()
-
+  const listingData = await getListing();
   
   return (
 
@@ -44,7 +46,7 @@ export default async function RootLayout({
         <div className=' pt-28 '>
           {children}
         </div>
-        <NavMobile />
+        <NavMobile listingData = {listingData}/>
         </body>
     </html>
   )

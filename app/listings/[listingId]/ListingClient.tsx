@@ -19,6 +19,7 @@ import ListingBill from "@/app/components/listings/ListingBill";
 import CommentSession from "@/app/components/comments/CommentSession";
 import ListingRule from "@/app/components/listings/ListingRule";
 import Footer from "@/app/components/Footer";
+import ListingBillMobile from "@/app/components/listings/ListingBillMobile";
 
 
 
@@ -129,7 +130,8 @@ const ListingClient:React.FC<ListingClientProps> =({
                     <div
                         className="
                         grid
-                        grid-cols-2 
+                        grid-cols-1
+                        sm:grid-cols-2
                         gap-4
 
                         "
@@ -184,6 +186,24 @@ const ListingClient:React.FC<ListingClientProps> =({
                             `}
                         >
                             <ListingBill 
+                                price={listing.price}
+                                totalPrice={totalPrice}
+                                countDay ={countDay}
+                                dateRange={dateRange}
+                                onChangeDate = {(value:any)=> setDateRange(value)}
+                                disabled = {isLoading}
+                                isFixed = {isFixed}
+                                who = {listing.who}
+                                guestCount = {listing.guestCount}
+                                disabledDates={disabledDates}
+                                locationValue = {listing.locationValue}
+                                maxnight = {listing.night}
+                                currentUser = {currentUser}
+                                id={listing.id}
+                                setDateRange ={setDateRange}
+                                comments = {comments}
+                            />
+                            <ListingBillMobile
                                 price={listing.price}
                                 totalPrice={totalPrice}
                                 countDay ={countDay}
