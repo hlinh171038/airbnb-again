@@ -111,6 +111,11 @@ const CommentSession:React.FC<CommentProps> =({
 
     // handle count all star
     const handleCountAllStar = useCallback(()=>{
+        if(comments.length === 0)
+        {
+            console.log(comments.length)
+            return 0;
+        }
         let count = 0
         for(let i=0;i<comments.length;i++)
         {

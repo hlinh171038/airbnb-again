@@ -30,21 +30,6 @@ const Navbar:React.FC<NavbarProps> = ({
     {
         return <NavbarRent />
     }
-  
-    // const [scrollY, setScrollY] = useState(0);
-    // const navbar = document.getElementById('navbars');
-    
-    // const onScroll = useCallback(() => {
-    //     console.log(document.body.getBoundingClientRect().top);
-    //     const pageY = document.body.getBoundingClientRect().top;
-
-    //     console.log(navbar?.getBoundingClientRect().bottom)
-
-    //     //console.log(pageY)
-    // }, []);
-    // useEffect(() => {
-    //     window.addEventListener("scroll", onScroll);
-    //   });
 
     return (
         <div

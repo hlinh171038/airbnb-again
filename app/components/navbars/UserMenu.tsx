@@ -47,6 +47,12 @@ const UserMenu:React.FC<UserMenuProps> = ({
         }
         rentModal.onOpen()
     },[])
+
+    // handle trips
+    const handleTrips = useCallback(()=>{
+        setIsOpen(false)
+        router.push('/trips')
+    },[isOpen, router])
     return (
        <div 
        className='flex flex-row justify-between items-center relative'>
@@ -85,7 +91,7 @@ const UserMenu:React.FC<UserMenuProps> = ({
                     <>
                         <MenuItem
                             label='My trips'
-                            onClick={()=>{}}
+                            onClick={handleTrips}
                         />
                         <MenuItem
                             label='My favorites'

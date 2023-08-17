@@ -61,7 +61,12 @@ const ListingHead:React.FC<ListingHeadProps> =({
 
      // handle count all star
      const handleCountAllStar = useCallback(()=>{
+        if(comments.length === 0)
+        {
+            return 0;
+        }
         let count = 0
+
         for(let i=0;i<comments.length;i++)
         {
             count += comments[i].start;
