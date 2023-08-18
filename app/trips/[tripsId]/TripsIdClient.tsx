@@ -71,7 +71,14 @@ const TripsIdClient:React.FC<TripsIdClientProps> =({
                     </div>
                     
                 </div>
-                <div className="w-full flex justify-end px-4"><div className="underline text-blue-500 italic cursor-pointer text-[0.8rem] font-light">Liên hệ chúng tôi</div></div>
+                <div className="w-full flex justify-end px-4">
+                    <div 
+                        onClick={()=>router.push('/contact')}
+                        className="underline text-blue-500 italic cursor-pointer text-[0.8rem] font-light"
+                    >
+                        Liên hệ chúng tôi
+                    </div>
+                </div>
                 <div className="block sm:flex gap-4 text-sm font-light">
                     <div className="font-bold">Địa điểm :</div>
                     <div>{location?.label} - {location?.region}</div>

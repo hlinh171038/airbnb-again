@@ -13,6 +13,7 @@ import Button from "../Button"
 import NavbarRent from "./NavbarRent"
 import { useCallback, useEffect, useState } from "react"
 import NavbarListingId from "./NavbarListingId"
+import NavbarContact from "./NavbarContact"
 
 
 interface NavbarProps {
@@ -29,6 +30,10 @@ const Navbar:React.FC<NavbarProps> = ({
     if(path === '/rent')
     {
         return <NavbarRent />
+    }
+    if(path === '/contact')
+    {
+        return <NavbarContact />
     }
 
     return (
