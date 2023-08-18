@@ -1,5 +1,6 @@
 "use client"
 
+import { usePathname, useSearchParams } from "next/navigation"
 import Container from "../components/Container"
 import ContectMenuItem from "../components/contact/ContectMenuItem"
 import { SafeUser } from "../types"
@@ -29,7 +30,16 @@ const menu = [
 const ContactClient:React.FC<ContactClientProps>= ({
     currentUser
 })=>{
-    
+    const params = useSearchParams();
+    const path = usePathname();
+    let category = params?.get('category');
+
+    console.log(category);
+
+    if(path ==='/contact/')
+    {
+        return null;
+    }
     return (
         <Container>
             <div>
@@ -43,6 +53,7 @@ const ContactClient:React.FC<ContactClientProps>= ({
                         return <ContectMenuItem
                                     label={item.label}
                                     description={item.description}
+                                    selected = {category === item.label}
                                 />
                     })}
                 </div>

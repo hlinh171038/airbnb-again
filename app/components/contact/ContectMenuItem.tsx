@@ -8,10 +8,12 @@ import { useCallback } from "react";
 interface ContectMenuItemProps {
     label: string;
     description: string;
+    selected: boolean;
 }
 const ContectMenuItem:React.FC<ContectMenuItemProps> = ({
     label,
-    description
+    description,
+    selected
 }) =>{
     const router = useRouter();
     const params = useSearchParams();
@@ -44,6 +46,9 @@ const ContectMenuItem:React.FC<ContectMenuItemProps> = ({
     return (
         <div
             onClick={handleClick}
+            className={`
+                ${selected && "underline"}
+            `}
         >
            {label}
         </div>
