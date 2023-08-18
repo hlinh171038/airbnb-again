@@ -7,6 +7,7 @@ import { BiTimeFive } from "react-icons/bi"
 import { MdPlace } from "react-icons/md"
 import Button from "../Button"
 import { useCallback,useState } from "react"
+import { useRouter } from "next/navigation"
 
 
 interface TripsCardProps {
@@ -35,9 +36,12 @@ const TripsCard:React.FC<TripsCardProps> = ({
     data,
     reservation
 }) =>{
+  
+    const router = useRouter()
     const {getByValue} = useCountries()
     const location = getByValue(data.locationValue)
 
+    console.log(data)
     return (
         <div className="my-6 shadow-sm">
             <div className="flex gap-4 py-4">
@@ -95,7 +99,7 @@ const TripsCard:React.FC<TripsCardProps> = ({
                 <div>
                     <Button 
                         label="Chi tiết"
-                        onClick={()=>{}}
+                        onClick={()=>router.push(`/trips/${data?.id}`)}
                     />
                 </div>
             </div>

@@ -21,7 +21,8 @@ interface ModalsProps {
     rent?:boolean;
     step?:boolean;
     lastStep?: boolean;
-    firstStep?: boolean
+    firstStep?: boolean;
+    tripId?: boolean;
 }
 const Modals:React.FC<ModalsProps> = ({
     isOpen,
@@ -36,7 +37,8 @@ const Modals:React.FC<ModalsProps> = ({
     secondaryActionLabel,
     rent,
     lastStep,
-    firstStep
+    firstStep,
+    tripId
 }) =>{
 
     const [showModal,setShowModal] = useState(isOpen)

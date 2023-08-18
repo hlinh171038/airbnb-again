@@ -35,3 +35,10 @@ export type safeReservation = Omit<
     listing: SafeListing
 };
 
+export type safeTrips = Omit<
+    Listing,
+    "createdAt" | "user"
+>& {
+    createdAt: string;
+    user: SafeUser
+}
