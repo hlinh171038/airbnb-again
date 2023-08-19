@@ -31,8 +31,8 @@ const ListingReservation:React.FC<ListingReservationProps> =({
 
     const location = getByValue(locationValue)
 
-    console.log(dateRange.startDate)
-    console.log(new Date(dateRange.startDate as Date) )
+    // console.log(dateRange.startDate)
+    // console.log(new Date(dateRange.startDate as Date) )
     return <div className="mt-6">
                 {/* <div>{price} vnd / night</div> */}
                 <p className='text-lg font-semibold'>Dịch vụ sẵn sàng cho những đêm</p>

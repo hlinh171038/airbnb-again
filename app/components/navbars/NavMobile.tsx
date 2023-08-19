@@ -19,7 +19,6 @@ const NavMobile:React.FC<NavMobileProps> = ({
     const rentModal = useRentModal()
     const path = usePathname();
     const params = useParams();
-   console.log(listingData)
 
     if(path === `/listings/${params.listingId}`)
     {

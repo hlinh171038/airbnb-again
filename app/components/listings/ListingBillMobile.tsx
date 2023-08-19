@@ -64,8 +64,6 @@ const ListingBillMobile:React.FC<ListingBillMobileProps> =({
 
     const router = useRouter();
     const loginModal = useLoginModal();
-    console.log(isOpenListing)
-    console.log(bookModel.isOpen)
 
     // handle close book
     const handleCloseBook =()=>{

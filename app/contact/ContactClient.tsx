@@ -4,6 +4,8 @@ import { usePathname, useSearchParams } from "next/navigation"
 import Container from "../components/Container"
 import ContectMenuItem from "../components/contact/ContectMenuItem"
 import { SafeUser } from "../types"
+import ContactContent from "../components/contact/ContactContent"
+import ContactMenuMain from "../components/contact/ContactMenuMain"
 
 interface ContactClientProps {
     currentUser: SafeUser | null
@@ -32,13 +34,34 @@ const ContactClient:React.FC<ContactClientProps>= ({
 })=>{
     const params = useSearchParams();
     const path = usePathname();
-    let category = params?.get('category');
-
-    console.log(category);
+    let category = params?.get('category')
 
     if(path ==='/contact/')
     {
         return null;
+    }
+
+
+    
+    let bodyContent =(
+        <ContactMenuMain />
+    )
+
+    if(category === 'Khách')
+    {
+        bodyContent =(
+            <div>
+                Khách
+            </div>
+        )
+    }
+    if(category === 'Chủ nhà')
+    {
+        bodyContent =(
+            <div>
+                Chủ nhà
+            </div>
+        )
     }
     return (
         <Container>
@@ -51,6 +74,7 @@ const ContactClient:React.FC<ContactClientProps>= ({
                 <div className="flex gap-4 border-b-[1px] py-2 text-sm font-bold cursor-pointer">
                     {menu.map((item)=>{
                         return <ContectMenuItem
+                                    key={item.label}
                                     label={item.label}
                                     description={item.description}
                                     selected = {category === item.label}
@@ -58,7 +82,9 @@ const ContactClient:React.FC<ContactClientProps>= ({
                     })}
                 </div>
                 {/* content */}
-
+                    <ContactContent 
+                        body={bodyContent}
+                    />
             </div>
         </Container>
     )

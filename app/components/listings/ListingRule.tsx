@@ -12,7 +12,7 @@ const ListingRule:React.FC<ListingProps> = ({
     guestCount,
     utilities
 }) =>{
-    console.log(utilities)
+    // console.log(utilities)
     return (
         <div className="px-2">
             <div

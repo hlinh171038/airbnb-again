@@ -53,7 +53,6 @@ const CommentSession:React.FC<CommentProps> =({
     {
         pagin.push(i)
     }
-    console.log(pagin)
     // handle change pagination
     const handlePagination = useCallback((e:any,p: any)=>{
         setCurrentPage(p)
@@ -113,7 +112,6 @@ const CommentSession:React.FC<CommentProps> =({
     const handleCountAllStar = useCallback(()=>{
         if(comments.length === 0)
         {
-            console.log(comments.length)
             return 0;
         }
         let count = 0

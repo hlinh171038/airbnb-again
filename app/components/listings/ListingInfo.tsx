@@ -72,25 +72,14 @@ const ListingInfo:React.FC<ListingInfoProps> = ({
     for(let i=0;i<utilities.length;i++)
     {
        let result= utilitiesArr.find((item)=>item.label === utilities[i])
-       console.log(result)
+    //    console.log(result)
         if(result)
         {
             utilitiesCustome.push(result);
-            console.log(utilitiesCustome)
+            // console.log(utilitiesCustome)
         }
     }
-    // useEffect(() => {
-    //     for(let i=0;i<utilities.length;i++)
-    //     {
-    //        let result= utilitiesArr.find((item)=>item.label === utilities[i])
-    //        console.log(result)
-    //         if(result)
-    //         {
-    //             utilitiesCustome.push(result);
-    //             console.log(utilitiesCustome)
-    //         }
-    //     }
-    // }, [utilities,utilitiesArr,utilitiesCustome])
+ 
 
     return (
         <div

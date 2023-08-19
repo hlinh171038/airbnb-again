@@ -24,7 +24,6 @@ const DatePicker: React.FC<DatePickerProps> = ({
   countDay,
   maxnight
 }) => {
-  console.log(maxnight)
   return ( 
     <DateRange
       rangeColors={['#262626']}
