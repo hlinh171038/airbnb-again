@@ -1,5 +1,6 @@
 "use client"
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
@@ -30,7 +31,7 @@ const article = [
     }
 ]
 
-const caroselArr = [
+    export const caroselArr = [
     {
         id:'1',
         title:"bắt đầu trên Airbnb",
@@ -48,6 +49,7 @@ const caroselArr = [
     }
 ]
 const ContactMenuMain =() =>{
+    const router = useRouter()
     const responsive = {
         superLargeDesktop: {
           // the naming can be any, depends on you.
@@ -93,7 +95,7 @@ const ContactMenuMain =() =>{
                                     <div className='flex justify-end items-center'>
                                         <div 
                                             className='text-blue-700 italic underline text-[0.8rem] cursor-pointer'
-                                            onClick={()=>handleToArticle(item.id)}
+                                            onClick={()=>router.push(`/contact/${item.id}`)}
                                         >
                                             Đến bài viết
                                         </div>
