@@ -214,6 +214,7 @@ const ContactMenuMain =() =>{
                 sm:grid-cols-2
                 md:grid-cols-3
                 gap-6
+                px-2
             "
            >
                 {article.map((item)=>{

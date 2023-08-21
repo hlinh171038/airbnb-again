@@ -88,9 +88,9 @@ const ContactClient:React.FC<ContactClientProps>= ({
             <Container>
                 <div>
                     {/* header */}
-                    <div className="font-bold text-4xl text-center">Chào {currentUser?.name}, Tôi có thể giúp gì cho bạn?</div>
+                    <div className="font-bold text-2xl md:text-4xl text-center">Chào {currentUser?.name}, Tôi có thể giúp gì cho bạn?</div>
                 </div>
-                <div className="px-20 py-8">
+                <div className="px-0 lg:px-20 py-8">
                     {/* menu */}
                     <div className="flex gap-4 border-b-[1px] py-2 text-sm font-bold cursor-pointer">
                         {menu.map((item)=>{
@@ -112,7 +112,8 @@ const ContactClient:React.FC<ContactClientProps>= ({
             <div 
                 className="
                         bg-neutral-900
-                        px-28
+                        px-4
+                        lg:px-28
                         py-8
                 "
             >
@@ -121,8 +122,8 @@ const ContactClient:React.FC<ContactClientProps>= ({
                     className="
                         grid
                         grid-cols-1
-                        sm:grid-cols-3
-                       
+                        sm:grid-cols-2
+                        md:grid-cols-3
                         gap-4
                        
                 "
@@ -138,7 +139,7 @@ const ContactClient:React.FC<ContactClientProps>= ({
                             )
                         })}
                     </div>
-                    <div className="flex flex-col gap-4 ">
+                    <div className="flex flex-col gap-4 col-span-1 sm:col-span-2 md:col-span-1">
                         <div className="font-bold text-2xl text-white">Bạn cần liên lạc ?</div>
                         <div className="text-white text-sm font-light">Để bắt đầu, vui lòng trả lời một số câu hỏi để chúng tôi có thể kết nối bạn với bộ phận phù hợp.</div>
                         <div >

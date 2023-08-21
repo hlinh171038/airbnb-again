@@ -36,14 +36,14 @@ const ContactHost =() =>{
     return (
         <div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-8">
-                <div className="w-full flex flex-col gap-4">
+                <div className="w-full flex flex-col gap-4 py-4 md:py-0">
                     <div className="text-rose-500 text-4xl text-center ">
                         Airbnb.
                     </div>
-                    <div className="text-3xl text-center">
+                    <div className="text-lg md:text-3xl text-center">
                         Bạn có thể kiếm được
                     </div>
-                    <div className="text-semibold text-4xl text-center">
+                    <div className="text-semibold text-2xl md:text-4xl text-center">
                         500.000 đ/ đêm
                     </div>
                     <div className="underline text-sm text-neutral-500 text-center cursor-pointer">Tìm hiểu cách chúng tôi ước tính thu nhập của bạn.</div>
@@ -55,29 +55,50 @@ const ContactHost =() =>{
                         </div>
                     </div>
                 </div>
-                <div>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3920.724840195037!2d106.69723175997817!3d10.678453060950567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317530403c4e3c23%3A0x9e8eec6b7047566e!2z4bqkcCAyLCBOaMahbiDEkOG7qWMsIE5ow6AgQsOoLCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmgsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1692588361696!5m2!1svi!2s" width="600" height="450"   loading="lazy" ></iframe>
+                <div className="w-full h-[450px]">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3920.724840195037!2d106.69723175997817!3d10.678453060950567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317530403c4e3c23%3A0x9e8eec6b7047566e!2z4bqkcCAyLCBOaMahbiDEkOG7qWMsIE5ow6AgQsOoLCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmgsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1692588361696!5m2!1svi!2s" className="w-full h-full"   loading="lazy" ></iframe>
                 </div>
                 
             </div>
             <div>
                     <div className="w-full">
-                        <div className="flex items-center gap-4 text-sm font-light w-full"> 
-                                <LiaHandPointerSolid/> Dễ dàng cho thuê nhà với 
+                        <div className="grid grid-cols-2  items-center gap-4 text-sm font-light w-full"> 
+                                <div className="flex gap-2">
+                                    <LiaHandPointerSolid/> 
+                                    <div className="flex justify-start">Dễ dàng cho thuê nhà với </div>
+                                </div>
+                                <div className="w-full flex justify-start  sm:w-auto sm:col-span-1">
                                 <span 
                                     onClick={()=>router.push('/rent')}
                                     className=" cursor-pointer flex items-center gap-4 bg-rose-500 hover:bg-rose-400 text-white px-2 py-2 rounded-lg animate-pulse">
-                                    <div>
+                                    <div className="hidden sm:block">
                                         <SiAirbnb/>
                                     </div>
                                     <div>
                                         Airbnb Setup
                                     </div>
                                 </span>
+                                </div>
                         </div>
-                        <div className="flex items-center gap-4 text-sm font-light py-4"> <LiaHandPointerSolid/> Nhân sự hướng dẫn riêng từ một chủ nhà siêu câp  <span className="underline cursor-pointer">kết nối ngay.</span></div>
-                        <div className="flex items-center gap-4 text-sm font-light py-4"><LiaHandPointerSolid/> Hổ trợ đặt biệt từ <span className="underline cursor-pointer"> Airbnb</span></div>
-                    
+                        <div className="grid grid-cols-2  items-center gap-4 text-sm font-light w-full"> 
+                                <div className="flex gap-2">
+                                    <LiaHandPointerSolid/> 
+                                    <div className="flex justify-start">Hướng dẫn riêng từ một chủ nhà siêu câp </div>
+                                </div>
+                                <div className="w-full flex w-auto sm:col-span-1 px-4">
+                                    <span className="underline cursor-pointer">kết nối ngay.</span>
+                                </div>
+                        </div>
+                        <div className="grid grid-cols-2  items-center gap-4 text-sm font-light w-full"> 
+                                <div className="flex gap-2">
+                                    <LiaHandPointerSolid/> 
+                                    <div className="flex justify-start">Hổ trợ đặt biệt từ </div>
+                                </div>
+                                <div className="w-full flex justify-start sm:w-auto sm:col-span-1">
+                                    <span className="underline cursor-pointer">Airbnb.</span>
+                                </div>
+                        </div>
+                        
                     </div>
             </div>
             {/* carosel */}

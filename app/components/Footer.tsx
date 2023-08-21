@@ -23,7 +23,7 @@ const Footer = () =>{
                 >
                     <div className=" transition block md:flex flex-col gap-2 cursor-pointer">
                         <div className="font-bold my-4 cursor-default">Hổ trợ</div>
-                        <div className="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-1 gap-2">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-2">
                             <div className="hover:underline">Trung tâm trợ giúp.</div>
                             <div className="hover:underline">Yêu cầu trợ giúp vấn đề an toàn.</div>
                             <div className="hover:underline">AirCover.</div>
@@ -39,7 +39,7 @@ const Footer = () =>{
                     </div>
                     <div className=" transition flex flex-col gap-2 cursor-pointer">
                         <div className="font-bold my-4 cursor-default">Đón tiếp khách</div>
-                        <div className="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-1 gap-2">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-2">
                             <div className="hover:underline">Cho thuê nhà trên Airbnb.</div>
                             <div className="hover:underline">Airbnb cho chủ nhà.</div>
                             <div className="hover:underline">Xem tài nguyên đón tiếp khách.</div>
@@ -48,7 +48,7 @@ const Footer = () =>{
                     </div>
                     <div className=" transition flex flex-col gap-2 cursor-pointer">
                         <div className="font-bold my-4 cursor-default">Airbnb</div>
-                        <div className="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-1 gap-2">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-2">
                             <div className="hover:underline">Trang tin tức.</div>
                             <div className="hover:underline">Tìm hiểu các tính năng mới.</div>
                             <div className="hover:underline">Thư ngỏ từ các nhà sáng lập.</div>
@@ -59,7 +59,7 @@ const Footer = () =>{
                 </div>
                 <hr/>
                 <div className="flex items-center justify-between px-2 text-[.8rem] font-light py-4">
-                    <div className="flex justify-start items-center">
+                    <div className="flex sm:hidden md:flex justify-start items-center">
                         <AiOutlineCopyrightCircle/>
                         <div className="cursor-default"> {new Date().getFullYear()} Airbnb, Inc.</div>
                         <BsDot />
