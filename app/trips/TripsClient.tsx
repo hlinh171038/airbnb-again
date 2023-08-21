@@ -9,6 +9,7 @@ import TripsCard from "../components/trips/TripsCard"
 import TripsSearch from "../components/trips/TripsSearch"
 import { SafeUser, safeReservation } from "../types"
 import {useCallback, useMemo, useState} from 'react'
+import useCountries from "../hooks/useCountries"
 
 interface TripsClientProps {
     currentUser: SafeUser | null
@@ -22,7 +23,10 @@ const TripsClient:React.FC<TripsClientProps> = ({
     reservations =[]
 }) =>{
     const [selectValue,setSelectValue] = useState('mới nhất');
+    const [uppdateRe,setUppdateRe] = useState(reservations)
     const [toggle,setToggle] = useState(false);
+    const {getByValue} = useCountries();
+
 
     const handleSelect = useCallback((item:string)=>{
         setSelectValue(item);
@@ -57,9 +61,15 @@ const TripsClient:React.FC<TripsClientProps> = ({
                 return 0;
             })
         }
-        return arr
+        setUppdateRe(arr);
     },[selectValue]);
-    
+
+    // handle value
+    const handleValue = useCallback((value:string)=>{
+        let result  
+        result = reservations.filter((item)=>item.listing.locationValue as any  === value )
+        setUppdateRe(result);
+    },[reservations])
     return (
        <Container>
         <Tag
@@ -81,6 +91,7 @@ const TripsClient:React.FC<TripsClientProps> = ({
             <div>
                 <TripsSearch 
                     reservations ={reservations}
+                    handleValue = {handleValue}
                 />
             </div>
             <div style={{gridArea:"1/ 2 / span 2 / span 3"}}>
@@ -98,7 +109,7 @@ const TripsClient:React.FC<TripsClientProps> = ({
                     className="
                     "
                 >
-                    {updateReservatrion.map((reservation) =>{
+                    {uppdateRe.map((reservation) =>{
                         return <TripsCard 
                                     key={reservation.id}
                                     currentUser={currentUser}

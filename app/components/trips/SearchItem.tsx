@@ -2,19 +2,23 @@
 
 import useCountries from "@/app/hooks/useCountries";
 import { SafeListing, safeReservation } from "@/app/types"
+import { useCallback } from "react";
 
 interface SearchItemProps {
     data: SafeListing | null;
-    reservation: safeReservation | null
+    reservation: safeReservation | null;
+    handleValue:(value:any) =>void;
 }
 const SearchItem:React.FC<SearchItemProps> = ({
     data,
-    reservation
+    reservation,
+    handleValue
 }) =>{
     const {getByValue} = useCountries();
     const location = getByValue(data?.locationValue as string)
+
     return (
-        <div>{location?.label}</div>
+        <div className="cursor-pointer" onClick={()=>handleValue(data?.locationValue as any)}>{location?.label}</div>
     )
 }
 

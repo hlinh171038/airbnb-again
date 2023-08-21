@@ -6,10 +6,12 @@ import SearchItem from "./SearchItem"
 import {useMemo} from "react"
 
 interface TripsSearchProps {
-    reservations:safeReservation[]
+    reservations:safeReservation[];
+    handleValue: (value: any) =>void;
 }
 const TripsSearch:React.FC<TripsSearchProps> = ({
-    reservations =[]
+    reservations =[],
+    handleValue
 }) =>{
     const {getByValue} = useCountries();
     const fillterReservations = useMemo(() => {
@@ -38,6 +40,7 @@ const TripsSearch:React.FC<TripsSearchProps> = ({
                             key={reservation.id}
                             data={reservation.listing}
                             reservation={reservation}
+                            handleValue = {handleValue}
                         />
             })}
         </div>
