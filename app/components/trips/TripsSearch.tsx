@@ -29,7 +29,7 @@ const TripsSearch:React.FC<TripsSearchProps> = ({
         })
         return filter
     }, [reservations]);
-    console.log(fillterReservations)
+  
     return (
         <div>
             <div className="text-xl font-bold">Danh sách của bạn</div>

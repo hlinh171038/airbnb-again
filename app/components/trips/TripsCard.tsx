@@ -41,7 +41,6 @@ const TripsCard:React.FC<TripsCardProps> = ({
     const {getByValue} = useCountries()
     const location = getByValue(data.locationValue)
 
-    console.log(data)
     return (
         <div className="my-6 shadow-sm">
             <div className="flex gap-4 py-4">
