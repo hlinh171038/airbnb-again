@@ -12,7 +12,8 @@ interface InputProps{
     required?: boolean;
     errors: FieldErrors;
     disabled?: boolean;
-    formatPrice?: boolean
+    formatPrice?: boolean;
+    description?:boolean;
 }
 const Input:React.FC<InputProps> =({
     id,
@@ -22,7 +23,8 @@ const Input:React.FC<InputProps> =({
     required,
     errors,
     disabled,
-    formatPrice
+    formatPrice,
+    description
 }) =>{
     return (
         <div
@@ -67,6 +69,7 @@ const Input:React.FC<InputProps> =({
                     ${errors[id] ? 'border-rose-500':'border-black-700'}
                     ${errors[id] ? 'focus:border-rose-500':'focus:border-black-700'}
                     ${errors[id] ? 'text-rose-500':'text-zinc-600'}
+                    ${description && "h-[200px]"}
                 `}
             />
         </div>

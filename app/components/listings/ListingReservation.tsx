@@ -39,13 +39,13 @@ const ListingReservation:React.FC<ListingReservationProps> =({
                 <div className='flex items-center'>
                     <div className='text-sm font-light'>
                         {dateRange.startDate?.getDate()} thg
-                        {dateRange.startDate?.getMonth()}-
+                        {dateRange.startDate?.getMonth() as number+1}-
                         {dateRange.startDate?.getFullYear() } 
                     </div>
                     <span className='px-4'> - </span>
                     <div className='text-sm font-light'>
                         {new Date(maxnight)?.getDate()} thg
-                        {new Date(maxnight)?.getMonth()} -
+                        {new Date(maxnight)?.getMonth()+1} -
                         {new Date(maxnight)?.getFullYear()} 
                     </div>
                 </div>

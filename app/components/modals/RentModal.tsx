@@ -792,7 +792,7 @@ const RentModal = () =>{
                         label="Description"
                         register={register}
                         required
-                        
+                        description
                         errors={errors}
                     />
                 </div>
@@ -866,7 +866,7 @@ const RentModal = () =>{
                     <div className="flex">
                         <div>Ngày bắt đầu :</div>
                         <div>{new Date().getDate()} thg</div>
-                        <div>{new Date().getMonth()}-</div>
+                        <div>{new Date().getMonth()+1}-</div>
                         <div>{new Date().getFullYear()}</div>
                     </div>
                     <div>Ngày kết thúc :</div>

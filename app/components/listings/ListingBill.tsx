@@ -237,7 +237,7 @@ const ListingBill:React.FC<ListingBillProps> = ({
                             <div>
                                 <div className='text-[0.6rem] font-light'>
                                     {dateRange.startDate?.getDate()} thg
-                                    {dateRange.startDate?.getMonth()}-
+                                    {dateRange.startDate?.getMonth()as number+1}-
                                     {dateRange.startDate?.getFullYear() } 
                                 </div>
                             </div>
@@ -265,7 +265,7 @@ const ListingBill:React.FC<ListingBillProps> = ({
                                         "Đặt phòng ở đây"
                                     : 
                                     dateRange.endDate?.getDate() +"thg"+
-                                    dateRange.endDate?.getMonth() +"-"+
+                                    (dateRange.endDate?.getMonth() as number +1)+"-"+
                                     dateRange.endDate?.getFullYear() 
                                     }
                                 </div>

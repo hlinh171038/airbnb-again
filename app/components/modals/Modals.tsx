@@ -166,7 +166,7 @@ const Modals:React.FC<ModalsProps> = ({
                     {secondaryAction && secondaryActionLabel  && (
                     <button
                       onClick={handleSecondaryAction}
-                      className="cursor-pointer underline font-bold"
+                      className="cursor-pointer underline font-bold hover:text-neutral-600"
                     >
                      
                       {secondaryActionLabel}
@@ -187,7 +187,8 @@ const Modals:React.FC<ModalsProps> = ({
                       py-2
                       text-white
                       rounded-md
-                      ${lastStep ?" bg-rose-600":"bg-neutral-300"}
+                      transition
+                      ${lastStep ?" bg-rose-600 hover:bg-rose-700":"bg-neutral-300 hover:bg-neutral-400"}
                       `}
                     >
                        {actionLabel}
