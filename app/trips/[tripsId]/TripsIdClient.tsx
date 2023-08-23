@@ -3,11 +3,13 @@
 import Button from "@/app/components/Button"
 import Container from "@/app/components/Container"
 import Footer from "@/app/components/Footer"
+import Header from "@/app/components/Header"
 import Tag from "@/app/components/Tag"
 import useCountries from "@/app/hooks/useCountries"
 import { safeReservation, safeTrips } from "@/app/types"
 
 import { Listing, User } from "@prisma/client"
+import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useMemo } from "react"
 
@@ -31,17 +33,24 @@ const TripsIdClient:React.FC<TripsIdClientProps> =({
     return (
         <div className="flex flex-col gap-4">
             {/* header */}
-            <div className="flex justify-between px-4">
-                <Tag
-                    tag1="Chuyến đi"
-                    tag2="Chi tiết"
+            <div className="w-full h-auto relative">
+            <div className="w-full h-[300px] absolute top-0 left-0 bg-neutral-950/60 flex items-center justify-center">
+                <Header 
+                    title="Chuyến đi của bạn / Chi tiết"
+                    subtitle="Xem thông tin chi tiết toàn bộ chuyến đi của bạn tại đây."
+                    big
+                    center
+                    white
                 />
-                {/* <Button 
-                    label="Back"
-                    onClick={()=>router.push('/trips')}
-                /> */}
             </div>
-            <div className="font-bold text-2xl text-center mb-4">Chi tiết chuyến đi của bạn</div>
+            <Image
+                src="/trips.webp"
+                width={1000}
+                height={1000}
+                alt="trips"
+                className="w-full h-[300px] object-cover"
+            />
+        </div>
             <Container>
                 <div className="flex flex-col gap-6 px-2">
                 <div className="block sm:flex gap-4 font-light text-sm">
@@ -115,7 +124,7 @@ const TripsIdClient:React.FC<TripsIdClientProps> =({
                     <div>
                         <div>Người lớn:{filterReservation?.adult} người</div>
                         <div>Trẻ em:{filterReservation?.child} người</div>
-                        <div>Thú cưng:{filterReservation?.pet} người</div>
+                        <div>Thú cưng:{filterReservation?.pet} con</div>
                     </div>
                 </div>
                 <div className="block sm:flex gap-4 text-sm font-light">

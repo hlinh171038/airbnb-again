@@ -49,7 +49,7 @@ const ContactIdClient =() =>{
         },[caroselArr, params])
     return (
         
-       <div>
+       <div >
          <Container>
             <div className="flex text-sm font-light px-4 py-4">
                 <div className='cursor-pointer hover:text-black' onClick={()=>router.push('/contact')}>Trang chủ /</div>
@@ -57,6 +57,7 @@ const ContactIdClient =() =>{
             </div>
             <div
                 className='
+                    mt-8
                     grid
                     grid-cols-1
                     md:grid-cols-3

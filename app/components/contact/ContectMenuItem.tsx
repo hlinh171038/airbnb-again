@@ -47,7 +47,8 @@ const ContectMenuItem:React.FC<ContectMenuItemProps> = ({
         <div
             onClick={handleClick}
             className={`
-                ${selected && "underline"}
+                transition-all
+                ${selected && "border-b-[1px] border-rose-600 text-rose-600"}
             `}
         >
            {label}
