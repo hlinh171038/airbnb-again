@@ -1,6 +1,6 @@
 "use client"
 
-import { BiDownArrow } from "react-icons/bi"
+import { BiDownArrow, BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi"
 import Container from "../components/Container"
 import Header from "../components/Header"
 import Tag from "../components/Tag"
@@ -8,10 +8,12 @@ import ListingCard from "../components/listings/ListingCard"
 import TripsCard from "../components/trips/TripsCard"
 import TripsSearch from "../components/trips/TripsSearch"
 import { SafeUser, safeReservation } from "../types"
-import {useCallback, useMemo, useState} from 'react'
+import {useCallback, useEffect, useMemo, useState} from 'react'
 import useCountries from "../hooks/useCountries"
 import { Pagination, Stack } from "@mui/material"
 import Footer from "../components/Footer"
+import TripsSearchMobile from "../components/trips/TripSearchMobile"
+import Image from "next/image"
 
 interface TripsClientProps {
     currentUser: SafeUser | null
@@ -25,11 +27,15 @@ const TripsClient:React.FC<TripsClientProps> = ({
     reservations =[]
 }) =>{
     const [selectValue,setSelectValue] = useState('mới nhất');
+    const [rootReservation,setRootReservation] = useState(reservations)
     const [uppdateRe,setUppdateRe] = useState(reservations)
     const [toggle,setToggle] = useState(false);
     const {getByValue} = useCountries();
     const [currentPage, setCurrentPage] = useState(1);
     const [countPerPages,setCountPerPage] = useState(3);
+    const [openSidebar,setOpenSidebar] = useState(false);
+    const [isFixed,setIsFixed] = useState(false);
+    const scrollThreshold = 70;
 
 
     const handleSelect = useCallback((item:string)=>{
@@ -70,6 +76,13 @@ const TripsClient:React.FC<TripsClientProps> = ({
 
     // handle value
     const handleValue = useCallback((value:string)=>{
+        if(value === 'all')
+        {
+            console.log('try')
+            console.log(reservations)
+            setUppdateRe(reservations);
+            return;
+        }
         let result  
         result = reservations.filter((item)=>item.listing.locationValue as any  === value )
         setUppdateRe(result);
@@ -87,19 +100,90 @@ const TripsClient:React.FC<TripsClientProps> = ({
     // handle change pagination
     const handlePagination = useCallback((e:any,p: any)=>{
         setCurrentPage(p)
-    },[currentPage])
+    },[currentPage]);
+
+    const handleOpenSidebar =useCallback(()=>{
+       if(openSidebar === true)
+       {
+        setOpenSidebar(false);
+       }else {
+        setOpenSidebar(true)
+       }
+    },[openSidebar]);
+    
+    // handle scrolling
+    const pageY = document.getElementById('scroll');
+        window.addEventListener('scroll', () =>{
+            console.log(pageY?.getBoundingClientRect().top );
+            setIsFixed(pageY!== null && pageY.getBoundingClientRect().top <= scrollThreshold);
+        });
+        
+    
+    
+    console.log(isFixed)
     return (
        <div>
+         
+        <div className="w-full h-auto relative">
+            <div className="w-full h-[300px] absolute top-0 left-0 bg-neutral-950/60 flex items-center justify-center">
+                <Header 
+                    title="Chuyến đi của bạn"
+                    subtitle="Tổng hợp danh sách những chuyến đi của bạn"
+                    big
+                    center
+                    white
+                />
+            </div>
+            <Image
+                src="/trips.webp"
+                width={1000}
+                height={1000}
+                alt="trips"
+                className="w-full h-[300px] object-cover"
+            />
+            
+            
+        </div>
+        <div
+            id="scroll"
+                 className={`
+                    relative
+                    top-[4rem]
+                    px-4 
+                    my-2
+                    py-2
+                    h-auto
+                    rounded-lg
+                    border-[1px]
+                    duration-[300ms]
+                    transition-all
+                    bg-white
+                    text-neutral-600
+                    text-sm
+                    z-20
+                    w-[90%]
+                    block
+                    md:hidden
+                 ${!isFixed  ? " sticky top-3 ":""}
+                 ${!isFixed && "shadow-md"}
+                 ${openSidebar ? "translate-x-[-1%]": "translate-x-[-102%]"}
+            `}
+        >
+             {/* absolute top-[17rem] left-1 */}
+             <div 
+                        onClick={handleOpenSidebar}
+                        style={{"borderRadius": "0 50px 50px 0"}}
+                        className="absolute top-1 right-[-1.2rem] px-[0.2rem] bg-rose-500 text-white cursor-pointer  w-[22px] h-[30px] flex justify-end items-center">
+                        {!openSidebar ? <BiSolidRightArrow size={20}/>:<BiSolidLeftArrow size={20} />}
+                    </div>
+                    <TripsSearchMobile
+                        reservations ={reservations}
+                        handleValue = {handleValue}
+                        openSidebar = {openSidebar}
+                    />
+        </div>
         <Container>
-            <Tag
-                tag1="Trip Listing"
-            />
-            <Header 
-                title="Danh sách chuyến đi "
-                subtitle="Nơi bạn đang đến, nơi bạn đang đi "
-                big
-                center
-            />
+           
             <div
                 className="
                     grid
@@ -108,7 +192,16 @@ const TripsClient:React.FC<TripsClientProps> = ({
                 "
                 style={{gridTemplateColumns: "auto auto auto auto"}}
             >
-                <div>
+                 
+                <div 
+                    
+                    className={`
+                      hidden 
+                      md:block
+                       
+                    `}
+                >
+                   
                     <TripsSearch 
                         reservations ={reservations}
                         handleValue = {handleValue}

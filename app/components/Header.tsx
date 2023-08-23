@@ -7,7 +7,7 @@ interface HeaderProps {
     center?:boolean;
     big?: boolean;
     rent?: boolean;
-   
+    white?:boolean;
 }
 const Header:React.FC<HeaderProps> =({
     title,
@@ -15,12 +15,13 @@ const Header:React.FC<HeaderProps> =({
     center,
     big,
     rent,
-
+    white
 }) =>{
     return (
         <div className={` ${rent ?"mt-6":"pt-2"} ${center ? 'text-center':'text-start'}`}>
         <h1 className={`${big ?'font-bold uppercase text-xl md:text-2xl':'font-bold uppercase'} 
                             mt-4
+                        ${white && 'text-white'}
                         `}>
             {title}
         </h1>

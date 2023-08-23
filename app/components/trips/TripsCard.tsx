@@ -43,15 +43,15 @@ const TripsCard:React.FC<TripsCardProps> = ({
 
     return (
         <div className="my-6 shadow-sm">
-            <div className="flex gap-4 py-4">
+            <div className="flex flex-col sm:flex-row gap-4 py-4">
                 <Image 
                     src={data?.imageSrc}
-                    width={200}
-                    height={200}
+                    width={400}
+                    height={400}
                     alt="Trips Image"
-                    className="max-h-[200px]"
+                    className="w-full sm:w-[200px] sm:min-w-[200px] max-h-[200px]  object-cover"
                 />
-                <div>
+                <div className="px-2">
                     <div className="uppercase font-bold text-2xl">{data?.title}</div>
                     <div className="flex gap-6">
                         <div className="mt-2">
@@ -80,7 +80,7 @@ const TripsCard:React.FC<TripsCardProps> = ({
                                 </div>
                             </div>
                         </div>
-                        <div className="mt-2">
+                        <div className="mt-2 block sm:hidden lg:block">
                             <button className="text-white rounded-full px-6 py-1 bg-orange-500 text-center">20% off</button>
                             <div className="px-4 font-light">{data.price.toLocaleString('vi', {style : 'currency', currency : 'VND'})} / đêm</div>
                         </div>

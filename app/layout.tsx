@@ -43,7 +43,7 @@ export default async function RootLayout({
           <LoginModal />
           <RentModal />
         </ClientOnly>
-        <div className=' pt-28 '>
+        <div className=' pt-19 '>
           {children}
         </div>
         <NavMobile listingData = {listingData}/>

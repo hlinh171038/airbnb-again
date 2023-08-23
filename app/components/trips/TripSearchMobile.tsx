@@ -10,7 +10,7 @@ interface TripsSearchProps {
     handleValue: (value: any) =>void;
     openSidebar?:boolean;
 }
-const TripsSearch:React.FC<TripsSearchProps> = ({
+const TripsSearchMobile:React.FC<TripsSearchProps> = ({
     reservations =[],
     handleValue,
     openSidebar
@@ -35,9 +35,8 @@ const TripsSearch:React.FC<TripsSearchProps> = ({
     }, [reservations]);
   
     return (
-        <div  >
+        <div  className={`${openSidebar ?"block": "hidden"}`}>
             <div className="text-xl font-bold">Danh sách của bạn</div>
-            <div onClick={()=>handleValue('all')} className="cursor-pointer text-neutral-600">Tất cả chuyến đi </div>
             {fillterReservations.reverse().map((reservation)=>{
                 return <SearchItem
                             key={reservation.id}
@@ -50,4 +49,4 @@ const TripsSearch:React.FC<TripsSearchProps> = ({
     )
 }
 
-export default TripsSearch
+export default TripsSearchMobile

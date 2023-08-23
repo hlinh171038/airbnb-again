@@ -18,7 +18,9 @@ const SearchItem:React.FC<SearchItemProps> = ({
     const location = getByValue(data?.locationValue as string)
 
     return (
-        <div className="cursor-pointer" onClick={()=>handleValue(data?.locationValue as any)}>{location?.label}</div>
+        <div className="cursor-pointer text-neutral-600  " onClick={()=>handleValue(data?.locationValue as any)}>
+            {location?.label}
+        </div>
     )
 }
 
