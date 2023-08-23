@@ -26,12 +26,12 @@ const Navbar:React.FC<NavbarProps> = ({
     const path = usePathname();
     const params = useParams();
     // console.log(params.listingId) // take id of link
-
+    console.log(params)
     if(path === '/rent')
     {
         return <NavbarRent />
     }
-    if(path === '/contact')
+    if(path === '/contact' || path === `/contact/${params.contactId}`)
     {
         return <NavbarContact />
     }

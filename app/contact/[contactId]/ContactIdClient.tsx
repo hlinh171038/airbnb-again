@@ -52,7 +52,7 @@ const ContactIdClient =() =>{
        <div >
          <Container>
             <div className="flex text-sm font-light px-4 py-4">
-                <div className='cursor-pointer hover:text-black' onClick={()=>router.push('/contact')}>Trang chủ /</div>
+                <div className='cursor-pointer font-bold hover:text-neutral-500' onClick={()=>router.push('/contact')}>Trang chủ /</div>
                 <div>Tìm chỗ ở phù hợp với bạn</div>
             </div>
             <div
