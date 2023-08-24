@@ -9,11 +9,20 @@ import NavbarListingId from "./NavbarListingId"
 import { SafeListing } from "@/app/types"
 import { Listing } from "@prisma/client"
 import {useEffect, useState} from 'react'
+import NavbarMobileRent from "./NavbarMobileRent"
+import { Abel } from "next/font/google"
+import { IoSearch } from "react-icons/io5"
+import { AiOutlineHeart } from "react-icons/ai"
+import { BiMessage } from "react-icons/bi"
+import { FaAirbnb } from "react-icons/fa"
+import { RxAvatar } from "react-icons/rx"
 
 
 interface NavMobileProps {
   listingData: Listing[]
 }
+
+
 const NavMobile:React.FC<NavMobileProps> = ({
   listingData = []
 }) =>{
@@ -29,10 +38,12 @@ const NavMobile:React.FC<NavMobileProps> = ({
                 id={params.listingId as string} 
               />
     }
-  //   window.addEventListener('scroll',()=>{
-  //     console.log(bounch)
-  //    
-  // });
+    
+    // menu mobile rent
+    if(path === `/rent`)
+    {
+      return <NavbarMobileRent/>
+    }
     useEffect(()=>{
       window.addEventListener('scroll',()=>{
         setBounch(window.scrollY > 100)
@@ -44,7 +55,7 @@ const NavMobile:React.FC<NavMobileProps> = ({
           fixed w-full 
           bg-white 
           z-40 
-          py-4 
+          py-2 
           sm:hidden 
           transition-all
           duration-[300ms]
@@ -53,12 +64,28 @@ const NavMobile:React.FC<NavMobileProps> = ({
           ${bounch ?"opacity-1":"opacity-0"}
         `}>
           <Container>
-            <div className="text-center font-bold mb-2">Sẵn sàng cho thuê ?</div>
-            <Button 
-                    label="Airbnb Setup"
-                    onClick={rentModal.onOpen}
-                    icon={MdOutlineAddHomeWork}
-                />
+            <div className="flex justify-between items-center text-[.6rem] font-light">
+              <div className="flex flex-col justify-center items-center cursor-pointer ">
+                <div><IoSearch  size={30} className="text-neutral-400 hover:text-neutral-500 transition-all"/></div>
+                <div>Khám phá</div>
+              </div>
+              <div className="flex flex-col justify-center items-center cursor-pointer ">
+                <div><FaAirbnb  size={30} className="text-neutral-400 hover:text-neutral-500 transition-all"/></div>
+                <div>Chuyến đi</div>
+              </div>
+              <div className="flex flex-col justify-center items-center cursor-pointer ">
+                <div><AiOutlineHeart  size={30} className="text-neutral-400 hover:text-neutral-500 transition-all"/></div>
+                <div>Yêu thích</div>
+              </div>
+              <div className="flex flex-col justify-center items-center cursor-pointer ">
+                <div><BiMessage  size={30} className="text-neutral-400 hover:text-neutral-500 transition-all"/></div>
+                <div>Liên hệ</div>
+              </div>
+              <div className="flex flex-col justify-center items-center cursor-pointer ">
+                <div><RxAvatar  size={30} className="text-neutral-400 hover:text-neutral-500 transition-all"/></div>
+                <div>Hồ sơ</div>
+              </div>
+            </div>
           </Container>              
         </div>
     )
