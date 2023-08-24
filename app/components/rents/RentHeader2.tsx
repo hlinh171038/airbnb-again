@@ -12,7 +12,7 @@ const RentHeader2 = () =>{
     }
     return (
         <div className="py-8">
-            <div className=" text-center">
+            <div className=" text-center mt-4">
                 <span className="text-4xl font-semibold"><span className="text-rose-600 ">Air</span>cover</span>
                 <div className="font-semibold">cho chủ nhà </div>
             </div>

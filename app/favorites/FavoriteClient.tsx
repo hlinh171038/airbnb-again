@@ -29,11 +29,12 @@ const FavoriteClient:React.FC<FavoriteClientProps> =({
                 />
             </div>
             <Image
-                src="/trips.webp"
+                src="/title-03.webp"
                 width={1000}
                 height={1000}
                 alt="trips"
-                className="w-full h-[300px] object-cover"
+                objectPosition="top"
+                className="w-full h-[300px] object-cover "
             />
             
             

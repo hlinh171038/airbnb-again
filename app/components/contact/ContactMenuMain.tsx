@@ -102,21 +102,21 @@ const article = [
     {
         id:'10',
         title:"Quản lý Trải nghiệm ",
-        img:"/carosel-11.jpeg",
+        img:"/carosel-11.webp",
         content:"Một trong những cách tốt nhất để thu hút khách đến trang Trải nghiệm của bạn là chụp ảnh đẹp, chất lượng cao (cố gắng có ít nhất 6 ảnh). Sau khi khách đặt phòng, bạn sẽ nhận được thông báo qua email có hồ sơ và thông tin liên hệ của khách, đồng thời khách sẽ được gửi xác nhận với tất cả thông tin chi tiết về địa điểm và thời gian gặp mặt cũng như những thứ cần mang theo.",
         category:"oganize"
     },
     {
         id:'11',
         title:"Thay đổi, hủy và hoàn tiền",
-        img:"/carosel-12.jpeg",
+        img:"/carosel-12.webp",
         content:"Nếu khách của bạn hủy, chúng tôi sẽ thông báo cho bạn và tự động bỏ chặn các ngày trên lịch của bạn để bạn có thể đón tiếp những khách khác. Nhưng những gì về khoản thanh toán của bạn? Nếu bạn đã lưu trữ trước đó, nó sẽ được phát hành cho bạn 24 giờ sau thời gian nhận phòng theo lịch trình của khách. Nếu đây là lần đầu tiên bạn đăng cai, chúng tôi có thể giữ nó cho đến 30 ngày sau khi đặt chỗ được xác nhận.",
         category:"oganize"
     },
     {
         id:'12',
         title:"Người đồng tổ chức",
-        img:"/carosel-13.jpeg",
+        img:"/carosel-13.webp",
         content:"Một trong những cách tốt nhất để thu hút khách đến trang Trải nghiệm của bạn là chụp ảnh đẹp, chất lượng cao (cố gắng có ít nhất 6 ảnh). Sau khi khách đặt phòng, bạn sẽ nhận được thông báo qua email có hồ sơ và thông tin liên hệ của khách, đồng thời khách sẽ được gửi xác nhận với tất cả thông tin chi tiết về địa điểm và thời gian gặp mặt cũng như những thứ cần mang theo.",
         category:"oganize"
     },
@@ -130,21 +130,21 @@ const article = [
     {
         id:'14',
         title:"Sử dụng bảng điều khiển",
-        img:"/carosel-15.jpg",
+        img:"/carosel-15.webp",
         content:"Là quản trị viên Airbnb For Work, bảng điều khiển của bạn cho phép bạn quản lý thông tin nhân viên ở một nơi—bao gồm các chuyến đi của nhân viên, báo cáo và hóa đơn cho công ty của bạn. Bạn cũng sẽ tìm thấy những thông tin như tổng quan về các chuyến đi đang hoạt động, đã xác nhận và đã hoàn thành của nhân viên, thông tin về số đêm đã đặt và nhiều thông tin chi tiết hữu ích khác.",
         category:"admin"
     },
     {
         id:'15',
         title:"Quy trình đặt phòng",
-        img:"/carosel-16.jpeg",
+        img:"/carosel-16.webp",
         content:"Nếu công ty của bạn là một phần của Airbnb for Work, thì Airbnb cho phép người lập kế hoạch chuyến đi thay mặt nhân viên khác yêu cầu đặt chỗ. Nếu họ đặt trước, khách đi công tác sẽ nhận được thông báo về yêu cầu đặt trước và có thể chấp nhận hoặc từ chối yêu cầu.",
         category:"admin"
     },
     {
         id:'16',
         title:"Trợ giúp về thanh toán",
-        img:"/carosel-17.jpeg",
+        img:"/carosel-17.webp",
         content:"Cho dù đó có phải là mùa kiểm toán hay không, bạn cần một cách dễ dàng để theo dõi các khoản thu của nhân viên. Để truy cập bất kỳ biên lai nào, hãy truy cập trang tổng quan Airbnb for Work của bạn. Từ đó, bạn có thể in chúng hoặc lưu chúng dưới dạng PDF. Chỉ cần lưu ý rằng bạn không thể thực hiện bất kỳ bổ sung hoặc chỉnh sửa nào (chẳng hạn như thêm tên của khách) sau khi biên lai đã được phát hành. Cần tạo một báo cáo hiển thị những thứ như tổng số tiền đã chi tiêu? Kiểm tra tab Báo cáo từ bảng điều khiển Airbnb for Work của bạn để tìm tất cả các báo cáo có sẵn.",
         category:"admin"
     },
