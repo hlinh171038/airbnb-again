@@ -49,7 +49,8 @@ const Navbar:React.FC<NavbarProps> = ({
         >
             <div className="
             py-2
-            border-b-[1px]
+            boder-none
+            md:border-b-[1px]
             ">
                 <Container >
                     <div

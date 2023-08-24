@@ -17,9 +17,9 @@ const MenuItem:React.FC<MenuItemProps> =({
                 py-3
                 hover:bg-neutral-100
                 transition
-                font-semibold
-                cursor-pointer
                 
+                cursor-pointer
+                text-sm
             "
         >
             {label}

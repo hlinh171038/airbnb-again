@@ -35,7 +35,6 @@ const NavMobile:React.FC<NavMobileProps> = ({
   // });
     useEffect(()=>{
       window.addEventListener('scroll',()=>{
-        console.log(bounch);
         setBounch(window.scrollY > 100)
       })
     })

@@ -41,7 +41,7 @@ const NavbarListingId:React.FC<NavbarListingProps> = ({
         setDate(data.night)
       }
     },[])
-    return <div className=" bottom-0 fixed w-full bg-white z-40 py-2 sm:hidden grid border-t-[1px] px-4 items-center" style={{gridTemplateColumns: "auto auto auto auto"}}>
+    return <div className=" bottom-0 fixed w-full bg-white z-40 py-1 md:py-2 sm:hidden grid border-none md:border-t-[1px] px-4 items-center" style={{gridTemplateColumns: "auto auto auto auto"}}>
       
       <div className=" animate-pulse font-light mb-2 text-sm " style={{gridArea:"1 / 1 / span 1 / span 3"}}>
         <div>

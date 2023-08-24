@@ -7,7 +7,7 @@ const Logo =() =>{
     const router = useRouter();
     return (
         <Image 
-            className="block cursor-pointer"
+            className="hidden md:block cursor-pointer"
             onClick={()=>router.push('/')}
             src="/logo.png"
             alt="Avatar"

@@ -1,5 +1,5 @@
 "use client"
-import { TbBeach, TbMountain, TbPool } from 'react-icons/tb';
+import { TbAdjustmentsHorizontal, TbBeach, TbMountain, TbPool } from 'react-icons/tb';
 import { 
   GiBarn, 
   GiBoatFishing, 
@@ -16,6 +16,27 @@ import { IoDiamond } from 'react-icons/io5';
 import { MdOutlineVilla } from 'react-icons/md';
 import CategoryBox from './CategoryBox';
 import { usePathname, useSearchParams } from 'next/navigation';
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 9
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 6
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 4
+  }
+};
 
 
 export const categories = [
@@ -109,24 +130,29 @@ const Categories =() =>{
     }
     
     return (
-        <div
-            className='
-                flex
-                flex-row
-                justify-between
-                pt-4
-                overflow-x-auto
-            '
-        >
-            {categories.map((category)=>{
-                return <CategoryBox
-                    key={category.label}
-                    label={category.label}
-                    icon ={category.icon}
-                    selected={categoryLink ===category.label ? true : false}
-                    description={category.description}
-                />
-            })}
+        <div className=' flex items-center justify-between px-4'>
+          <div
+              className='
+              w-full
+                md:w-[90%]
+              '
+          >
+            <Carousel responsive={responsive} arrows={true} renderArrowsWhenDisabled={true}>
+              {categories.map((category)=>{
+                    return <CategoryBox
+                        key={category.label}
+                        label={category.label}
+                        icon ={category.icon}
+                        selected={categoryLink ===category.label ? true : false}
+                        description={category.description}
+                    />
+                })}
+            </Carousel>
+              
+          </div>
+          <div className=' hidden md:block border-[2px] px-6 py-2 rounded-md cursor-pointer' >
+            <TbAdjustmentsHorizontal />
+          </div>
         </div>
     )
 }

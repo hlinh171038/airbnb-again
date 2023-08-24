@@ -57,13 +57,30 @@ const UserMenu:React.FC<UserMenuProps> = ({
         setIsOpen(false)
         router.push('/trips')
     },[isOpen, router])
+
+    // handle home
+    const handleHome = useCallback(()=>{
+        setIsOpen(false)
+        router.push('/')
+    },[isOpen, router])
+
+    // handle contact
+    const handleContact = useCallback(()=>{
+        setIsOpen(false)
+        router.push('/contact')
+    },[isOpen, router])
+    // handle contact
+    const handleRent = useCallback(()=>{
+        setIsOpen(false)
+        router.push('/rent')
+    },[isOpen, router])
     return (
        <div 
-       className='flex flex-row justify-between items-center relative'>
+       className='hidden md:flex flex-row justify-between items-center relative'>
         <div 
          onClick={()=>router.push('/rent')}
-        className='mx-4 hover:bg-neutral-100 rounded-full px-4 py-1 transiton cursor-pointer hidden md:block'>
-            Airbnb your home
+        className='mx-4 text-sm hover:bg-neutral-100 rounded-full px-4 py-1 transiton cursor-pointer hidden md:block'>
+            Đón tiếp khách
             {/* {JSON.stringify(session)} */}
         </div>
         <div
@@ -90,32 +107,37 @@ const UserMenu:React.FC<UserMenuProps> = ({
             </div>
         </div>
         {isOpen && (
-            <div className='absolute top-12 right-0 bg-white border-[1px] px-4 py-4 w-[200px] rounded-lg shadow-md'>
+            <div className='absolute transition-all top-12 right-0 bg-white border-[1px] px-4 py-4 w-[300px] rounded-lg shadow-md'>
                 {session ? (
                     <>
+                         <MenuItem
+                            label='Trang chủ'
+                            onClick={handleHome}
+                        />
                         <MenuItem
-                            label='My trips'
+                            label='Chuyến đi'
                             onClick={handleTrips}
                         />
                         <MenuItem
-                            label='My favorites'
+                            label='Danh sách yêu thích'
                             onClick={handleFavorite}
-                        />
-                        <MenuItem
-                            label='My reservations'
-                            onClick={()=>{}}
                         />
                         <MenuItem
                             label='My properties'
                             onClick={()=>{}}
                         />
                         <MenuItem
-                            label='Airbnb my house'
-                            onClick={()=>{}}
+                            label='Quản lí nhà/phòng cho thuê'
+                            onClick={handleRent}
                         />
+                        <MenuItem
+                            label='Trung tâm trợ giúp'
+                            onClick={handleContact}
+                        />
+                        <hr className='mb-2'/>
                         <MenuItem 
                                  onClick={() =>signOut()}
-                                 label='Logout'
+                                 label='Đăng nhập'
                              />
                     </>
                 ):(

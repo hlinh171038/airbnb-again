@@ -1,6 +1,7 @@
 "use client"
 
 import {BiSearch} from 'react-icons/bi'
+import { TbAdjustmentsHorizontal } from 'react-icons/tb'
 
 const Search = () =>{
     return (
@@ -14,6 +15,8 @@ const Search = () =>{
                 transition
                 cursor-pointer
                 w-full
+                shadow-md
+                md:shadow-none
                 md:w-auto
             "
         >   
@@ -21,31 +24,73 @@ const Search = () =>{
                 className="
                     flex
                     flex-row
-                    sm:justify-between
-                    justify-end
+                    justify-between
+                    gap-4
                     items-center
                 "
             >
-                <div className=" border-r-[0px] sm:border-r-[1px]  px-2 w-full sm:w-auto">
-                    Anywhere
+                <div className='flex md:hidden gap-4 md:gap-2'>
+                    <div
+                        className="
+                            p-2
+                            rounded-full
+                            bg-rose-500
+                            text-white
+                            flex
+                            justify-center
+                            items-center
+                            w-[37px]
+                            h-[37px]
+                            md:hidden
+                        "
+                    >
+                        <BiSearch />
+                    </div>
+                    <div className='md:grid md:grid-cols-2 justify-center items-center'>
+                        <div className=" border-none text-sm font-bold md:border-r-[0px] sm:border-r-[1px]   w-full sm:w-auto">
+                            Địa điểm
+                        </div>
+                        <div className='flex flex-row gap-2 text-[0.7rem] '>
+                            <div className="border-none md:border-r-[1px] w-full" >
+                                Tuần 
+                            </div>
+                            <div className=" w-full min-w-[80px]">
+                                thêm khách
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="border-r-[1px] px-2 hidden sm:block" >
-                    Any week
+                <div className='hidden md:flex justify-between items-center cursor-pointer'>
+                    <div className='border-r-[1px] px-4 text-sm font-light'>Bất kì địa điểm nào</div>
+                    <div className='border-r-[1px] px-4 text-sm font-light'>Bất kì tuần nào</div>
+                    <div className='border-r-[1px] px-4 text-sm font-light'>Thêm khách</div>
                 </div>
-                <div className="px-2 hidden sm:block">
-                    Add guest
+                <div
+                    className="
+                        hidden
+                        p-2
+                        rounded-full
+                        bg-rose-500
+                        text-white
+                        md:flex
+                        justify-end
+                       hover:bg-rose-600
+                       transition-all
+                    "
+                >
+                    <BiSearch />
                 </div>
                 <div
                     className="
                         p-2
                         rounded-full
-                        bg-rose-500
-                        text-white
+                        border-[2px]
                         flex
                         justify-end
+                        md:hidden
                     "
                 >
-                    <BiSearch />
+                    <TbAdjustmentsHorizontal />
                 </div>
             </div>
         </div>

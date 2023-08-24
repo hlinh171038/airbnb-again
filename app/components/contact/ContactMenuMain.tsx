@@ -144,7 +144,7 @@ const article = [
     {
         id:'16',
         title:"Trợ giúp về thanh toán",
-        img:"/carosel-17.webp",
+        img:"/carosel-17.jpeg",
         content:"Cho dù đó có phải là mùa kiểm toán hay không, bạn cần một cách dễ dàng để theo dõi các khoản thu của nhân viên. Để truy cập bất kỳ biên lai nào, hãy truy cập trang tổng quan Airbnb for Work của bạn. Từ đó, bạn có thể in chúng hoặc lưu chúng dưới dạng PDF. Chỉ cần lưu ý rằng bạn không thể thực hiện bất kỳ bổ sung hoặc chỉnh sửa nào (chẳng hạn như thêm tên của khách) sau khi biên lai đã được phát hành. Cần tạo một báo cáo hiển thị những thứ như tổng số tiền đã chi tiêu? Kiểm tra tab Báo cáo từ bảng điều khiển Airbnb for Work của bạn để tìm tất cả các báo cáo có sẵn.",
         category:"admin"
     },
