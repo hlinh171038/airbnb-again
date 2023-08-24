@@ -11,13 +11,13 @@ const RentHeader2 = () =>{
 
     }
     return (
-        <div className="py-4">
-            <div className="text-start md:text-center">
+        <div className="py-8">
+            <div className=" text-center">
                 <span className="text-4xl font-semibold"><span className="text-rose-600 ">Air</span>cover</span>
                 <div className="font-semibold">cho chủ nhà </div>
             </div>
             <div className="mt-4 text-start md:text-center">
-                <span className="text-2xl md:text-4xl font-semibold text-center">Cho thuê trên Airbnb với chương trình bảo vệ toàn diện</span>
+                <span className="text-xl md:text-4xl font-semibold text-center">Cho thuê trên Airbnb với chương trình bảo vệ toàn diện</span>
                 <table className="w-full mt-6">
                     <tr >
                         <td></td>
@@ -280,7 +280,7 @@ const RentHeader2 = () =>{
                     title=""
                     content="Kết quả so sánh dựa trên thông tin công khai và quyền lợi được cung cấp miễn phí của các đơn vị cạnh tranh tính đến ngày 22/10. Tìm hiểu thông tin chi tiết và các trường hợp ngoại lệ tại đây."
                 />
-                <div className="w-1/3 mt-4">
+                <div className="w-[70%] sm:w-[40%] md:w-1/3 mt-4">
                 <Button 
                     label="Tìm hiểu thêm"
                     outline

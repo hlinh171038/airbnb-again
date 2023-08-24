@@ -47,6 +47,10 @@ const UserMenu:React.FC<UserMenuProps> = ({
         }
         rentModal.onOpen()
     },[])
+    const handleFavorite = useCallback(()=>{
+        setIsOpen(false)
+        router.push('/favorites')
+    },[isOpen, router])
 
     // handle trips
     const handleTrips = useCallback(()=>{
@@ -95,7 +99,7 @@ const UserMenu:React.FC<UserMenuProps> = ({
                         />
                         <MenuItem
                             label='My favorites'
-                            onClick={()=>{}}
+                            onClick={handleFavorite}
                         />
                         <MenuItem
                             label='My reservations'

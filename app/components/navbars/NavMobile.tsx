@@ -8,6 +8,7 @@ import { useParams, usePathname } from "next/navigation"
 import NavbarListingId from "./NavbarListingId"
 import { SafeListing } from "@/app/types"
 import { Listing } from "@prisma/client"
+import {useEffect, useState} from 'react'
 
 
 interface NavMobileProps {
@@ -19,6 +20,7 @@ const NavMobile:React.FC<NavMobileProps> = ({
     const rentModal = useRentModal()
     const path = usePathname();
     const params = useParams();
+    const [bounch, setBounch] = useState(true);
 
     if(path === `/listings/${params.listingId}`)
     {
@@ -27,10 +29,32 @@ const NavMobile:React.FC<NavMobileProps> = ({
                 id={params.listingId as string} 
               />
     }
+  //   window.addEventListener('scroll',()=>{
+  //     console.log(bounch)
+  //    
+  // });
+    useEffect(()=>{
+      window.addEventListener('scroll',()=>{
+        console.log(bounch);
+        setBounch(window.scrollY > 100)
+      })
+    })
     return (
-        <div className=" bottom-1 fixed w-full bg-white z-40 py-4 sm:hidden">
+        <div className={`
+          bottom-0
+          fixed w-full 
+          bg-white 
+          z-40 
+          py-4 
+          sm:hidden 
+          transition-all
+          duration-[300ms]
+          border-t-[1px]
+          ${bounch ?"translate-y-0":"translate-y-full"}
+          ${bounch ?"opacity-1":"opacity-0"}
+        `}>
           <Container>
-            <div className="text-center font-bold mb-2">Are you ready for rent ?</div>
+            <div className="text-center font-bold mb-2">Sẵn sàng cho thuê ?</div>
             <Button 
                     label="Airbnb Setup"
                     onClick={rentModal.onOpen}

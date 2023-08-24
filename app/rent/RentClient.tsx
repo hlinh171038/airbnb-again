@@ -6,6 +6,7 @@ import Container from "../components/Container"
 import RentHeader from "../components/rents/RentHeader"
 import RentHeader2 from "../components/rents/RentHeader2"
 import RentHeader3 from "../components/rents/RentHeader3"
+import Footer from "../components/Footer"
 
 interface RentClientProps {
     currentUser: SafeUser | null
@@ -15,12 +16,15 @@ const RentClient:React.FC<RentClientProps> = ({
     currentUser
 }) =>{
     return (
-       <Container>
-        {/* header */}
-        <RentHeader />
-        <RentHeader2 />
-        <RentHeader3 />
-       </Container>
+       <div>
+            <Container>
+                {/* header */}
+                <RentHeader />
+                <RentHeader2 />
+                <RentHeader3 />
+            </Container>
+            <Footer />
+       </div>
     )
 }
 

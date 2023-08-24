@@ -42,3 +42,4 @@ export type safeTrips = Omit<
     createdAt: string;
     user: SafeUser
 }
+
