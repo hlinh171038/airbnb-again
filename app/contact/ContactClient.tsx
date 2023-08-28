@@ -12,6 +12,8 @@ import Footer from "../components/Footer"
 import ContactGuest from "../components/contact/ContactGuest"
 import ContactHost from "../components/contact/ContactHost"
 import ContactAdmin from "../components/contact/ContactAdmin"
+import Header from "../components/Header"
+import Image from "next/image"
 
 interface ContactClientProps {
     currentUser: SafeUser | null
@@ -85,6 +87,25 @@ const ContactClient:React.FC<ContactClientProps>= ({
     }
     return (
         <div>
+             <div className="w-full h-auto relative">
+                <div className="w-full h-[300px] absolute top-0 left-0 bg-neutral-950/60 flex items-center justify-center">
+                    <Header
+                        title="Trung tâm trợ giúp"
+                        subtitle="Liên hệ chúng tôi bất cứ khi nào bạn cần"
+                        big
+                        center
+                        white
+                    />
+                </div>
+                <Image
+                    src="/title-02.webp"
+                    width={1000}
+                    height={1000}
+                    alt="trips"
+                    objectPosition="top"
+                    className="w-full h-[300px] object-cover "
+                />
+            </div>
             <Container>
                 <div>
                     {/* header */}

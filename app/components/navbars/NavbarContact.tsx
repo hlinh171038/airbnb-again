@@ -8,7 +8,7 @@ const NavbarContact = ()=>{
     const router = useRouter()
     return (
         <Container>
-            <div className="flex gap-4 my-6">
+            <div className="flex gap-4 my-6 fixed top-[-27px] left-0 z-60 bg-white w-full px-4 py-6">
                 <Image
                     onClick={()=>router.push('/')}
                     src="/logo.png"

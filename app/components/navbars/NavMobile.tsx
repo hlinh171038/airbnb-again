@@ -4,11 +4,11 @@ import useRentModal from "@/app/hooks/useRentModal"
 import Button from "../Button"
 import {MdOutlineAddHomeWork} from 'react-icons/md'
 import Container from "../Container"
-import { useParams, usePathname } from "next/navigation"
+import { useParams, usePathname, useRouter } from "next/navigation"
 import NavbarListingId from "./NavbarListingId"
 import { SafeListing } from "@/app/types"
 import { Listing } from "@prisma/client"
-import {useEffect, useState} from 'react'
+import {useEffect, useState,useCallback} from 'react'
 import NavbarMobileRent from "./NavbarMobileRent"
 import { Abel } from "next/font/google"
 import { IoSearch } from "react-icons/io5"
@@ -26,7 +26,8 @@ interface NavMobileProps {
 const NavMobile:React.FC<NavMobileProps> = ({
   listingData = []
 }) =>{
-    const rentModal = useRentModal()
+    const rentModal = useRentModal();
+    const router = useRouter();
     const path = usePathname();
     const params = useParams();
     const [bounch, setBounch] = useState(true);
@@ -49,6 +50,8 @@ const NavMobile:React.FC<NavMobileProps> = ({
         setBounch(window.scrollY > 100)
       })
     })
+
+    
     return (
         <div className={`
           bottom-0
@@ -69,20 +72,32 @@ const NavMobile:React.FC<NavMobileProps> = ({
                 <div><IoSearch  size={30} className="text-neutral-400 hover:text-neutral-500 transition-all"/></div>
                 <div>Khám phá</div>
               </div>
-              <div className="flex flex-col justify-center items-center cursor-pointer ">
-                <div><FaAirbnb  size={30} className="text-neutral-400 hover:text-neutral-500 transition-all"/></div>
+              <div 
+                onClick={()=>router.push('/trips')}
+                className={`flex flex-col justify-center items-center cursor-pointer ${path === '/trips' && "text-rose-500"}`}
+                >
+                <div><FaAirbnb  size={30} className={`text-neutral-400 hover:text-neutral-500 transition-all ${path === '/trips' && "text-rose-500 hover:text-rose-600"} `}/></div>
                 <div>Chuyến đi</div>
               </div>
-              <div className="flex flex-col justify-center items-center cursor-pointer ">
-                <div><AiOutlineHeart  size={30} className="text-neutral-400 hover:text-neutral-500 transition-all"/></div>
+              <div 
+                onClick={()=>router.push('/favorites')}
+                className={`flex flex-col justify-center items-center cursor-pointer ${path === '/favorites' && "text-rose-500"}`}
+                >
+                <div><AiOutlineHeart  size={30} className={`text-neutral-400 hover:text-neutral-500 transition-all ${path === '/favorites' && "text-rose-500 hover:text-rose-600"} `}/></div>
                 <div>Yêu thích</div>
               </div>
-              <div className="flex flex-col justify-center items-center cursor-pointer ">
-                <div><BiMessage  size={30} className="text-neutral-400 hover:text-neutral-500 transition-all"/></div>
+              <div 
+                onClick={()=>router.push('/contact')}
+                className={`flex flex-col justify-center items-center cursor-pointer ${path === '/contact' && "text-rose-500"}`}
+                >
+                <div><BiMessage  size={30}className={`text-neutral-400 hover:text-neutral-500 transition-all ${path === '/contact' && "text-rose-500 hover:text-rose-600"} `}/></div>
                 <div>Liên hệ</div>
               </div>
-              <div className="flex flex-col justify-center items-center cursor-pointer ">
-                <div><RxAvatar  size={30} className="text-neutral-400 hover:text-neutral-500 transition-all"/></div>
+              <div 
+                onClick={()=>router.push('/profiles')}
+                className={`flex flex-col justify-center items-center cursor-pointer ${path === '/profiles' && "text-rose-500"}`}
+                >
+                <div><RxAvatar  size={30} className={`text-neutral-400 hover:text-neutral-500 transition-all ${path === '/profiles' && "text-rose-500 hover:text-rose-600"} `}/></div>
                 <div>Hồ sơ</div>
               </div>
             </div>
