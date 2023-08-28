@@ -1,7 +1,7 @@
 "use client"
 
 import { Listing, Reservation } from "@prisma/client";
-import { SafeListing, SafeUser } from "../../types"
+import { SafeComment, SafeListing, SafeUser } from "../../types"
 import Image from "next/image";
 import HeartButton from "../HeartButton";
 import useCountries from "../../hooks/useCountries";
@@ -9,6 +9,7 @@ import { compareAsc, format } from 'date-fns'
 import {useCallback,useMemo} from 'react'
 import Button from "../Button";
 import { useRouter } from "next/navigation";
+import { AiFillStar } from "react-icons/ai";
 
 interface ListingCardProps {
     currentUser: SafeUser | null;
@@ -18,6 +19,7 @@ interface ListingCardProps {
     disabled?: boolean;
     actionLabel?: string;
     actionId?: string;
+    comment?: SafeComment[];
 }
 const ListingCard:React.FC<ListingCardProps> =({
     currentUser,
@@ -26,12 +28,13 @@ const ListingCard:React.FC<ListingCardProps> =({
     onAction,
     disabled,
     actionLabel,
-    actionId=''
+    actionId='',
+    comment = []
 }) =>{
     const {getByValue} = useCountries()
     const location = getByValue(data.locationValue);
     const router = useRouter()
-
+    
     const reservationDate = useMemo(()=>{
         if(!reservation){
             return null;
@@ -60,6 +63,15 @@ const ListingCard:React.FC<ListingCardProps> =({
         }
         onAction?.(actionId)
     },[actionId,onAction,disabled])
+
+    // all star
+    const TotalStar = useMemo(() =>{
+        let filterallcomment = comment.filter((item)=> item.listingId === data.id);
+        let result = filterallcomment.reduce((cal, currentValue) =>{
+            return cal+currentValue?.start
+        },0);
+        return (result / comment.length).toFixed(2)
+    },[comment])
     return (
         <div
             onClick={()=> router.push(`/listings/${data.id}`)}
@@ -69,7 +81,7 @@ const ListingCard:React.FC<ListingCardProps> =({
                 group
             "
         >
-            <div className="flex flex-col gap-2 w-full relative overflow-hidden rounded-xl w-full h-full">
+            <div className="flex flex-col gap-2 w-full relative overflow-hidden rounded-xl  h-[16rem]">
                 <Image 
                     src={data.imageSrc}
                     alt="Listing"
@@ -90,18 +102,41 @@ const ListingCard:React.FC<ListingCardProps> =({
                     />
                 </div>
             </div>
-            <div className="font-semibold text-lg">
+           <div  className="flex justify-between mt-4">
+           <div className="font-semibold text-sm">
                 {location?.region}, {location?.label}
             </div>
-            <div className="font-light text-neutral-500">
+            <div className="flex items-center text-sm font-light gap-2">
+              
+                <div>
+                    <AiFillStar  className="text-yellow-400"/>
+                </div>
+                <div>{TotalStar}</div>
+            </div>
+           </div>
+            <div className="flex items-center gap-2 text-[0.8rem] font-light text-neutral-500">
+                <div>
+                    {new Date(data?.createdAt).getDate()} thg
+                    {new Date(data?.createdAt).getMonth()+ 1} -
+                    {new Date(data?.createdAt).getFullYear()} 
+                </div>
+                <div>-</div>
+                <div>
+                    {new Date(data?.night).getDate()} thg
+                    {new Date(data?.night).getMonth()+ 1} -
+                    {new Date(data?.night).getFullYear()} 
+                </div>
+            </div>
+         
+            <div className="font-light text-neutral-500 text-[0.8rem]">
                 {reservationDate || data.category}
             </div>
             <div className="flex flex-row items-center gap-1">
-                <div className="font-semibold">
-                    $ {price}
+                <div className="font-semibold text-sm">
+                    {price.toLocaleString('vi', {style : 'currency', currency : 'VND'})}
                 </div>
                 {!reservation && (
-                    <div className="font-light">night</div>
+                    <div className="font-light text-[0.8rem]"> / night</div>
                 )}
             </div>
             {onAction && actionLabel && (

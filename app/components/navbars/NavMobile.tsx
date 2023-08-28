@@ -16,6 +16,7 @@ import { AiOutlineHeart } from "react-icons/ai"
 import { BiMessage } from "react-icons/bi"
 import { FaAirbnb } from "react-icons/fa"
 import { RxAvatar } from "react-icons/rx"
+import { GoHome } from "react-icons/go"
 
 
 interface NavMobileProps {
@@ -51,6 +52,13 @@ const NavMobile:React.FC<NavMobileProps> = ({
       })
     })
 
+
+    // handle trips
+    const handleTrips = useCallback(()=>{
+      router.push('/trips')
+      console.log('try')
+    },[router])
+
     
     return (
         <div className={`
@@ -67,13 +75,18 @@ const NavMobile:React.FC<NavMobileProps> = ({
           ${bounch ?"opacity-1":"opacity-0"}
         `}>
           <Container>
-            <div className="flex justify-between items-center text-[.6rem] font-light">
-              <div className="flex flex-col justify-center items-center cursor-pointer ">
-                <div><IoSearch  size={30} className="text-neutral-400 hover:text-neutral-500 transition-all"/></div>
-                <div>Khám phá</div>
+            <div 
+              className={`flex justify-between items-center text-[.6rem] font-light`}>
+            
+              <div 
+                onClick={()=>router.push('/')}
+                className={`flex flex-col justify-center items-center cursor-pointer ${path === '/' && "text-rose-500"}`}
+                >
+                <div><GoHome  size={30} className={`text-neutral-400 hover:text-neutral-500 transition-all ${path === '/' && "text-rose-500 hover:text-rose-600"}`}/></div>
+                <div>Trang chủ</div>
               </div>
               <div 
-                onClick={()=>router.push('/trips')}
+                onClick={handleTrips}
                 className={`flex flex-col justify-center items-center cursor-pointer ${path === '/trips' && "text-rose-500"}`}
                 >
                 <div><FaAirbnb  size={30} className={`text-neutral-400 hover:text-neutral-500 transition-all ${path === '/trips' && "text-rose-500 hover:text-rose-600"} `}/></div>

@@ -52,7 +52,7 @@ const TripsCard:React.FC<TripsCardProps> = ({
                     className="w-full sm:w-[200px] sm:min-w-[200px] max-h-[200px]  object-cover"
                 />
                 <div className="px-2">
-                    <div className="uppercase font-bold text-2xl">{data?.title}</div>
+                    <div className="uppercase font-bold text-md">{data?.title}</div>
                     <div className="flex gap-6">
                         <div className="mt-2">
                             <div className="flex gap-2 items-center text-sm font-light">
@@ -81,8 +81,8 @@ const TripsCard:React.FC<TripsCardProps> = ({
                             </div>
                         </div>
                         <div className="mt-2 block sm:hidden lg:block">
-                            <button className="text-white rounded-full px-6 py-1 bg-orange-500 text-center">20% off</button>
-                            <div className="px-4 font-light">{data.price.toLocaleString('vi', {style : 'currency', currency : 'VND'})} / đêm</div>
+                            <button className="text-white rounded-full px-6 py-1 bg-orange-500 text-center text-sm">20% off</button>
+                            <div className="px-4 font-light text-sm">{data.price.toLocaleString('vi', {style : 'currency', currency : 'VND'})} / đêm</div>
                         </div>
                     </div>
                 </div>
@@ -90,8 +90,8 @@ const TripsCard:React.FC<TripsCardProps> = ({
             <hr/>
             <div className="py-2 flex justify-between items-center px-2">
                <div>
-                <div className="font-bold ">Có sẵn những tháng trong năm:</div>
-                    <div className="capitalize font-light text-sm cursor-pointer">
+                <div className="font-bold text-sm">Có sẵn những tháng trong năm:</div>
+                    <div className="capitalize font-light text-[0.8rem] cursor-pointer">
                     {new Date(data?.createdAt).getMonth() === new Date(data?.night).getMonth() ?<div>{mouth[new Date(data?.night).getMonth()]}</div>: <div>{mouth[new Date(data?.createdAt).getMonth()]} - {mouth[new Date(data?.night).getMonth()]}</div>}
                     </div>
                </div>

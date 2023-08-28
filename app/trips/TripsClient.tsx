@@ -114,7 +114,7 @@ const TripsClient:React.FC<TripsClientProps> = ({
     // handle scrolling
     const pageY = document.getElementById('scroll');
         window.addEventListener('scroll', () =>{
-            console.log(pageY?.getBoundingClientRect().top );
+          
             setIsFixed(pageY!== null && pageY.getBoundingClientRect().top <= scrollThreshold);
         });
         

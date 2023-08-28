@@ -37,6 +37,7 @@ const TripsSearchMobile:React.FC<TripsSearchProps> = ({
     return (
         <div  className={`${openSidebar ?"block": "hidden"}`}>
             <div className="text-xl font-bold">Danh sách của bạn</div>
+            <div onClick={()=>handleValue('all')} className="cursor-pointer text-neutral-600">Tất cả chuyến đi </div>
             {fillterReservations.reverse().map((reservation)=>{
                 return <SearchItem
                             key={reservation.id}
