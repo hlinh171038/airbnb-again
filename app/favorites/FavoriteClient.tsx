@@ -1,4 +1,4 @@
-"use client "
+"use client"
 
 import Image from "next/image";
 import { SafeComment, SafeListing, SafeUser } from "../types"
@@ -6,8 +6,25 @@ import Header from "../components/Header";
 import Container from "../components/Container";
 import ListingCard from "../components/listings/ListingCard";
 import Footer from "../components/Footer";
+import {useState,useCallback,useMemo,useEffect} from 'react'
+import { BiDownArrow } from "react-icons/bi";
 
+const sortFavorite = [
+    {
+        label:'cũ nhất',
 
+    },
+    {
+        label:'mới nhất',
+
+    },
+    {
+        label:"đã hết hạn"
+    },
+    {
+        label:"có sẵn"
+    }
+]
 interface FavoriteClientProps {
     currentUser: SafeUser | null;
     favoriteListing: SafeListing[];
@@ -18,6 +35,75 @@ const FavoriteClient:React.FC<FavoriteClientProps> =({
     favoriteListing = [],
     comment=[]
 }) =>{
+    const [sort,setSort] = useState('mới nhất');
+    const [open,setOpen] = useState(false);
+    const [favoriteArr,setFavoriteArr] = useState(favoriteListing);
+    const [empty,setEmpty] = useState(false);
+
+    console.log(favoriteArr)
+
+
+    // handle Open sort
+    const handleOpen = useCallback(()=>{
+        setOpen(!open);
+
+    },[open])
+
+    // handle sort
+    useEffect(()=>{
+        let arr;
+        if(sort === 'cũ nhất')
+        {
+            arr = favoriteListing.sort((a,b)=>{
+                if(a.createdAt >b.createdAt) return 1;
+                if(a.createdAt <b.createdAt) return -1;
+                return 0;
+            });
+            if(arr.length === 0)
+            {
+                setEmpty(true);
+            }else{
+                setEmpty(false);
+
+            }
+        }else if(sort === 'mới nhất'){
+            arr = favoriteListing.sort((a,b)=>{
+                if(a.createdAt >b.createdAt) return -1;
+                if(a.createdAt <b.createdAt) return 1;
+                return 0;
+            });
+            if(arr.length === 0)
+            {
+                setEmpty(true);
+            }else{
+                setEmpty(false);
+
+            }
+        }else if(sort ==='có sẵn'){
+            arr = favoriteListing.filter((item) =>new Date(item.night) > new Date());
+            if(arr.length === 0)
+            {
+                setEmpty(true);
+            }else{
+                setEmpty(false);
+
+            }
+        }else {
+            arr = favoriteListing.filter((item) =>new Date(item.night) <= new Date());
+            if(arr.length === 0)
+            {
+                setEmpty(true);
+            }else{
+                setEmpty(false);
+
+            }
+        }
+        setFavoriteArr(arr);
+        setOpen(false)
+    },[sort])
+
+   
+    console.log(empty)
     return (
         <div> 
              <div className="w-full h-auto relative">
@@ -41,19 +127,40 @@ const FavoriteClient:React.FC<FavoriteClientProps> =({
             
             
         </div>
+        <div className="w-full px-4 flex justify-end items-center z-20 mt-4">
+           <div className="relative w-[20%] z-10">
+            <div 
+                onClick={handleOpen}
+                className="absolute top-0 right-0 border-b-[2px] border-rose-500 flex justify-between items-center w-full cursor-pointer">
+                    <div>{sort}</div>
+                    <div><BiDownArrow/></div>
+                </div>
+                
+                <div className={`absolute top-10 right-0 bg-neutral-200 w-full py-4 px-4 ${open ?"block":"hidden"}`}>
+                    {sortFavorite.map((item)=>{
+                        return (
+                            <div className="text-sm font-light cursor-pointer" onClick={()=>setSort(`${item.label}`)}>{item.label}</div>
+                        )
+                    })}
+                </div>
+              
+           </div>
+        </div>
+        {empty && <div className="w-full flex justify-center items-center mt-16 text-neutral-600">Listing is empty</div>}
         <Container >
             <div 
                 className="
                     grid
                     py-16
                     px-2
+                    gap-8
                     grid-cols-1
                     sm:grid-cols-2
                     md:grid-cols-3
                     lg:grid-cols-4
                 "
             >
-                {favoriteListing.map((item) =>{
+                {favoriteArr.map((item) =>{
                     return <ListingCard 
                                 currentUser={currentUser}
                                 data ={item}

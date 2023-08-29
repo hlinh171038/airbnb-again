@@ -67,7 +67,7 @@ const TripsClient:React.FC<TripsClientProps> = ({
         }else {
             arr = reservations.sort((a,b)=>{
                 if(a.totalPrice >b.totalPrice) return -1;
-                if(a.createdAt <b.createdAt) return 1;
+                if(a.totalPrice <b.totalPrice) return 1;
                 return 0;
             })
         }
