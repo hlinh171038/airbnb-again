@@ -8,6 +8,7 @@ import ListingCard from "../components/listings/ListingCard";
 import Footer from "../components/Footer";
 import {useState,useCallback,useMemo,useEffect} from 'react'
 import { BiDownArrow } from "react-icons/bi";
+import { Pagination, Stack } from "@mui/material";
 
 const sortFavorite = [
     {
@@ -39,9 +40,23 @@ const FavoriteClient:React.FC<FavoriteClientProps> =({
     const [open,setOpen] = useState(false);
     const [favoriteArr,setFavoriteArr] = useState(favoriteListing);
     const [empty,setEmpty] = useState(false);
+    const [currentPage,setCurrentPage] = useState(1);
+    const [countPerPage,setCountPerPage] = useState(8);
 
-    console.log(favoriteArr)
+    // pagination
+    const start = currentPage * countPerPage - countPerPage;
+    const end = currentPage * countPerPage;
 
+    const pagin = [];
+    for(let i=0; i<Math.ceil(favoriteArr.length /countPerPage);i++){
+        pagin.push(i);
+    }
+    console.log(pagin)
+    //handle pagination
+     // handle change pagination
+     const handlePagination = useCallback((e:any,p: any)=>{
+        setCurrentPage(p)
+    },[currentPage]);
 
     // handle Open sort
     const handleOpen = useCallback(()=>{
@@ -128,18 +143,19 @@ const FavoriteClient:React.FC<FavoriteClientProps> =({
             
         </div>
         <div className="w-full px-4 flex justify-end items-center z-20 mt-4">
-           <div className="relative w-[20%] z-10">
+           <div className="relative w-[50%] md:w-[20%] z-10 hover:shadow-md px-8">
             <div 
                 onClick={handleOpen}
                 className="absolute top-0 right-0 border-b-[2px] border-rose-500 flex justify-between items-center w-full cursor-pointer">
-                    <div>{sort}</div>
+                    <div className="font-light text-sm capitalize">{sort}</div>
                     <div><BiDownArrow/></div>
                 </div>
                 
-                <div className={`absolute top-10 right-0 bg-neutral-200 w-full py-4 px-4 ${open ?"block":"hidden"}`}>
+                <div className={`absolute top-8 right-0 bg-neutral-100 w-full transition-all overflow-hidden px-4 ${open ?"h-auto  py-4":"h-0 "}`}>
                     {sortFavorite.map((item)=>{
                         return (
-                            <div className="text-sm font-light cursor-pointer" onClick={()=>setSort(`${item.label}`)}>{item.label}</div>
+                            <div className="text-sm font-light cursor-pointer capitalize hover:text-neutral-600 transition-all" 
+                                onClick={()=>setSort(`${item.label}`)}>{item.label}</div>
                         )
                     })}
                 </div>
@@ -157,10 +173,11 @@ const FavoriteClient:React.FC<FavoriteClientProps> =({
                     grid-cols-1
                     sm:grid-cols-2
                     md:grid-cols-3
-                    lg:grid-cols-4
+                    lg:grid-cols-3
+                    xl:grid-cols-4
                 "
             >
-                {favoriteArr.map((item) =>{
+                {favoriteArr.slice(start,end).map((item) =>{
                     return <ListingCard 
                                 currentUser={currentUser}
                                 data ={item}
@@ -168,6 +185,10 @@ const FavoriteClient:React.FC<FavoriteClientProps> =({
                             />
                 })}
             </div>
+             {/* pagination */}
+             <Stack spacing={2} className="mt-3 mb-3 flex justify-end">
+                <Pagination count={pagin.length} variant="outlined" shape="rounded" className="flex justify-end" onChange={handlePagination}/>
+            </Stack>
         </Container>
         <Footer />
         </div>

@@ -43,7 +43,7 @@ const Navbar:React.FC<NavbarProps> = ({
                 fixed
                 w-full 
                 bg-white 
-                z-10 
+                z-50
                 shadow -sm
             "
         >
