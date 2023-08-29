@@ -1,7 +1,7 @@
 "use client "
 
 import Image from "next/image";
-import { SafeListing, SafeUser } from "../types"
+import { SafeComment, SafeListing, SafeUser } from "../types"
 import Header from "../components/Header";
 import Container from "../components/Container";
 import ListingCard from "../components/listings/ListingCard";
@@ -10,11 +10,13 @@ import Footer from "../components/Footer";
 
 interface FavoriteClientProps {
     currentUser: SafeUser | null;
-    favoriteListing: SafeListing[]
+    favoriteListing: SafeListing[];
+    comment: SafeComment[]
 }
 const FavoriteClient:React.FC<FavoriteClientProps> =({
     currentUser,
-    favoriteListing = []
+    favoriteListing = [],
+    comment=[]
 }) =>{
     return (
         <div> 
@@ -43,6 +45,8 @@ const FavoriteClient:React.FC<FavoriteClientProps> =({
             <div 
                 className="
                     grid
+                    py-16
+                    px-2
                     grid-cols-1
                     sm:grid-cols-2
                     md:grid-cols-3
@@ -53,6 +57,7 @@ const FavoriteClient:React.FC<FavoriteClientProps> =({
                     return <ListingCard 
                                 currentUser={currentUser}
                                 data ={item}
+                                comment={comment}
                             />
                 })}
             </div>

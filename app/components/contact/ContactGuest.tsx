@@ -38,48 +38,48 @@ const ContactGuest =()=>{
                 <div className="col-span-2 bg-neutral-100 px-4 py-4">
                     {/* form */}
                     <div className="font-light text-sm py-4">Bạn gặp một số vấn đề, rắc rối trong quá trình đặt phòng, thanh toán, hủy chuyến,...muốn liên hệ với chúng tôi.</div>
-                    <div className="font-bold text-xl py-4 capitalize">Kết nối đặt biệt với chúng tôi.</div>
+                    <div className="font-bold  py-4 capitalize">Kết nối đặt biệt với chúng tôi</div>
                     <form className="flex flex-col gap-4">
                         <div className="block xl:flex gap-4">
                            <div className="flex flex-col gap-1 w-full">
-                            <label htmlFor="fname" className="text-sm text-neutral-600">Họ</label>
+                            <label htmlFor="fname" className="text-sm text-neutral-600 font-light">Họ</label>
                             <input type="text" id="fname" name="fname" className="border-[1px] rounded-md focus:border-blue-400 cursor-pointer" />
                            </div>
                            <div className="flex flex-col gap-1 w-full">
-                            <label htmlFor="lname"  className="text-sm text-neutral-600">Tên</label>
+                            <label htmlFor="lname"  className="text-sm text-neutral-600 font-light">Tên</label>
                             <input type="text" id="lname" name="lname" className="border-[1px] rounded-md focus:border-blue-400 cursor-pointer" />
                            </div>
                         </div>
                         <div className="block xl:flex gap-4">
                            <div  className="flex flex-col gap-1 w-full">
-                            <label htmlFor="email"  className="text-sm text-neutral-600" >Email</label>
+                            <label htmlFor="email"  className="text-sm text-neutral-600 font-light" >Email</label>
                             <input type="text" id="email" name="email" className="border-[1px] rounded-md focus:border-blue-400 cursor-pointer" />
                            </div>
                            <div  className="flex flex-col gap-1 w-full">
-                            <label htmlFor="phone"  className="text-sm text-neutral-600 capitalize">Số điện thoại</label>
+                            <label htmlFor="phone"  className="text-sm text-neutral-600 capitalize font-light">Số điện thoại</label>
                             <input type="text" id="phone" name="phone" className="border-[1px] rounded-md focus:border-blue-400 cursor-pointer" />
                            </div>
                         </div>
                         <div className="flex flex-col gap-1">
-                            <label htmlFor="company" className="text-neutral-600 capitalize text-sm">Tên công ty</label>
+                            <label htmlFor="company" className="text-neutral-600 capitalize text-sm font-light">Tên công ty</label>
                             <input type="text" name="company" id="company" className="border-[1px] rounded-md focus:border-blue-400 cursor-pointer"/>
                         </div>
                         <div className="flex flex-col gap-1">
-                            <label htmlFor="company" className="text-neutral-600 capitalize text-sm">Tên công ty</label>
+                            <label htmlFor="company" className="text-neutral-600 capitalize text-sm font-light">Tên công ty</label>
                             <input type="text" name="company" id="company" className="border-[1px] rounded-md focus:border-blue-400 cursor-pointer"/>
                         </div>
                         <div className="block xl:flex gap-4">
                            <div className="flex flex-col gap-1 w-full">
-                            <label htmlFor="code" className="text-sm text-neutral-600">Mã Postal</label>
+                            <label htmlFor="code" className="text-sm text-neutral-600 font-light">Mã Postal</label>
                             <input type="text" id="code" name="code" className="border-[1px] rounded-md focus:border-blue-400 cursor-pointer" />
                            </div>
                            <div className="flex flex-col gap-1 w-full">
-                            <label htmlFor="conutry"  className="text-sm text-neutral-600">Quốc Gia</label>
+                            <label htmlFor="conutry"  className="text-sm text-neutral-600 font-light">Quốc Gia</label>
                             <input type="text" id="conutry" name="conutry" className="border-[1px] rounded-md focus:border-blue-400 cursor-pointer" />
                            </div>
                         </div>
                         <div className="flex flex-col gap-1 w-full">
-                            <label htmlFor="message" className="text-neutral-600 capitalize text-sm">Dòng tin</label>
+                            <label htmlFor="message" className="text-neutral-600 capitalize text-sm font-light">Dòng tin</label>
                             <textarea name="message" 
                                       id="message" 
                                       cols={50} 
@@ -91,12 +91,12 @@ const ContactGuest =()=>{
                             </textarea>
                         </div>
                         <div className="flex justify-end px-4 py-4 items-center">
-                            <button className="px-4 py-2 bg-rose-500 text-white rounded-lg hover:opacity-2 animate-pulse">Kết nối</button>
+                            <button className="px-4 py-2 bg-rose-500 text-white rounded-lg hover:opacity-2 animate-pulse font-light">Kết nối</button>
                         </div>
                     </form>
                 </div>
                 <div className="flex flex-col gap-4 my-4 md:my-0 px-2">
-                    <div className="text-xl font-bold ">Nhóm Airbnb hổ trợ nhanh.</div>
+                    <div className=" font-bold ">Nhóm Airbnb hổ trợ nhanh.</div>
                     <div className="text-sm font-light text-neutral-500">Đường dây nóng hoạt động 24/7, hổ trợ nhanh tất cả các vấn đề bạn gặp phải khi trải nghiệm với Airbnb. Dường đây nóng có thể gặp sự cố hoặc quá tải trong giờ cao điểm khách hàng liên hệ lại sau.</div>
                     <hr />
                     <div className="flex gap-4">
@@ -142,8 +142,8 @@ const ContactGuest =()=>{
                                     '
                                 />  
                                 <div className='px-2 py-2'>
-                                    <div className='font-bold text-xl'>{item.title}</div>
-                                    <div className='text-sm font-light'>{item.content.substring(0,90)}...</div>
+                                    <div className='font-bold '>{item.title}</div>
+                                    <div className='text-[0.8rem] font-light'>{item.content.substring(0,90)}...</div>
                                     <div className='flex justify-end items-center'>
                                         <div 
                                             className='text-blue-700 italic underline text-[0.8rem] cursor-pointer'

@@ -29,11 +29,11 @@ const menu = [
         description:"This property is close to the beach!"
     },
     {
-        label:"Người tổ chức trải nghiệm",
+        label:"Tổ chức",
         description:"This property is close to the beach!"
     },
     {
-        label:"Quản trị viên",
+        label:"Admin",
         description:"This property is close to the beach!"
     }
 ]
@@ -79,7 +79,7 @@ const ContactClient:React.FC<ContactClientProps>= ({
             <ContactHost />
         )
     }
-    if(category ==="Quản trị viên")
+    if(category ==="Admin")
     {
         bodyContent =(
             <ContactAdmin />
@@ -107,13 +107,9 @@ const ContactClient:React.FC<ContactClientProps>= ({
                 />
             </div>
             <Container>
-                <div>
-                    {/* header */}
-                    <div className="font-bold text-2xl md:text-4xl text-center">Chào {currentUser?.name}, Tôi có thể giúp gì cho bạn?</div>
-                </div>
                 <div className="px-0 lg:px-20 py-8">
                     {/* menu */}
-                    <div className="flex gap-4 border-b-[1px] py-2 text-sm font-bold cursor-pointer">
+                    <div className="flex gap-4 border-b-[1px] py-2 text-sm font-bold cursor-pointer px-2">
                         {menu.map((item)=>{
                             return <ContectMenuItem
                                         key={item.label}
@@ -138,7 +134,7 @@ const ContactClient:React.FC<ContactClientProps>= ({
                         py-8
                 "
             >
-                <div className="text-2xl text-white py-4">Khám phá thêm</div>
+                <div className="font-bold text-white py-4 text-lg">Khám phá thêm</div>
                 <div
                     className="
                         grid
@@ -161,8 +157,8 @@ const ContactClient:React.FC<ContactClientProps>= ({
                         })}
                     </div>
                     <div className="flex flex-col gap-4 col-span-1 sm:col-span-2 md:col-span-1">
-                        <div className="font-bold text-2xl text-white">Bạn cần liên lạc ?</div>
-                        <div className="text-white text-sm font-light">Để bắt đầu, vui lòng trả lời một số câu hỏi để chúng tôi có thể kết nối bạn với bộ phận phù hợp.</div>
+                        <div className="font-bold text-lg text-white">Bạn cần liên lạc ?</div>
+                        <div className="text-white text-[0.8rem] font-light">Để bắt đầu, vui lòng trả lời một số câu hỏi để chúng tôi có thể kết nối bạn với bộ phận phù hợp.</div>
                         <div >
                             <Button 
                                 label="Liên lạc với chúng tôi"

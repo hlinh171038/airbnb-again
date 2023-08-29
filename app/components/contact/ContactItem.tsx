@@ -22,7 +22,7 @@ const ContactItem:React.FC<ContactItemProps> = ({
                 className="object-cover w-full h-[300px] max-h-[300px]"
             />
             <div className="text-white font-bold capitalize py-2">{title}</div>
-            <div className="text-white font-light text-sm">{description}</div>
+            <div className="text-white font-light text-[0.8rem]">{description}</div>
         </div>
     )
 }

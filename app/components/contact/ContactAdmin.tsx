@@ -75,8 +75,8 @@ const ContactAdmin =() =>{
                                     '
                                 />  
                                 <div className='px-2 py-2'>
-                                    <div className='font-bold text-xl'>{item.title}</div>
-                                    <div className='text-sm font-light'>{item.content.substring(0,90)}...</div>
+                                    <div className='font-bold '>{item.title}</div>
+                                    <div className='text-[0.8rem] font-light'>{item.content.substring(0,90)}...</div>
                                     <div className='flex justify-end items-center'>
                                         <div 
                                             className='text-blue-700 italic underline text-[0.8rem] cursor-pointer'

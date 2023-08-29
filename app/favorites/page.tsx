@@ -1,3 +1,4 @@
+import { getComment } from "../actions/getComment";
 import getCurrentUser from "../actions/getCurrentUser"
 import getFavorite from "../actions/getFavorite";
 import ClientOnly from "../components/ClientOnly";
@@ -8,6 +9,7 @@ import FavoriteClient from "./FavoriteClient";
 const FavoritePage =async() =>{
     const currentUser = await getCurrentUser();
     const favoriteListing = await getFavorite();
+    const comment = await getComment()
     
     if(favoriteListing.length === 0) 
     {
@@ -36,6 +38,7 @@ const FavoritePage =async() =>{
             <FavoriteClient
                 currentUser ={currentUser}
                 favoriteListing = {favoriteListing}
+                comment ={comment}
             />
         </ClientOnly>
     )
