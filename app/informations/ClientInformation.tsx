@@ -12,6 +12,7 @@ import InformationPerson from "../components/informations/InformationPerson"
 import { SafeUser } from "../types"
 import { Information } from "@prisma/client"
 import InformationUpdate from "../components/informations/InformationUpdate"
+import Footer from "../components/Footer"
 
 const menu = [
     {
@@ -88,7 +89,7 @@ const ClientInformation:React.FC<ClientInformationProps> =({
                 />
             </div>
             <Container>
-                <div className="flex items-center gap-4 w-full border-b-[1px] ">
+                <div className="flex items-center gap-4 w-full border-b-[1px] my-4 ">
                    {menu.map((item)=>{
                      return (
                         <InformationMenuItem
@@ -103,6 +104,7 @@ const ClientInformation:React.FC<ClientInformationProps> =({
                     body={bodyContent}
                 />
             </Container>
+            <Footer/>
         </div>
     )
 }

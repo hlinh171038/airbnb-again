@@ -45,13 +45,14 @@ const InformationMenuItem:React.FC<InformationMenuItemProps> =({
         <div
             onClick={handleUrl}
             className={`
-                hover:opacity-[0.5]
+                hover:opacity-[0.8]
                 capitalize
                 font-bold
-                text-lg
+                text-md
                 cursor-pointer
+                transition-all
                 ${selected ? "text-rose-600":"text-neutral-600"}
-                ${selected ? "border-b-[1px] border-rose-600":"border-b-[1px] borde-none"}
+                ${selected ? "border-b-[1px] border-rose-600":" borde-none"}
             `}
         >
             {label}

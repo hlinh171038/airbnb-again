@@ -8,6 +8,8 @@ import { FcLock } from "react-icons/fc"
 import { AiFillTool } from "react-icons/ai"
 import { GiShare } from "react-icons/gi"
 import { Information } from "@prisma/client"
+import { toast } from "react-hot-toast"
+import { useRouter } from "next/navigation"
 
 
 interface InformationUpdateProps {
@@ -17,6 +19,7 @@ const InformationUpdate:React.FC<InformationUpdateProps> =({
     information
 }) =>{
     const [info,setInfo] = useState(false)
+    const router = useRouter()
     console.log(info)
     useEffect(() => {
         if(!information){
@@ -42,8 +45,13 @@ const InformationUpdate:React.FC<InformationUpdateProps> =({
       })
       const onSubmit: SubmitHandler<FieldValues> = (data) => {
         axios.post('/api/updateInformation',data)
-            .then(()=>console.log('success'))
-            .catch((err)=>console.log(err))
+            .then(()=>{
+                toast.success('Updated.')
+                router.refresh();
+            })
+            .catch((err)=>{
+                toast.error(err)
+            })
       }
     
     return (

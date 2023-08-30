@@ -1,6 +1,8 @@
 "use client"
 
 import { Information } from "@prisma/client"
+import { useRouter } from "next/navigation"
+
 import { AiFillTool } from "react-icons/ai"
 import { FcLock } from "react-icons/fc"
 import { GiShare } from "react-icons/gi"
@@ -12,6 +14,7 @@ interface InformationPersonProps {
 const InformationPerson:React.FC<InformationPersonProps> = ({
     information
 }) =>{
+    const router = useRouter()
     return (
         <div className="grid grid-cols-2 sm:grid-cols-3 py-8">
             <div className="col-span-2 flex flex-col gap-4 mt-8">
@@ -62,7 +65,9 @@ const InformationPerson:React.FC<InformationPersonProps> = ({
                             <div className="font-bold text-md ">Bạn có thể cập nhật thông tin</div>
                             <div className="text-[0.8rem] text-neutral-600 font-light">
                                 Cập nhật lại thông tin miễn phí 
-                                <span className="underline hover:opacity-[0.5] cursor-pointer px-2">tại đây</span> trên Airbnb.
+                                <span 
+                                     onClick={()=>router.push('informations?category=cập%20nhật')}
+                                    className="underline hover:opacity-[0.5] cursor-pointer px-2">tại đây</span> trên Airbnb.
                             </div>
                             <div className="text-[0.8rem] text-neutral-600 font-light">
                                 Bạn có thể chỉnh sửa thông tin liên hệ và thông tin cá nhân. Nếu sử dụng thông tin này để xác minh danh tính, bạn sẽ cần phải xác minh lần nữa vào lần đặt tiếp theo, hoặc để tiếp tục đón tiếp khách.

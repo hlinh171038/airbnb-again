@@ -8,6 +8,8 @@ import { FcLock } from "react-icons/fc"
 import { AiFillTool } from "react-icons/ai"
 import { GiShare } from "react-icons/gi"
 import { Information } from "@prisma/client"
+import { toast } from "react-hot-toast"
+import { useRouter, useSearchParams } from "next/navigation"
 
 
 interface InformationAccountProps {
@@ -16,7 +18,9 @@ interface InformationAccountProps {
 const InformationAccount:React.FC<InformationAccountProps> =({
     information
 }) =>{
-    const [info,setInfo] = useState(false)
+    const [info,setInfo] = useState(false);
+    const router = useRouter()
+    const params = useSearchParams()
     console.log(info)
     useEffect(() => {
         if(information){
@@ -41,16 +45,21 @@ const InformationAccount:React.FC<InformationAccountProps> =({
       })
       const onSubmit: SubmitHandler<FieldValues> = (data) => {
         axios.post('/api/information',data)
-            .then(()=>console.log('success'))
-            .catch((err)=>console.log(err))
+            .then(()=>{
+                toast.success('Created.');
+                router.refresh()
+            })
+            .catch((err)=>{
+                toast.error(err)
+            })
       }
     return (
         <div>
             <Header
                 title="Thông tin cá nhân"
-                subtitle=""
+                subtitle={info ?"Bạn đã tạo thông tin cá nhân":""}
                 center
-                big
+               
             />
             <div 
                 className="
@@ -146,7 +155,12 @@ const InformationAccount:React.FC<InformationAccountProps> =({
                             <div className="font-bold text-md ">Bạn có thể cập nhật thông tin</div>
                             <div className="text-[0.8rem] text-neutral-600 font-light">
                                 Cập nhật lại thông tin miễn phí 
-                                <span className="underline hover:opacity-[0.5] cursor-pointer px-2">tại đây</span> trên Airbnb.
+                                <span 
+                                    onClick={()=>router.push('informations?category=cập%20nhật')}
+                                    className="underline hover:opacity-[0.5] cursor-pointer px-2"
+                                >
+                                    tại đây
+                                </span> trên Airbnb.
                             </div>
                             <div className="text-[0.8rem] text-neutral-600 font-light">
                                 Bạn có thể chỉnh sửa thông tin liên hệ và thông tin cá nhân. Nếu sử dụng thông tin này để xác minh danh tính, bạn sẽ cần phải xác minh lần nữa vào lần đặt tiếp theo, hoặc để tiếp tục đón tiếp khách.

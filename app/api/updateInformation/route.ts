@@ -22,11 +22,11 @@ export  async function POST(request:Request){
             id:id
         },
         data:{
-             name:'linh thai',
-             email:'kfkdlsa',
-             phone:'940369',
-             address:'sd',
-             emerency:"dsgsg"
+             name,
+             email,
+             phone,
+             address,
+             emerency
         }
     });
 
