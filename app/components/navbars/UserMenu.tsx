@@ -74,9 +74,14 @@ const UserMenu:React.FC<UserMenuProps> = ({
         setIsOpen(false)
         router.push('/rent')
     },[isOpen, router])
+    //handle information
+    const handleInformation = useCallback(()=>{
+        setIsOpen(false)
+        router.push('/informations')
+    },[isOpen, router])
     return (
        <div 
-       className='hidden md:flex flex-row justify-between items-center relative'>
+       className='hidden md:flex flex-row justify-between items-center relative z-40'>
         <div 
          onClick={()=>router.push('/rent')}
         className='mx-4 text-sm hover:bg-neutral-100 rounded-full px-4 py-1 transiton cursor-pointer hidden md:block'>
@@ -106,8 +111,24 @@ const UserMenu:React.FC<UserMenuProps> = ({
                 <Avatar session={session}/>
             </div>
         </div>
-        {isOpen && (
-            <div className='absolute transition-all top-12 right-0 bg-white border-[1px] px-4 py-4 w-[300px] rounded-lg shadow-md'>
+       
+            <div className={`
+                    absolute 
+                    transition-all 
+                    top-12 
+                    right-0 
+                    bg-white 
+                    border-[1px]
+                    px-4 
+                    
+                    w-[300px] 
+                    rounded-lg 
+                    shadow-md
+                    overflow-hidden
+                    duration-100
+                    ${isOpen ?"h-auto py-4 ":"h-0"}
+                    ${isOpen ?"opacity-full":"opacity-0"}
+                    `}>
                 {session ? (
                     <>
                          <MenuItem
@@ -123,8 +144,8 @@ const UserMenu:React.FC<UserMenuProps> = ({
                             onClick={handleFavorite}
                         />
                         <MenuItem
-                            label='My properties'
-                            onClick={()=>{}}
+                            label='Quản lí tài khoản'
+                            onClick={handleInformation}
                         />
                         <MenuItem
                             label='Quản lí nhà/phòng cho thuê'
@@ -154,7 +175,7 @@ const UserMenu:React.FC<UserMenuProps> = ({
                 )}
               
             </div>
-        )}
+       
        </div>
     )
 }

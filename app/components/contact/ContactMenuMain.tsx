@@ -36,7 +36,7 @@ const article = [
         id:'1',
         title:"bắt đầu trên Airbnb",
         subtitle:"Quy trình xác minh danh tính giúp chúng tôi xác nhận rằng đó đúng là bạn. Đây là một trong những cách giúp chúng tôi đảm bảo an toàn trên Airbnb",
-        img:"/carosel-01.jpeg",
+        img:"/carosel-01.webp",
         content:"Miễn là bạn nhập điểm đến, ngày đi và số lượng khách khi tìm kiếm trên Airbnb, tất cả danh sách hiển thị sẽ có sẵn. Để đảm bảo không gian vừa phải, hãy sử dụng các bộ lọc tìm kiếm để tìm một địa điểm hoàn toàn dành cho chính bạn hoặc các tùy chọn khác nếu bạn muốn một số không gian chung. Một khi bạn tìm thấy một nơi bạn thích, bạn có thể vẫn còn thắc mắc về nó. Mặc dù không thể đến thăm chỗ nghỉ trước khi đặt phòng, nhưng bạn có thể liên hệ với Chủ nhà để tìm hiểu thêm. Ngoài ra, hãy hỏi họ về các tiện nghi cụ thể, vùng lân cận hoặc địa điểm vì họ là nguồn tốt nhất cho tất cả các chi tiết. Họ thậm chí có thể gửi cho bạn chấp thuận trước hoặc ưu đãi đặc biệt để lôi kéo bạn đặt chỗ của họ.",
         category:"guest"
     },
@@ -45,7 +45,7 @@ const article = [
         title:"Tìm chổ phù hợp với bạn",
         subtitle:"bạn đã sẵn sàng để đặt, nhưng cần phải trả tiền. Tin vui là chúng tôi hỗ trợ các phương thức thanh toán khác nhau—điều này chỉ phụ thuộc vào quốc gia đặt tài khoản thanh toán của bạn. Nếu cần chia nhỏ khoản thanh toán của mình, bạn có thể chia nhỏ miễn là thời gian lưu trú của bạn đủ điều kiện và có tùy chọn gói thanh toán khi thanh toán. Hãy nhớ rằng, bất kể bạn sử dụng phương thức thanh toán nào hoặc thanh toán vào thời điểm nào, hãy luôn lưu giữ các giao dịch trên Airbnb.",
         content:"bạn đã sẵn sàng để đặt, nhưng cần phải trả tiền. Tin vui là chúng tôi hỗ trợ các phương thức thanh toán khác nhau—điều này chỉ phụ thuộc vào quốc gia đặt tài khoản thanh toán của bạn. Nếu cần chia nhỏ khoản thanh toán của mình, bạn có thể chia nhỏ miễn là thời gian lưu trú của bạn đủ điều kiện và có tùy chọn gói thanh toán khi thanh toán. Hãy nhớ rằng, bất kể bạn sử dụng phương thức thanh toán nào hoặc thanh toán vào thời điểm nào, hãy luôn lưu giữ các giao dịch trên Airbnb.",
-        img:"/carosel-02.jpeg",
+        img:"/carosel-02.webp",
         category:"guest"
     },
     {
@@ -60,42 +60,42 @@ const article = [
         id:'4',
         title:"Airbnb cho khách",
         subtitle:"Quy trình xác minh danh tính giúp chúng tôi xác nhận rằng đó đúng là bạn. Đây là một trong những cách giúp chúng tôi đảm bảo an toàn trên Airbnb",
-        img:"/carosel-05.jpeg",
+        img:"/carosel-05.webp",
         content:"Mọi đặt phòng đều đi kèm với AirCover cho khách. Nếu có vấn đề nghiêm trọng với Airbnb của bạn mà Chủ nhà không thể giải quyết, chúng tôi sẽ giúp bạn tìm một địa điểm tương tự, tùy thuộc vào tình trạng sẵn có với mức giá tương đương. Nếu một địa điểm tương tự không có sẵn hoặc bạn không muốn đặt lại, chúng tôi sẽ hoàn lại toàn bộ hoặc một phần cho bạn.Nếu có bất cứ điều gì xảy ra, Máy chủ của bạn là điểm liên hệ tốt nhất của bạn; có khả năng họ sẽ có thể sửa nó. Bạn có thể nhắn tin trực tiếp cho Chủ nhà từ hộp thư đến của mình để cho họ biết chuyện gì đang xảy ra..",
         category:"guest"
     },
     {
         id:'5',
         title:"Tối ưu hóa mục cho thuê",
-        img:"/carosel-06.jpeg",
+        img:"/carosel-06.webp",
         content:"Bạn muốn quản lý giá hàng đêm, giảm giá, v.v. Hãy truy cập Danh sách. Chỉ cần biết rằng giá tùy chỉnh sẽ thay thế giá thông thường hàng đêm, hàng tuần và hàng tháng của danh sách của bạn hoặc bất kỳ giá hàng đêm nào bạn đã lưu trên lịch của mình. Nếu bạn muốn thêm các loại phí khác—chẳng hạn như phí dọn dẹp để giúp bạn giữ cho chỗ ở của mình ở tình trạng tốt—bạn cũng có thể thiết lập loại phí này trong Danh sách. ..",
         category:"host"
     },
     {
         id:'6',
         title:"Nhận chi trả",
-        img:"/carosel-07.jpeg",
+        img:"/carosel-07.webp",
         content:"Khi bạn lần đầu tiên trở thành Chủ nhà, bạn sẽ cần đảm bảo rằng bạn đã thiết lập một phương thức thanh toán cho tài khoản của mình. Có thể mất một chút thời gian để thiết lập đầy đủ, vì vậy chúng tôi khuyên bạn nên thực hiện càng sớm càng tốt. Nhưng làm cách nào để bạn chọn loại tiền xuất chi? Nó dựa trên quốc gia và phương thức bạn đã chọn khi thêm phương thức chi trả lần đầu tiên. Xin lưu ý rằng bạn không thể thay đổi đơn vị tiền tệ của phương thức thanh toán sau khi đã thêm phương thức thanh toán đó, nhưng bạn có thể thiết lập phương thức thanh toán mới bằng đơn vị tiền tệ khác bất kỳ lúc nào.",
         category:"host"
     },
     {
         id:'7',
         title:"Đạt mục tiêu đón khách",
-        img:"/carosel-08.jpeg",
+        img:"/carosel-08.webp",
         content:"Làm thế nào để bạn làm cho danh sách của bạn hấp dẫn khách? Đối với những người mới bắt đầu, việc mô tả rõ ràng, chính xác về những gì khách sẽ nhận được sẽ rất hữu ích—điều này đặt ra những kỳ vọng phù hợp. Luôn cập nhật thông tin chi tiết, cho khách biết điều gì làm cho địa điểm của bạn trở nên độc đáo và chụp nhiều ảnh chất lượng cao (hãy coi ảnh là ấn tượng đầu tiên về không gian của bạn). Đây là mẹo chụp ảnh: Hãy dành chút thời gian để sắp xếp mọi thứ như thể bạn đang chuẩn bị chào đón vị khách đầu tiên của mình.",
         category:"host"
     },
     {
         id:'8',
         title:"Thay đổi, hủy và hoàn tiền",
-        img:"/carosel-09.jpeg",
+        img:"/carosel-09.webp",
         content:"Nếu khách của bạn hủy, chúng tôi sẽ thông báo cho bạn và tự động bỏ chặn các ngày trên lịch của bạn để bạn có thể đón tiếp những khách khác. Nhưng những gì về khoản thanh toán của bạn? Nếu bạn đã lưu trữ trước đó, nó sẽ được phát hành cho bạn 24 giờ sau thời gian nhận phòng theo lịch trình của khách. Nếu đây là lần đầu tiên bạn đăng cai, chúng tôi có thể giữ nó cho đến 30 ngày sau khi đặt chỗ được xác nhận.",
         category:"host"
     },
     {
         id:'9',
         title:"Nhận chi trả",
-        img:"/carosel-10.jpeg",
+        img:"/carosel-10.webp",
         content:"Khi bạn lần đầu tiên trở thành Chủ nhà, bạn sẽ cần đảm bảo rằng bạn đã thiết lập một phương thức thanh toán cho tài khoản của mình. Có thể mất một chút thời gian để thiết lập đầy đủ, vì vậy chúng tôi khuyên bạn nên thực hiện càng sớm càng tốt. Nhưng làm cách nào để bạn chọn loại tiền xuất chi? Nó dựa trên quốc gia và phương thức bạn đã chọn khi thêm phương thức chi trả lần đầu tiên. Xin lưu ý rằng bạn không thể thay đổi đơn vị tiền tệ của phương thức thanh toán sau khi đã thêm phương thức thanh toán đó, nhưng bạn có thể thiết lập phương thức thanh toán mới bằng đơn vị tiền tệ khác bất kỳ lúc nào.",
         category:"oganize"
     },
