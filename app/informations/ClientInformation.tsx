@@ -8,36 +8,62 @@ import {useState} from 'react';
 import InformationMenuItem from "../components/informations/InformationMenuItem"
 import ContainInformation from "../components/informations/ContainInformation"
 import InformationAccount from "../components/informations/InformationAccount"
+import InformationPerson from "../components/informations/InformationPerson"
+import { SafeUser } from "../types"
+import { Information } from "@prisma/client"
+import InformationUpdate from "../components/informations/InformationUpdate"
 
 const menu = [
     {
-        label:"tài khoản"
+        label:"thông tin cá nhân"
     },
     {
-        label: "cho thuê"
+        label: "tạo mới"
+    },
+    {
+        label: "cập nhật"
     }
 ]
 
-const ClientInformation =()=>{
+interface ClientInformationProps {
+    currentUser:SafeUser | null;
+    information: Information | null 
+}
+
+const ClientInformation:React.FC<ClientInformationProps> =({
+    currentUser,
+    information 
+})=>{
     // const [category,setCategory] = useState('tài khoản')
     const params = useSearchParams();
     let category = params?.get('category') 
-    console.log(category)
+    console.log(information)
 
     let bodyContent = (
         <div>
             body content
         </div>
     )
-    if(category === 'tài khoản'){
+    if(category === 'thông tin cá nhân'){
         bodyContent = (
-            <InformationAccount />
+            <InformationPerson 
+                information ={information}
+            />
         )
     }
 
-    if(category === 'chủ nhà'){
+    if(category === 'tạo mới'){
         bodyContent = (
-            <InformationAccount />
+            <InformationAccount 
+                information = {information}
+            />
+        )
+    }
+    if(category === 'cập nhật'){
+        bodyContent = (
+            <InformationUpdate
+                information = {information}
+            />
         )
     }
     return (

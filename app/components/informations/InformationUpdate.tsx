@@ -10,16 +10,16 @@ import { GiShare } from "react-icons/gi"
 import { Information } from "@prisma/client"
 
 
-interface InformationAccountProps {
+interface InformationUpdateProps {
     information: Information | null
 }
-const InformationAccount:React.FC<InformationAccountProps> =({
+const InformationUpdate:React.FC<InformationUpdateProps> =({
     information
 }) =>{
     const [info,setInfo] = useState(false)
     console.log(info)
     useEffect(() => {
-        if(information){
+        if(!information){
             setInfo(true)
         }else {
             setInfo(false)
@@ -32,22 +32,24 @@ const InformationAccount:React.FC<InformationAccountProps> =({
         formState: { errors },
       } = useForm<FieldValues>({
             defaultValues:{
-               name:"",
-               email: "",
-               phone: '',
-               address: '',
-               emerency:""
+               name:information?.name,
+               email: information?.email,
+               phone: information?.phone,
+               address: information?.address,
+               emerency:information?.emerency,
+               id:information?.id
             }
       })
       const onSubmit: SubmitHandler<FieldValues> = (data) => {
-        axios.post('/api/information',data)
+        axios.post('/api/updateInformation',data)
             .then(()=>console.log('success'))
             .catch((err)=>console.log(err))
       }
+    
     return (
         <div>
             <Header
-                title="Thông tin cá nhân"
+                title="Cập nhật thông tin cá nhân"
                 subtitle=""
                 center
                 big
@@ -75,15 +77,17 @@ const InformationAccount:React.FC<InformationAccountProps> =({
                         <input 
                             id="name" 
                             {...register("name",{required: true})} 
-                            placeholder="Tên" 
+                            placeholder="Name"
+                            defaultValue={information?.name}
                             className="text-[0.8rem] border-[1px] rounded-md border-neutral-600 px-4 py-2"
                         />
 
                         <label htmlFor="email" className="text-sm font-light ">Địa chỉ Email</label>
                         <input 
-                            defaultValue="linh thai" 
+                            
                             id="email" {...register("email")}  
                             placeholder="Email"
+                            defaultValue={information?.email}
                              className="text-[0.8rem] border-[1px] rounded-md border-neutral-600 px-4 py-2"
                         />
 
@@ -92,6 +96,7 @@ const InformationAccount:React.FC<InformationAccountProps> =({
                             id="phone" 
                             {...register("phone")}  
                             placeholder="Số điện thoại"
+                            defaultValue={information?.phone}
                              className="text-[0.8rem] border-[1px] rounded-md border-neutral-600 px-4 py-2"
                         />
 
@@ -100,6 +105,7 @@ const InformationAccount:React.FC<InformationAccountProps> =({
                             id="address" 
                             {...register("address")}  
                             placeholder="Địa chỉ"
+                            defaultValue={information?.address}
                              className="text-[0.8rem] border-[1px] rounded-md border-neutral-600 px-4 py-2"
                         />
 
@@ -108,12 +114,13 @@ const InformationAccount:React.FC<InformationAccountProps> =({
                             id="emerency" 
                             {...register("emerency")}  
                             placeholder="Liên hệ trường hợp khẩn cấp"
+                            defaultValue={information?.emerency}
                              className="text-[0.8rem] border-[1px] rounded-md border-neutral-600 px-4 py-2"
                         />
 
                         <input 
                             type={!info ?'submit':"button"}
-                            value="Tạo thông tin trên Airbnb" 
+                            value="Cập nhật thông tin" 
                             className={`
                                 px-4 py-2 bg-rose-600 text-white rounded-md hover:bg-rose-500 capitalize 
                                 ${info ?"cursor-not-allowed":"cursor-pointer"}
@@ -171,4 +178,4 @@ const InformationAccount:React.FC<InformationAccountProps> =({
     )
 }
 
-export default InformationAccount
+export default InformationUpdate

@@ -25,6 +25,7 @@ model User {
   listings Listing[]
   comment Comment[]
   reservations Reservation[]
+  information Information[]
 }
 
 model Account {
@@ -100,3 +101,13 @@ model Comment {
    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+model Information {
+   id String @id @default(auto()) @map("_id") @db.ObjectId
+   userId String @db.ObjectId
+   name String
+   email String
+   phone String
+   address String
+  emerency String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
