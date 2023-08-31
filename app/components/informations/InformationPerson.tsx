@@ -16,14 +16,14 @@ const InformationPerson:React.FC<InformationPersonProps> = ({
 }) =>{
     const router = useRouter()
     return (
-        <div className="grid grid-cols-2 sm:grid-cols-3 py-8">
-            <div className="col-span-2 flex flex-col gap-4 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 py-2 md:py-8">
+            <div className="col-span-1 md:col-span-2 flex flex-col gap-4 mb-8 md:mt-8">
                 <div className="flex items-center">
                     <div className="text-sm font-bold">Tên pháp lý :</div>
                     <div className="text-sm font-light">{information?.name}</div>
                 </div>
                 <div className="flex items-center">
-                    <div className="text-sm font-bold">Địa chỉ Email :</div>
+                    <div className="text-sm font-bold">Email :</div>
                     <div className="text-sm font-light">{information?.email}</div>
                 </div>
                 <div className="flex items-center">

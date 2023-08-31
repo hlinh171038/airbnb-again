@@ -48,7 +48,8 @@ const InformationMenuItem:React.FC<InformationMenuItemProps> =({
                 hover:opacity-[0.8]
                 capitalize
                 font-bold
-                text-md
+                text-sm
+                md:text-md
                 cursor-pointer
                 transition-all
                 ${selected ? "text-rose-600":"text-neutral-600"}

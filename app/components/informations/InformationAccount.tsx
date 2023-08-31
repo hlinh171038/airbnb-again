@@ -64,9 +64,10 @@ const InformationAccount:React.FC<InformationAccountProps> =({
             <div 
                 className="
                     grid
-                    gird-cols-2
-                    sm:grid-cols-3
+                    gird-cols-1
+                    md:grid-cols-3
                     gap-4
+                    py-8
                 "
             >
                 <div className="col-span-2">
@@ -136,6 +137,8 @@ const InformationAccount:React.FC<InformationAccountProps> =({
                         rounded-md
                         px-4
                         py-4
+                        col-span-2
+                        md:col-span-1
                     "
                 >
                     <div className="flex flex-col gap-4 border-b-[1px] pb-4">

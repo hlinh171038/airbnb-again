@@ -89,7 +89,7 @@ const ClientInformation:React.FC<ClientInformationProps> =({
                 />
             </div>
             <Container>
-                <div className="flex items-center gap-4 w-full border-b-[1px] my-4 ">
+                <div className="flex items-center gap-2 md:gap-4 w-full border-b-[1px] my-4 ">
                    {menu.map((item)=>{
                      return (
                         <InformationMenuItem
