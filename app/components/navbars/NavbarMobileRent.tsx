@@ -14,7 +14,7 @@ const NavbarMobileRent =() =>{
         window.addEventListener('scroll',()=>{
           setBounch(window.scrollY > 100)
         })
-      })
+      },[])
     return (
         <div className={`
         bottom-0

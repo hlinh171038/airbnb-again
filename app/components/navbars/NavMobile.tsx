@@ -42,7 +42,7 @@ const NavMobile:React.FC<NavMobileProps> = ({
     }
     
     // menu mobile rent
-    if(path === `/rent`)
+    if(path === `/rent2`)
     {
       return <NavbarMobileRent/>
     }
@@ -50,7 +50,7 @@ const NavMobile:React.FC<NavMobileProps> = ({
       window.addEventListener('scroll',()=>{
         setBounch(window.scrollY > 100)
       })
-    })
+    },[])
 
 
     // handle trips

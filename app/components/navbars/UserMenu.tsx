@@ -83,7 +83,7 @@ const UserMenu:React.FC<UserMenuProps> = ({
        <div 
        className='hidden md:flex flex-row justify-between items-center relative z-40'>
         <div 
-         onClick={()=>router.push('/rent')}
+         onClick={()=>router.push('/rent2')}
         className='mx-4 text-sm hover:bg-neutral-100 rounded-full px-4 py-1 transiton cursor-pointer hidden md:block'>
             Đón tiếp khách
             {/* {JSON.stringify(session)} */}

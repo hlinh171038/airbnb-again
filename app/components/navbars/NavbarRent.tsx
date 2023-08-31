@@ -6,10 +6,12 @@ import Logo from "./Logo"
 import {MdOutlineAddHomeWork} from 'react-icons/md'
 import Container from "../Container"
 import {useState} from 'react'
+import { useRouter } from "next/navigation"
 
 const NavbarRent = () =>{
     const rentModal = useRentModal();
     const [bounch, setBounch] = useState(false);
+    const router = useRouter()
 
     window.addEventListener('scroll',()=>{
         setBounch(window.scrollY > 100)
@@ -35,6 +37,16 @@ const NavbarRent = () =>{
                 ${bounch ?"shadow-md":"shadow-none"}
             `}>
                <Logo />
+               <div className="flex items-center gap-4">
+                    <div  
+                        onClick={()=>router.push('/rentmanager')}
+                        className="text-sm hover:opacity-[.8] cursor-pointer"
+                    >
+                        Quản lí phòng
+                    </div>
+                    <div className="text-sm hover:opacity-[.8] cursor-pointer">Doanh thu</div>
+                    <div className="text-sm hover:opacity-[.8] cursor-pointer">Hổ trợ</div>
+               </div>
                <div className=" flex-row items-center justify-end hidden sm:flex">
                 <span className="text-sm text-muted text-semibold mr-3">Are you ready for rent ?</span>
                     <div className=" min-w-[200px] ">

@@ -27,7 +27,7 @@ const Navbar:React.FC<NavbarProps> = ({
     const params = useParams();
     // console.log(params.listingId) // take id of link
     
-    if(path === '/rent')
+    if(path === '/rent2')
     {
         return <NavbarRent />
     }
