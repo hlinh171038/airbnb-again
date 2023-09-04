@@ -41,12 +41,12 @@ const menu2 = [
     {
         title:"Chính sách cộng đồng của chúng tôi",
         description:"Cách chúng tôi xây dựng một nền tảng của sự tin tưởng.",
-        img:"/contact-01.jpeg"
+        img:"/contact-01.webp"
     },
     {
         title:"Mẹo và hướng dẫn về an toàn",
         description:"Tài nguyên giúp đảm bảo an toàn cho du khách, chủ nhà.",
-        img:"/contact-02.jpeg"
+        img:"/contact-02.webp"
     }
 ]
 const ContactClient:React.FC<ContactClientProps>= ({

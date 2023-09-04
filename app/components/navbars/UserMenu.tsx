@@ -67,7 +67,7 @@ const UserMenu:React.FC<UserMenuProps> = ({
     // handle contact
     const handleContact = useCallback(()=>{
         setIsOpen(false)
-        router.push('/contact')
+        router.push('/contact?category=Khách')
     },[isOpen, router])
     // handle contact
     const handleRent = useCallback(()=>{
@@ -77,7 +77,7 @@ const UserMenu:React.FC<UserMenuProps> = ({
     //handle information
     const handleInformation = useCallback(()=>{
         setIsOpen(false)
-        router.push('/informations')
+        router.push('/informations?category=thông%20tin%20cá%20nhân')
     },[isOpen, router])
     return (
        <div 

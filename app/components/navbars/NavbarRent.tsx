@@ -9,8 +9,8 @@ import {useState} from 'react'
 import { useRouter } from "next/navigation"
 
 const NavbarRent = () =>{
-    const rentModal = useRentModal();
     const [bounch, setBounch] = useState(false);
+    const rentModal = useRentModal();
     const router = useRouter()
 
     window.addEventListener('scroll',()=>{

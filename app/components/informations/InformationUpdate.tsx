@@ -60,7 +60,7 @@ const InformationUpdate:React.FC<InformationUpdateProps> =({
                 title="Cập nhật thông tin cá nhân"
                 subtitle=""
                 center
-                big
+               
             />
             <div 
                 className="

@@ -9,7 +9,7 @@ const Logo =() =>{
         <Image 
             className="hidden md:block cursor-pointer"
             onClick={()=>router.push('/')}
-            src="/logo.png"
+            src="/logo.webp"
             alt="Avatar"
             width={80}
             height={80}

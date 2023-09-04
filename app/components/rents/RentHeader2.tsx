@@ -7,9 +7,7 @@ import Button from "../Button"
 
 const RentHeader2 = () =>{
 
-    const handleOpenRule =()=>{
-
-    }
+   
     return (
         <div className="py-8">
             <div className=" text-center mt-4">
@@ -284,7 +282,7 @@ const RentHeader2 = () =>{
                 <Button 
                     label="Tìm hiểu thêm"
                     outline
-                    onClick={handleOpenRule}
+                    onClick={()=>{}}
                     
                 />
                 </div>

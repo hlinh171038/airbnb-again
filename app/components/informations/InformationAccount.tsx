@@ -56,7 +56,7 @@ const InformationAccount:React.FC<InformationAccountProps> =({
     return (
         <div>
             <Header
-                title="Thông tin cá nhân"
+                title="Tạo mới cá nhân"
                 subtitle={info ?"Bạn đã tạo thông tin cá nhân":""}
                 center
                

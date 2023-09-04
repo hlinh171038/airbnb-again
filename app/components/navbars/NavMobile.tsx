@@ -27,11 +27,12 @@ interface NavMobileProps {
 const NavMobile:React.FC<NavMobileProps> = ({
   listingData = []
 }) =>{
+    const [bounch, setBounch] = useState(true);
     const rentModal = useRentModal();
     const router = useRouter();
     const path = usePathname();
     const params = useParams();
-    const [bounch, setBounch] = useState(true);
+    
 
     if(path === `/listings/${params.listingId}`)
     {
@@ -46,20 +47,18 @@ const NavMobile:React.FC<NavMobileProps> = ({
     {
       return <NavbarMobileRent/>
     }
-    useEffect(()=>{
+ 
+
+    // useEffect(()=>{
+   
+    // },[])
+    if (typeof window !== "undefined") {
+      // Client-side-only code
       window.addEventListener('scroll',()=>{
         setBounch(window.scrollY > 100)
       })
-    },[])
-
-
-    // handle trips
-    const handleTrips = useCallback(()=>{
-      router.push('/trips')
-      console.log('try')
-    },[router])
-
-    
+    }
+       
     return (
         <div className={`
           bottom-0
@@ -86,7 +85,7 @@ const NavMobile:React.FC<NavMobileProps> = ({
                 <div>Trang chủ</div>
               </div>
               <div 
-                onClick={handleTrips}
+                onClick={()=>router.push('/rent2')}
                 className={`flex flex-col justify-center items-center cursor-pointer ${path === '/trips' && "text-rose-500"}`}
                 >
                 <div><FaAirbnb  size={30} className={`text-neutral-400 hover:text-neutral-500 transition-all ${path === '/trips' && "text-rose-500 hover:text-rose-600"} `}/></div>

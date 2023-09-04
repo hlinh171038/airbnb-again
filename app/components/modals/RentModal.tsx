@@ -599,7 +599,7 @@ const RentModal = () =>{
 
     if(step === STEPS.INFO){
         bodyContent=(
-            <div className="flex px-8 py-5 flex justify-center">
+            <div className="flex px-8 py-5  justify-center">
                 <div className="w-full sm:w-1/2 flex flex-col gap-8">
                     <Header 
                         title ="Chia sẻ thông tin cơ bản về chỗ ở của bạn"
@@ -704,7 +704,7 @@ const RentModal = () =>{
                         big
                     />
                     <Image 
-                        src="/house-modal.jpg"
+                        src="/house-modal.webp"
                         alt="House Modal"
                         width={500}
                         height={500}
@@ -841,7 +841,7 @@ const RentModal = () =>{
                         big
                     />
                     <Image 
-                        src="/house-modal.jpg"
+                        src="/house-modal.webp"
                         alt="House Modal"   
                         width={500}
                         height={500}
