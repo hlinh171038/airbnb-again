@@ -4,6 +4,7 @@ import { Listing } from "@prisma/client"
 import { SafeListing, SafeUser } from "../types"
 import { useMemo } from "react"
 import RentManager from "../components/rents/RentManager"
+import Footer from "../components/Footer"
 
 
 interface RentManagerClientProps {
@@ -21,6 +22,7 @@ const RentManagerClient:React.FC<RentManagerClientProps> =({
                 listing = {listing}
                 currentUser = {currentUser}
             />
+            <Footer />
         </div>
     )
 }

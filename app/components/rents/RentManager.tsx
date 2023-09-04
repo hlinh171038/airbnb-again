@@ -10,6 +10,8 @@ import {useState} from 'react'
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { BiDownArrow } from "react-icons/bi";
+import { Pagination, Stack } from "@mui/material";
 
 interface RentManagerProps {
     listing: Listing[];
@@ -20,13 +22,35 @@ const RentManager:React.FC<RentManagerProps> =({
     currentUser
 }) =>{
     const [status,setStatus] = useState(false)
-    const router = useRouter();
     const [isActive,setIsActive] = useState(false)
+    const [open,setOpen] = useState(false)
+    const [titleSort,setTitleSort] = useState('Sắp xếp')
+    const [currentPage,setCurrentPage] = useState(1);
+    const [countPerPage,setCountPerPage] = useState(8);
+    const router = useRouter();
+   
     const filter = useMemo(()=>{
         let result = listing.filter((item)=>item.userId === currentUser?.id);
          return result;
      },[listing])
 
+     const [rootArray,setRootArray] = useState(filter)
+     const [arrayListing,setArrayListing] = useState(filter)
+
+
+     // pagination
+     const start = currentPage * countPerPage - countPerPage;
+     const end = currentPage * countPerPage;
+
+     const pagin = [];
+     for(let i=0;i<Math.ceil(arrayListing.length/countPerPage);i++){
+        pagin.push(i)
+     }
+
+     // handle pagination
+     const handlePagination = useCallback((e:any,p: any)=>{
+        setCurrentPage(p)
+    },[currentPage]);
      //handle deleted
      const handleDeleted = useCallback((id:string)=>{
         setIsActive(true);
@@ -45,6 +69,54 @@ const RentManager:React.FC<RentManagerProps> =({
                 setIsActive(false)
             })
      },[router,isActive])
+
+     // handle sort
+     const handleSort = useCallback((title:string) =>{
+        setOpen(false);
+        console.log(title)
+        if(title === 'lowprice'){
+            setTitleSort('Giá thấp đến cao');
+
+           let result =  filter.sort((a,b)=>{
+                if(a.price >b.price) return 1;
+                if(a.price <b.price) return -1;
+                return 0;
+            });
+            setArrayListing(result);
+        }else if(title === 'hightprice'){
+            setTitleSort('Giá cao đến thấp');
+            let result =  filter.sort((a,b)=>{
+                 if(a.price >b.price) return -1;
+                 if(a.price <b.price) return 1;
+                 return 0;
+             });
+             setArrayListing(result);
+        }else if(title === 'new'){
+            setTitleSort('Đăng mới nhất');
+            let result = filter.sort((a,b)=>{
+                if(a.createdAt >b.createdAt) return 1;
+                if(a.createdAt <b.createdAt) return -1;
+                return 0;
+            })
+            setArrayListing(result);
+        } else if(title === 'old') {
+            setTitleSort('Đăng cũ nhất');
+            let result = filter.sort((a,b)=>{
+                if(a.createdAt >b.createdAt) return -1;
+                if(a.createdAt <b.createdAt) return 1;
+                return 0;
+            })
+            setArrayListing(result);
+        } else if(title === 'expired'){
+            setTitleSort('Đã hết hạn')
+            let result = filter.filter((item)=> new Date(item.night)< new Date());
+            setArrayListing(result)
+        }else {
+            setTitleSort('Đang cho thuê')
+            let result = filter.filter((item)=> new Date(item.night)> new Date());
+            setArrayListing(result)
+        }
+     },[titleSort])
      
     return (
         <div>
@@ -67,55 +139,90 @@ const RentManager:React.FC<RentManagerProps> =({
                     className="w-full h-[300px] object-cover "
                 />
             </div>
-            <div className="w-full px-4">
-                <table className="w-full text-center table-auto">
-                    <tr>
-                        <th>Tiêu đề</th>
-                        <th>Mã phòng</th>
-                        <th>Ngày bắt đầu </th>
-                        <th>Ngày kết thúc</th>
-                        <th>Giá</th>
-                        <th>Chi tiết</th>
-                        <th>Xóa </th>
-                     </tr>
-                   
-                     {filter.map((item)=>{
-                        return (
-                            <tr>
-                                <td className="text-start">{item?.title}</td>
-                                <td>{item?.id}</td>
-                                <td>
-                                    {new Date(item.createdAt).getDate()}/
-                                    {new Date(item.createdAt).getMonth()+1}/
-                                    {new Date(item.createdAt).getFullYear()}
-                                </td>
-                                <td>
-                                    {new Date(item.night).getDate()}/
-                                    {new Date(item.night).getMonth()+1}/
-                                    {new Date(item.night).getFullYear()}
-                                </td>
-                                <td className="text-end px-4">{item?.price.toLocaleString('vi', {style : 'currency', currency : 'VND'})}</td>
-                                <td>
-                                    <Button
-                                        label="Chi tiết"
-                                        onClick={()=>router.push(`/listings/${item?.id}`)}
-                                        outline
-                                    />
-                                </td>
-                                <td>
-                                    <Button
-                                        label="Xóa"
-                                        onClick={()=>handleDeleted(item.id)}
-                                    />
-                                </td>
-                            </tr>
-                        )
-                    })}
-                    
-                    
-                </table>
+            <div className="block lg:hidden">
+                <Header 
+                    title="Không thể xem"
+                    subtitle="Chuyển sang loptop để quản lí mục cho thuê"
+                    center
+                />
             </div>
-           
+            <div className="hidden lg:block">
+                <div className="flex items-center justify-end  py-2">
+                <div className=" relative w-[20%] h-8">
+                    <div className="absolute top-0 right-8 border-b-[1px] border-rose-500 px-2 cursor-pointer flex justify-between items-center w-full">
+                        <div>
+                            {titleSort}
+                        </div>
+                        <div onClick={()=>setOpen(!open)}>
+                            <BiDownArrow />
+                        </div>
+                    </div>
+                    <div className={`absolute  top-7 right-8 z-20 bg-white px-4  rounded-md shadow-md text-sm  w-full overflow-hidden transition-all ${open ?"h-auto py-4 flex flex-col gap-2":"h-0 "}`}>
+                        <div className="hover:text-neutral-600 transition-all cursor-pointer" onClick={()=>handleSort('hightprice')}>Giá cao đến thấp</div>
+                        <div className="hover:text-neutral-600 transition-all cursor-pointer" onClick={()=>handleSort('lowprice')}>Giá thấp đến cao</div>
+                        <div className="hover:text-neutral-600 transition-all cursor-pointer" onClick={()=>handleSort('old')}>Đăng mới nhất</div>
+                        <div className="hover:text-neutral-600 transition-all cursor-pointer" onClick={()=>handleSort('new')}>Đăng cũ nhất</div>
+                        <div className="hover:text-neutral-600 transition-all cursor-pointer" onClick={()=>handleSort('expired')}>Đã hết hạn</div>
+                        <div className="hover:text-neutral-600 transition-all cursor-pointer" onClick={()=>handleSort('inpired')}>Đang cho thuê</div>
+                    </div>
+                </div>
+                </div>
+                <div className="w-full px-4">
+                    
+                    <table className="w-full text-center table-auto">
+                        <tr>
+                            <th>Tiêu đề</th>
+                            <th>Mã phòng</th>
+                            <th>Ngày bắt đầu </th>
+                            <th>Ngày kết thúc</th>
+                            <th>Giá</th>
+                            <th>Chi tiết</th>
+                            <th>Xóa </th>
+                        </tr>
+                    
+                        {arrayListing.slice(start,end).map((item)=>{
+                            return (
+                                <tr>
+                                    <td className="text-start">{item?.title}</td>
+                                    <td>{item?.id}</td>
+                                    <td>
+                                        {new Date(item.createdAt).getDate()}/
+                                        {new Date(item.createdAt).getMonth()+1}/
+                                        {new Date(item.createdAt).getFullYear()}
+                                    </td>
+                                    <td>
+                                        {new Date(item.night).getDate()}/
+                                        {new Date(item.night).getMonth()+1}/
+                                        {new Date(item.night).getFullYear()}
+                                    </td>
+                                    <td className="text-end px-4">{item?.price.toLocaleString('vi', {style : 'currency', currency : 'VND'})}</td>
+                                    <td>
+                                        <Button
+                                            label="Chi tiết"
+                                            onClick={()=>router.push(`/listings/${item?.id}`)}
+                                            outline
+                                        />
+                                    </td>
+                                    <td>
+                                        <Button
+                                            label="Xóa"
+                                            onClick={()=>handleDeleted(item.id)}
+                                        />
+                                    </td>
+                                </tr>
+                            )
+                        })}
+                        
+                        
+                    </table>
+                </div>
+                <div className="w-full flex justify-end px-2">
+                    {/* pagination */}
+                    <Stack spacing={2} className="mt-3 mb-3 flex justify-end">
+                        <Pagination count={pagin.length} variant="outlined" shape="rounded" className="flex justify-end" onChange={handlePagination}/>
+                    </Stack>
+                </div>
+            </div>
         </div>
     )
 }
