@@ -2,7 +2,7 @@
 
 import { Range } from "react-date-range";
 import Button from "../Button";
-import { useCallback, useState } from "react";
+import { useCallback, useState,useMemo } from "react";
 import Calendar from '@/app/components/inputs/Calendar'
 import { TbSquareRoundedPlusFilled } from "react-icons/tb";
 import { AiFillMinusCircle, AiFillStar } from "react-icons/ai";
@@ -63,7 +63,12 @@ const ListingBill:React.FC<ListingBillProps> = ({
 
     const router = useRouter();
     const loginModal = useLoginModal();
-    
+
+    // comment by current id
+    const commentById = useMemo(()=>{
+        const result =comments.filter((item)=>item.listingId === id);
+        return result
+    },[])
    
     // handle open calendar
     const handleOpenCalendar = useCallback(()=>{
@@ -176,17 +181,17 @@ const ListingBill:React.FC<ListingBillProps> = ({
 
     // handle count all star
     const handleCountAllStar = useCallback(()=>{
-        if(comments.length === 0)
+        if(commentById.length === 0)
         {
             return 0;
         }
         let count = 0
-        for(let i=0;i<comments.length;i++)
+        for(let i=0;i<commentById.length;i++)
         {
-            count += comments[i].start;
+            count += commentById[i].start;
         }
-        return  (count /comments.length).toFixed(2)
-    },[comments])
+        return  (count /commentById.length).toFixed(2)
+    },[commentById])
     
     return <div 
                 className={`
@@ -217,7 +222,7 @@ const ListingBill:React.FC<ListingBillProps> = ({
                     </p>
                     <div>
                         <div className="flex gap-1 cursor-pointer">
-                            <div className="text-sm flex"><AiFillStar/>{handleCountAllStar()}<span className="flex items-center"><BsDot/></span><span className="underline font-bold">{comments.length} đánh giá</span></div>
+                            <div className="text-sm flex"><AiFillStar/>{handleCountAllStar()}<span className="flex items-center"><BsDot/></span><span className="underline font-bold">{commentById.length} đánh giá</span></div>
                         </div>
                     </div>
                 </div>

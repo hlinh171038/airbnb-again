@@ -1,7 +1,7 @@
 "use client"
 
 import { AiFillStar } from "react-icons/ai";
-import {useState,useEffect,useCallback} from 'react'
+import {useState,useEffect,useCallback,useMemo} from 'react'
 import { SafeComment, SafeUser } from "@/app/types";
 import Header from "../Header";
 import useLoginModal from "@/app/hooks/useLoginModal";
@@ -36,12 +36,18 @@ const CommentSession:React.FC<CommentProps> =({
     const [isLoading,setIsLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [countPerPages,setCountPerPage] = useState(5);
+
     
     const router = useRouter()
 
     const loginModel = useLoginModal();
    
 
+    // show comment with current id
+    const commentById = useMemo(()=>{
+        const result =comments.filter((item)=>item.listingId === listingId);
+        return result
+    },[])
     const starts = ['1','2','3','4','5'];
 
     // pagination
@@ -110,18 +116,19 @@ const CommentSession:React.FC<CommentProps> =({
 
     // handle count all star
     const handleCountAllStar = useCallback(()=>{
-        if(comments.length === 0)
+        if(commentById.length === 0)
         {
             return 0;
         }
         let count = 0
-        for(let i=0;i<comments.length;i++)
+        for(let i=0;i<commentById.length;i++)
         {
-            count += comments[i].start;
+            count += commentById[i].start;
         }
-        return (count /comments.length).toFixed(2)
-    },[comments])
+        return (count /commentById.length).toFixed(2)
+    },[commentById])
   
+    
     return (
         <div 
         className="
@@ -135,7 +142,7 @@ const CommentSession:React.FC<CommentProps> =({
             </div>
             <div className="text-sm underline">{handleCountAllStar()}</div>
             
-            <div className="text-sm underline flex"><BsDot/>{comments.length} đánh giá</div>
+            <div className="text-sm underline flex"><BsDot/>{commentById.length} đánh giá</div>
         </div>
         {/* start and review information */}
         <div className="font-light text-sm">Bạn đánh giá chúng tôi bao nhiêu sao ?</div>
@@ -196,7 +203,7 @@ const CommentSession:React.FC<CommentProps> =({
             </div>
             {/* comment session */}
             <div className=" h-auto">
-                {comments.length >0 && comments.slice(start,end).map((comment)=>{
+                {commentById.length >0 && commentById.slice(start,end).map((comment)=>{
                     return (
                         <CommentItem
                             allUser = {allUser}
@@ -208,7 +215,7 @@ const CommentSession:React.FC<CommentProps> =({
                     )
                 })}
             </div>
-            <Stack spacing={2} className="mt-3 mb-3 flex justify-end">
+            <Stack spacing={2} className={`mt-3 mb-3  ${commentById.length >0 ?"flex justify-end":"hidden"}`}>
                     <Pagination count={pagin.length} variant="outlined" shape="rounded" className="flex justify-end" onChange={handlePagination}/>
             </Stack>
         </div>

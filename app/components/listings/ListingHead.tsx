@@ -5,7 +5,7 @@ import Header from "../Header";
 import useCountries from "@/app/hooks/useCountries";
 import Image from "next/image";
 import HeartButton from "../HeartButton";
-import {useCallback, useState} from 'react'
+import {useCallback, useState,useMemo} from 'react'
 
 
 import {
@@ -59,29 +59,38 @@ const ListingHead:React.FC<ListingHeadProps> =({
 
     },[])
 
+    // comment by current id
+    const commentById = useMemo(()=>{
+        const result =comments.filter((item)=>item.listingId === id);
+        return result
+    },[])
+
      // handle count all star
      const handleCountAllStar = useCallback(()=>{
-        if(comments.length === 0)
+        if(commentById.length === 0)
         {
             return 0;
         }
         let count = 0
 
-        for(let i=0;i<comments.length;i++)
+        for(let i=0;i<commentById.length;i++)
         {
-            count += comments[i].start;
+            count += commentById[i].start;
         }
-        return  (count /comments.length).toFixed(2)
-    },[comments])
+        return  (count /commentById.length).toFixed(2)
+    },[commentById])
 
     const location = getByValue(locationValue);
     return (
        
         <>
+            <div className="w-full h-[100px]">
+                linh
+            </div>
              <div>
                 <div className="font-semibold text-4xl uppercase ">{title}</div>
                 <div className="flex gap-1 cursor-pointer">
-                    <div className="text-sm flex"><AiFillStar/>{handleCountAllStar()}<span className="flex items-center"><BsDot/></span><span className="underline font-bold">{comments.length} đánh giá</span></div>
+                    <div className="text-sm flex"><AiFillStar/>{handleCountAllStar()}<span className="flex items-center"><BsDot/></span><span className="underline font-bold">{commentById.length} đánh giá</span></div>
                     <span className="flex items-center"><BsDot/></span>
                     <div className="text-sm underline">{location?.region} - {location?.label}</div>
                 </div>
