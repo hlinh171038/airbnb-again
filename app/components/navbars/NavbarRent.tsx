@@ -44,7 +44,12 @@ const NavbarRent = () =>{
                     >
                         Quản lí phòng
                     </div>
-                    <div className="text-sm hover:opacity-[.8] cursor-pointer">Doanh thu</div>
+                    <div 
+                        className="text-sm hover:opacity-[.8] cursor-pointer"
+                        onClick={()=>router.push('/benefits')}
+                    >
+                        Doanh thu
+                    </div>
                     <div className="text-sm hover:opacity-[.8] cursor-pointer">Hổ trợ</div>
                </div>
                <div className=" flex-row items-center justify-end hidden sm:flex">
