@@ -2,7 +2,7 @@ import Image from 'next/image'
 import ClientOnly from './components/ClientOnly'
 import { getServerSession } from "next-auth/next"
 import { authOptions } from './api/auth/[...nextauth]/route'
-import { getListing } from './actions/getListing'
+import getListing, { IListingsParams } from './actions/getListing'
 import EmptyState from './components/EmptyState'
 import Container from './components/Container'
 import getCurrentUser from './actions/getCurrentUser'
@@ -11,9 +11,11 @@ import Header from './components/Header'
 import getReservation from './actions/getReservations'
 import { getComment } from './actions/getComment'
 
-
-export default async function Home() {
-  const listing = await getListing();
+interface HomeProps {
+  searchParams : IListingsParams
+}
+const Home = async ({searchParams}:HomeProps)=> {
+  const listing = await getListing(searchParams);
   const currentUser = await getCurrentUser();
   const comment = await getComment()
 
@@ -58,3 +60,5 @@ export default async function Home() {
    </ClientOnly>
   )
 }
+
+export default Home

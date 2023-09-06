@@ -13,7 +13,9 @@ import RentModal from './components/modals/RentModal'
 import NavMobile from './components/navbars/NavMobile'
 import BodyContainer from './components/BodyContainer'
 import getListingById from './actions/getListingById'
-import { getListing } from './actions/getListing'
+import getListing, { IListingsParams } from './actions/getListing'
+import SearchModal from './components/modals/SearchModal'
+import FilterModal from './components/modals/FilterModal'
 
 
 
@@ -24,13 +26,18 @@ export const metadata: Metadata = {
   description: 'Airbnb app clone',
 }
 
+// interface LayoutProps {
+//   searchParams:IListingsParams;
+// }
 export default async function RootLayout({
   children,
+  searchParams
 }: {
-  children: React.ReactNode
+  children: React.ReactNode,
+  searchParams:IListingsParams;
 }) {
   const session = await getCurrentUser()
-  const listingData = await getListing();
+  // const listingData = await getListing(searchParams);
   
   return (
 
@@ -42,11 +49,13 @@ export default async function RootLayout({
           <RegisterModal />
           <LoginModal />
           <RentModal />
+          <FilterModal />
+          <SearchModal />
         </ClientOnly>
         <div className=' pt-19 '>
           {children}
         </div>
-        <NavMobile listingData = {listingData}/>
+        {/* <NavMobile listingData = {listingData}/> */}
         </body>
     </html>
   )

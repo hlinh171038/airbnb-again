@@ -18,6 +18,8 @@ import CategoryBox from './CategoryBox';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import useFilter from '@/app/hooks/useFilter';
+
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -117,7 +119,7 @@ export const categories = [
     }
   ]
 const Categories =() =>{
-
+    const fillterModal = useFilter();
     const params = useSearchParams();// take param from url
     const pathname = usePathname(); // take path name exist in url
 
@@ -150,7 +152,7 @@ const Categories =() =>{
             </Carousel>
               
           </div>
-          <div className=' hidden md:block border-[2px] px-6 py-2 rounded-md cursor-pointer' >
+          <div onClick={()=>fillterModal.onOpen()} className=' hidden md:block border-[2px] px-6 py-2 rounded-md cursor-pointer' >
             <TbAdjustmentsHorizontal />
           </div>
         </div>

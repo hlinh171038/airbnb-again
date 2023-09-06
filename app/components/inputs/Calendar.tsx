@@ -13,7 +13,7 @@ interface DatePickerProps {
   value?: Range,
   onChange?: (value: RangeKeyDict) => void;
   disabledDates?: Date[];
-  countDay: number,
+  countDay?: number,
   maxnight?: string
 }
 

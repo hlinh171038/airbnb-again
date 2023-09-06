@@ -1,11 +1,21 @@
 "use client"
 
+import useSearchModal from '@/app/hooks/useSearch'
 import {BiSearch} from 'react-icons/bi'
 import { TbAdjustmentsHorizontal } from 'react-icons/tb'
+import {useCallback} from 'react'
 
 const Search = () =>{
+    const searchModal = useSearchModal()
+
+    const handleOpenSearch = useCallback(()=>{
+        searchModal.onOpen()
+        console.log(searchModal.isOpen)
+        console.log('try')
+    },[searchModal])
     return (
         <div
+            onClick={handleOpenSearch}
             className="
                 border-[1px]
                 rounded-full
