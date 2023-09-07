@@ -26,18 +26,18 @@ export const metadata: Metadata = {
   description: 'Airbnb app clone',
 }
 
-// interface LayoutProps {
-//   searchParams:IListingsParams;
-// }
+
+
 export default async function RootLayout({
   children,
-  searchParams
 }: {
   children: React.ReactNode,
-  searchParams:IListingsParams;
 }) {
-  const session = await getCurrentUser()
-  // const listingData = await getListing(searchParams);
+  // const RootLayout:React.FC<RootLayoutProps> = async({
+  //   children
+  // },{searchParams}:RootLayoutProps)=>{
+    const session = await getCurrentUser()
+   //const listingData = await getListing(searchParams);
   
   return (
 
@@ -55,7 +55,7 @@ export default async function RootLayout({
         <div className=' pt-19 '>
           {children}
         </div>
-        {/* <NavMobile listingData = {listingData}/> */}
+        <NavMobile />
         </body>
     </html>
   )

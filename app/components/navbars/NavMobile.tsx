@@ -19,13 +19,13 @@ import { RxAvatar } from "react-icons/rx"
 import { GoHome } from "react-icons/go"
 
 
-interface NavMobileProps {
-  listingData: Listing[]
-}
+// interface NavMobileProps {
+//   listingData: Listing[]
+// }
 
 
-const NavMobile:React.FC<NavMobileProps> = ({
-  listingData = []
+const NavMobile = ({
+
 }) =>{
     const [bounch, setBounch] = useState(true);
     const rentModal = useRentModal();
@@ -37,8 +37,7 @@ const NavMobile:React.FC<NavMobileProps> = ({
     if(path === `/listings/${params.listingId}`)
     {
       return <NavbarListingId 
-                listingData = {listingData}
-                id={params.listingId as string} 
+   
               />
     }
     

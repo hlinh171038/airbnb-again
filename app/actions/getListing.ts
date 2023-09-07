@@ -2,14 +2,16 @@ import prisma from '@/app/libs/prismadb'
 
 
 export interface IListingsParams {
-    userId?: string;
     guestCount?:number;
     roomCount?:number;
+    bed?:number;
     bathroomCount?: number;
     startDate?: string;
     endDate?: string;
     locationValue?: string;
     category?: string;
+    price?:number;
+    house?: string
 }
 export default async function getListing(
     params:IListingsParams
@@ -19,10 +21,13 @@ export default async function getListing(
             guestCount,
             roomCount,
             bathroomCount,
+            bed,
             startDate,
             endDate,
             locationValue,
-            category
+            category,
+            house,
+            price
             } =params;
 
         let query: any = {};
@@ -45,6 +50,19 @@ export default async function getListing(
                 // + here mean: you trnsform roomCount(params is tring) --> into number
                 gte: +guestCount
             }
+        }
+        if(bed){
+            query.bed ={
+                gte: +bed
+            }
+        }
+        if(price){
+            query.price ={
+                gte: +price
+            }
+        }
+        if(house){
+            query.house=house;
         }
         if(bathroomCount){
             query.bathroomCount = {

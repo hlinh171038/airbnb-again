@@ -10,68 +10,50 @@ import useBook from "@/app/hooks/useBook"
 import { BiLoaderAlt } from "react-icons/bi"
 import LazyLoad from 'react-lazy-load';
 
-interface NavbarListingProps {
-  listingData: Listing[];
-  id: string
-}
-const NavbarListingId:React.FC<NavbarListingProps> = ({
-  listingData = [],
-  id
+// interface NavbarListingProps {
+//   listingData: Listing[];
+//   id: string
+// }
+const NavbarListingId = ({
+  
 }) =>{
     const bookModal = useBook()
-    const [price,setPrice] = useState(0);
-    const [date, setDate] = useState('')
+    const [bounch, setBounch] = useState(true);
 
+
+    if (typeof window !== "undefined") {
+      // Client-side-only code
+      window.addEventListener('scroll',()=>{
+        setBounch(window.scrollY > 100)
+      })
+    }
 
     // handle open book
-   
     const handleOpenBook =useCallback(()=>{
       bookModal.onOpen()
     },[bookModal.onOpen])
 
-    const findData = useCallback((id:string)=>{
-      return listingData.find((item)=>item.id === id)
-    },[id,listingData]);
 
-    useEffect(()=>{
-      let data = findData(id);
-      if(data)
-      {
-        setPrice(data.price)
-        setDate(data.night)
-      }
-    },[])
-    return <div className=" bottom-0 fixed w-full bg-white z-40 py-1 md:py-2 sm:hidden grid border-none md:border-t-[1px] px-4 items-center" style={{gridTemplateColumns: "auto auto auto auto"}}>
+    return <div 
+    className={`
+        bottom-0
+        fixed w-full 
+        bg-white 
+        z-40 
+        py-2 
+        sm:hidden 
+        transition-all
+        duration-[300ms]
+        border-t-[1px]
+        ${bounch ?"translate-y-0":"translate-y-full"}
+        ${bounch ?"opacity-1":"opacity-0"}
+      `}
+        >
+      <Button 
+        label="Đặt Phòng"
+        onClick={handleOpenBook}
+      />
       
-      <div className=" animate-pulse font-light mb-2 text-sm " style={{gridArea:"1 / 1 / span 1 / span 3"}}>
-        <div>
-          <span className="font-bold">{price ? price.toLocaleString('vi', {style : 'currency', currency : 'VND'}):"Cập nhật"}</span> / Đêm
-        </div>
-        <div className="flex items-center text-sm underline">
-          <div>
-            {date ? new Date().getDate(): "..."} -
-          </div>
-          <div>
-            {date && new Date(date).getDate()} thg
-            {date && new Date(date).getMonth()} -
-            {date && new Date(date).getFullYear()}
-          </div>
-        </div>
-      </div>
-      
-      {!price || !date ?
-      (
-        <BiLoaderAlt size={50} className="animate-spin text-rose-600"/>
-      
-      ):
-      (
-          <Button
-          label="Đặt phòng"
-          onClick={handleOpenBook}
-      />  
-      )
-      
-      }          
   </div>
 }
 

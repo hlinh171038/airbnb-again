@@ -45,6 +45,7 @@ const SearchModal = () =>{
         key:'selected'
     })
     const [guestCount,setGuestCount] = useState(1)
+    const [bounch, setBounch] = useState(true);
     const [roomCount,setRoomCount] = useState(1)
     const [bathroomCount,setBathroomCount] = useState(1)
     const router = useRouter()
@@ -187,10 +188,20 @@ const SearchModal = () =>{
         )
     }
 
+    // scroll
+    if (typeof window !== "undefined") {
+        // Client-side-only code
+        window.addEventListener('scroll',()=>{
+          setBounch(window.scrollY > 100)
+        })
+      }
     // check open popup
     useEffect(()=>{
         setOpen(searchModal.isOpen)
-    },[searchModal.isOpen])
+        if(bounch === true){
+            searchModal.onClose()
+        }
+    },[searchModal.isOpen,bounch])
     return (
         <div 
         // onClick={()=>searchModal.onClose()}
