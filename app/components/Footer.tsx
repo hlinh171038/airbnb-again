@@ -4,8 +4,10 @@ import { AiFillTwitterSquare, AiOutlineCopyrightCircle, AiOutlineGlobal } from "
 import { BsDot } from "react-icons/bs"
 import { FaFacebookSquare, FaInstagramSquare } from "react-icons/fa"
 import Container from "./Container"
+import { useRouter } from "next/navigation"
 
 const Footer = () =>{
+    const router = useRouter()
     return (
         <div className="bg-neutral-100 mt-10 px-0 xl:px-20 md:px-10 sm:px-2">
             <div>
@@ -24,12 +26,12 @@ const Footer = () =>{
                     <div className=" transition block md:flex flex-col gap-2 cursor-pointer">
                         <div className="font-bold my-4 cursor-default">Hổ trợ</div>
                         <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-2">
-                            <div className="hover:underline">Trung tâm trợ giúp.</div>
-                            <div className="hover:underline">Yêu cầu trợ giúp vấn đề an toàn.</div>
-                            <div className="hover:underline">AirCover.</div>
-                            <div className="hover:underline">Hổ trợ người khuyết tật.</div>
-                            <div className="hover:underline">Các tùy chọn hủy.</div>
-                            <div className="hover:underline">Báo cáo lo ngại hàng xóm.</div>
+                            <div onClick={()=>router.push('/contact?category=Khách')} className="hover:underline">Trung tâm trợ giúp.</div>
+                            <div onClick={()=>router.push('/contact?category=Khách')} className="hover:underline">Yêu cầu trợ giúp vấn đề an toàn.</div>
+                            <div onClick={()=>router.push('/contact?category=Khách')} className="hover:underline">AirCover.</div>
+                            <div onClick={()=>router.push('/contact?category=Khách')} className="hover:underline">Hổ trợ người khuyết tật.</div>
+                            <div onClick={()=>router.push('/contact?category=Khách')} className="hover:underline">Các tùy chọn hủy.</div>
+                            <div onClick={()=>router.push('/contact?category=Khách')} className="hover:underline">Báo cáo lo ngại hàng xóm.</div>
                         </div>
                     </div>
                     <div className=" transition flex flex-col gap-2 cursor-pointer">
@@ -40,10 +42,10 @@ const Footer = () =>{
                     <div className=" transition flex flex-col gap-2 cursor-pointer">
                         <div className="font-bold my-4 cursor-default">Đón tiếp khách</div>
                         <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-2">
-                            <div className="hover:underline">Cho thuê nhà trên Airbnb.</div>
-                            <div className="hover:underline">Airbnb cho chủ nhà.</div>
-                            <div className="hover:underline">Xem tài nguyên đón tiếp khách.</div>
-                            <div className="hover:underline">Đón tiếp khách có trách nhiệm.</div>
+                            <div  onClick={()=>router.push('/rent2')} className="hover:underline">Cho thuê nhà trên Airbnb.</div>
+                            <div  onClick={()=>router.push('/rent2')} className="hover:underline">Airbnb cho chủ nhà.</div>
+                            <div  onClick={()=>router.push('/rent2')} className="hover:underline">Xem tài nguyên đón tiếp khách.</div>
+                            <div  onClick={()=>router.push('/rent2')} className="hover:underline">Đón tiếp khách có trách nhiệm.</div>
                         </div>
                     </div>
                     <div className=" transition flex flex-col gap-2 cursor-pointer">

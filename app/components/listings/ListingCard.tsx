@@ -70,7 +70,7 @@ const ListingCard:React.FC<ListingCardProps> =({
         let result = filterallcomment.reduce((cal, currentValue) =>{
             return cal+currentValue?.start
         },0);
-        return (result / comment.length).toFixed(2)
+        return filterallcomment.length>0 ? (result / filterallcomment.length).toFixed(2): '0.00'
     },[comment])
     return (
         <div

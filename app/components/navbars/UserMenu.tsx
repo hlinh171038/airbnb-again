@@ -2,7 +2,7 @@
 
 import {AiOutlineMenu} from 'react-icons/ai'
 import Avatar from './Avatar'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import useRegisterModal from '@/app/hooks/useRegisterModal'
 import { User } from '@prisma/client'
 import useLoginModal from '@/app/hooks/useLoginModal'
@@ -21,6 +21,7 @@ const UserMenu:React.FC<UserMenuProps> = ({
 }) =>{
 
     const [isOpen,setIsOpen] = useState<boolean>(false);
+    const [bounch, setBounch] = useState(true);
     const router = useRouter();
     const registerModal = useRegisterModal()
     const loginModal = useLoginModal()
@@ -69,19 +70,23 @@ const UserMenu:React.FC<UserMenuProps> = ({
         setIsOpen(false)
         router.push('/contact?category=Khách')
     },[isOpen, router])
+
     // handle contact
     const handleRent = useCallback(()=>{
         setIsOpen(false)
         router.push('/rent')
     },[isOpen, router])
+
     //handle information
     const handleInformation = useCallback(()=>{
         setIsOpen(false)
         router.push('/informations?category=thông%20tin%20cá%20nhân')
     },[isOpen, router])
+
+
     return (
        <div 
-       className='hidden md:flex flex-row justify-between items-center relative z-40'>
+       className='hidden md:flex flex-row justify-between items-center relative z-50'>
         <div 
          onClick={()=>router.push('/rent2')}
         className='mx-4 text-sm hover:bg-neutral-100 rounded-full px-4 py-1 transiton cursor-pointer hidden md:block'>
@@ -158,7 +163,7 @@ const UserMenu:React.FC<UserMenuProps> = ({
                         <hr className='mb-2'/>
                         <MenuItem 
                                  onClick={() =>signOut()}
-                                 label='Đăng nhập'
+                                 label='Đăng Xuất'
                              />
                     </>
                 ):(
