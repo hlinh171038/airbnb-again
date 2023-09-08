@@ -4,18 +4,18 @@ import useSearchModal from '@/app/hooks/useSearch'
 import {BiSearch} from 'react-icons/bi'
 import { TbAdjustmentsHorizontal } from 'react-icons/tb'
 import {useCallback} from 'react'
+import useFilter from '@/app/hooks/useFilter'
 
 const Search = () =>{
     const searchModal = useSearchModal()
-
+    const filterModal = useFilter()
     const handleOpenSearch = useCallback(()=>{
         searchModal.onOpen()
         console.log(searchModal.isOpen)
-        console.log('try')
     },[searchModal])
     return (
         <div
-            onClick={handleOpenSearch}
+           
             className="
                 border-[1px]
                 rounded-full
@@ -39,7 +39,9 @@ const Search = () =>{
                     items-center
                 "
             >
-                <div className='flex md:hidden gap-4 md:gap-2'>
+                <div 
+                    onClick={handleOpenSearch}
+                    className='flex md:hidden gap-4 md:gap-2'>
                     <div
                         className="
                             p-2
@@ -70,12 +72,16 @@ const Search = () =>{
                         </div>
                     </div>
                 </div>
-                <div className='hidden md:flex justify-between items-center cursor-pointer'>
+                <div 
+                    onClick={handleOpenSearch}
+                    className='hidden md:flex justify-between items-center cursor-pointer'
+                >
                     <div className='border-r-[1px] px-4 text-sm font-light'>Bất kì địa điểm nào</div>
                     <div className='border-r-[1px] px-4 text-sm font-light'>Bất kì tuần nào</div>
                     <div className='border-r-[1px] px-4 text-sm font-light'>Thêm khách</div>
                 </div>
                 <div
+                    onClick={handleOpenSearch}
                     className="
                         hidden
                         p-2
@@ -91,6 +97,7 @@ const Search = () =>{
                     <BiSearch />
                 </div>
                 <div
+                    onClick={()=>filterModal.onOpen()}
                     className="
                         p-2
                         rounded-full
