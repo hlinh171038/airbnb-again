@@ -13,10 +13,12 @@ const NavbarRent = () =>{
     const rentModal = useRentModal();
     const router = useRouter()
 
-    window.addEventListener('scroll',()=>{
-        setBounch(window.scrollY > 100)
-    });
     
+    if(typeof  window !== undefined){
+        window.addEventListener('scroll',()=>{
+            setBounch(window.scrollY > 100)
+        });
+    }
    
     return (
       

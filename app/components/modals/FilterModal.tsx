@@ -107,6 +107,7 @@ const FilterModal = () =>{
                 {type.map((item)=>{
                     return (
                         <TypeItem
+                            key={item.label}
                             onClick={()=>setTypehouse(item.label)}
                             label={item.sub}
                             icon={item.icon}

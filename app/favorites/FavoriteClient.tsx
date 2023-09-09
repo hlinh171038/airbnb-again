@@ -122,26 +122,24 @@ const FavoriteClient:React.FC<FavoriteClientProps> =({
     return (
         <div> 
              <div className="w-full h-auto relative">
-            <div className="w-full h-[300px] absolute top-0 left-0 bg-neutral-950/60 flex items-center justify-center">
-                <Header
-                    title="Danh sách yêu thích"
-                    subtitle="Tổng hợp danh sách những địa điểm yêu thích của bạn"
-                    big
-                    center
-                    white
-                />
+                    <div className="w-full h-[300px] absolute top-0 left-0 bg-neutral-950/60 flex items-center justify-center">
+                        <Header
+                            title="Danh sách yêu thích"
+                            subtitle="Tổng hợp danh sách những địa điểm yêu thích của bạn"
+                            big
+                            center
+                            white
+                        />
+                    </div>
+                    <Image
+                        src="/title-03.webp"
+                        width={1000}
+                        height={1000}
+                        alt="trips"
+                        objectPosition="top"
+                        className="w-full h-[300px] object-cover "
+                    />
             </div>
-            <Image
-                src="/title-03.webp"
-                width={1000}
-                height={1000}
-                alt="trips"
-                objectPosition="top"
-                className="w-full h-[300px] object-cover "
-            />
-            
-            
-        </div>
         <div className="w-full px-4 flex justify-end items-center z-20 mt-4">
            <div className="relative w-[50%] md:w-[20%] z-10 hover:shadow-md px-8">
             <div 
