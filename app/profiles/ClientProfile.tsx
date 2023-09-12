@@ -12,6 +12,9 @@ import { FaAirbnb } from "react-icons/fa"
 import { TbCircleLetterC } from "react-icons/tb"
 import { AiOutlineGlobal } from "react-icons/ai"
 import { useRouter } from "next/navigation"
+import { useCallback,useEffect,useState } from "react"
+import { toast } from "react-hot-toast"
+import { signOut } from "next-auth/react"
 
 
 interface ClientProfileProps {
@@ -20,7 +23,44 @@ interface ClientProfileProps {
 const ClientProfile:React.FC<ClientProfileProps> = ({
     currentUser
 }) =>{
+    const [isLoggin,setIsLoggin] = useState(false);
     const router = useRouter()
+
+    // handle navigate rent2
+    const handleNavigateRent = useCallback(()=>{
+        if(!currentUser){
+            toast.error('Loggin to rent.');
+            return ;
+        }
+        router.push('/rent2');
+    },[currentUser, toast,router]);
+
+    // handle navigate information
+    const handleNavigateInformatiion = useCallback(()=>{
+        if(!currentUser){
+            toast.error('Loggin to see informations');
+            return ;
+        }
+        router.push('/informations')
+
+    },[currentUser,toast, router]);
+
+    //handle navigate contact
+    const handleNavigateContact =useCallback(()=>{
+        router.push('/contact');
+    },[router]);
+
+    // handle logged out
+    const handleLogout =useCallback(()=>{
+        if(currentUser){
+            setIsLoggin(true);
+            signOut();
+        }else{
+            setIsLoggin(false);
+            return;
+        }
+    },[isLoggin])
+
     return (
         <div className="mb-16">
             {/* header */}
@@ -55,8 +95,8 @@ const ClientProfile:React.FC<ClientProfileProps> = ({
                             className="rounded-full "
                         />
                     
-                    <div className="flex flex-col justify-center items-center gap-1 text-sm font-light">
-                        <div>{currentUser ? currentUser?.name : "Đăng nhập"}</div>
+                    <div className="flex flex-col justify-center  gap-1 text-sm font-light">
+                        <div className="font-bold">{currentUser ? currentUser?.name : "Đăng nhập"}</div>
                         <div>Hiển thị hồ sơ</div>
                         
                     </div>
@@ -68,8 +108,8 @@ const ClientProfile:React.FC<ClientProfileProps> = ({
                 <hr/>
                     {/* rent */}
                 <div 
-                    onClick={()=>router.push('/rent2')}
-                    className="rounded-md shadow-md flex items-center gap-4 my-4 border-[2px] px-4 py-2">
+                    onClick={handleNavigateRent}
+                    className="rounded-md shadow-md flex items-center gap-4 my-4 border-[2px] px-4 py-2 cursor-pointer">
                     <div>
                         <div className="text-sm font-bold">Cho thuê nhà trên Airbnb</div>
                         <div className="text-sm font-light">Thiết lập và bắt đầu kiếm tiền thật đơn giản.</div>
@@ -85,7 +125,9 @@ const ClientProfile:React.FC<ClientProfileProps> = ({
                     </div>
                 </div>
                 {/* information */}
-                <div className="flex justify-between items-center gap-2">
+                <div 
+                    onClick={handleNavigateInformatiion}
+                    className="flex justify-between items-center gap-2 cursor-pointer">
                     <div className="flex  gap-1 items-center justify-center">
                         <div><RxAvatar size={30}/></div>
                         <div className="text-sm font-light">Thông tin cá nhân</div>
@@ -94,7 +136,10 @@ const ClientProfile:React.FC<ClientProfileProps> = ({
                         <BiSolidRightArrowAlt />
                     </div>
                 </div>
-                <div className="flex justify-between items-center gap-2">
+                <div 
+                    onClick={handleNavigateInformatiion}
+                    className="flex justify-between items-center gap-2 cursor-pointer"
+                >
                     <div className="flex  gap-1 items-center justify-center">
                         <div><MdOutlineManageAccounts size={30}/></div>
                         <div className="text-sm font-light">Tài khoản</div>
@@ -105,7 +150,7 @@ const ClientProfile:React.FC<ClientProfileProps> = ({
                 </div>
                 <hr/>
                 {/* rents */}
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 line-through text-neutral-600 cursor-not-allowed">
                     <div>Cho thuê</div>
                         <div className="flex justify-between items-center gap-2">
                         <div className="flex  gap-1 items-center justify-center">
@@ -120,7 +165,9 @@ const ClientProfile:React.FC<ClientProfileProps> = ({
                 <hr />
                 {/* support */}
                 <div className="flex flex-col gap-4">
-                    <div className="flex justify-between items-center gap-2">
+                    <div 
+                        onClick={handleNavigateContact}
+                        className="flex justify-between items-center gap-2 cursor-pointer">
                         <div className="flex  gap-1 items-center justify-center">
                             <div><RxQuestionMarkCircled size={30}/></div>
                             <div className="text-sm font-light">Truy cập trung tâm trợ giúp.</div>
@@ -129,7 +176,7 @@ const ClientProfile:React.FC<ClientProfileProps> = ({
                             <BiSolidRightArrowAlt />
                         </div>
                     </div>
-                    <div className="flex justify-between items-center gap-2">
+                    <div className="flex justify-between items-center gap-2 cursor-pointer">
                         <div className="flex  gap-1 items-center justify-center">
                             <div><BsShieldFillExclamation size={30}/></div>
                             <div className="text-sm font-light">Truy cập trung tâm trợ giúp.</div>
@@ -138,7 +185,7 @@ const ClientProfile:React.FC<ClientProfileProps> = ({
                             <BiSolidRightArrowAlt />
                         </div>
                     </div>
-                    <div className="flex justify-between items-center gap-2">
+                    <div className="flex justify-between items-center gap-2 cursor-pointer">
                         <div className="flex  gap-1 items-center justify-center">
                             <div><LuHeadphones size={30}/></div>
                             <div className="text-sm font-light">Báo cáo lo ngại của hàng xóm.</div>
@@ -147,7 +194,7 @@ const ClientProfile:React.FC<ClientProfileProps> = ({
                             <BiSolidRightArrowAlt />
                         </div>
                     </div>
-                    <div className="flex justify-between items-center gap-2">
+                    <div className="flex justify-between items-center gap-2 cursor-pointer">
                         <div className="flex  gap-1 items-center justify-center">
                             <div><FaAirbnb size={30}/></div>
                             <div className="text-sm font-light">Phương thức hoạt động của Airbnb.</div>
@@ -164,7 +211,24 @@ const ClientProfile:React.FC<ClientProfileProps> = ({
                         <div><AiOutlineGlobal/></div>
                         <div>Tiếng Việt (VN)</div>
                     </div>
-                    <div className="rounded-md flex items-center justify-center border-[1px] py-2 ">Đăng xuất</div>
+                    <div 
+                        onClick={handleLogout}
+                        className={`
+                            rounded-md 
+                            flex 
+                            items-center 
+                            justify-center 
+                            border-[1px] 
+                            py-2 
+                          
+                            hover:bg-neutral-100
+                            my-4
+                            transition-all
+                            ${currentUser ? " cursor-pointer " :"cursor-not-allowed"}
+                        `}
+                    >
+                        Đăng xuất
+                    </div>
                     <div className="my-4">
                         <div className="flex justify-center text-[0.8rem]">
                             <div>Trợ giúp & hỗ trợ</div>

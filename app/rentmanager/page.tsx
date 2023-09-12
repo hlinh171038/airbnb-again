@@ -1,11 +1,14 @@
 import getCurrentUser from "../actions/getCurrentUser"
-import { getListing } from "../actions/getListing"
+import getListing, { IListingsParams } from "../actions/getListing"
 import ClientOnly from "../components/ClientOnly"
 import RentManagerClient from "./RentManagerClient"
 
-const RentManager = async() =>{
+interface RentManagerProps {
+    searchParams : IListingsParams
+  }
+const RentManager = async({searchParams}:RentManagerProps) =>{
     const currentUser = await getCurrentUser()
-    const listing = await getListing()
+    const listing = await getListing(searchParams)
     return (
         <ClientOnly>
             <RentManagerClient

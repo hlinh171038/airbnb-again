@@ -1,13 +1,16 @@
 import getCurrentUser from "../actions/getCurrentUser"
-import { getListing } from "../actions/getListing"
+import getListing, { IListingsParams } from "../actions/getListing"
 import getReservation from "../actions/getReservations"
 import ClientOnly from "../components/ClientOnly"
 import ClientBenefit from "./ClientBenefit"
 
-const BenefitPage = async() =>{
+interface BenefitPageProps {
+    searchParams : IListingsParams
+  }
+const BenefitPage = async({searchParams}:BenefitPageProps) =>{
     const currentUser = await getCurrentUser()
     const reservation = await getReservation({userId:currentUser?.id})
-    const listing = await getListing()
+    const listing = await getListing(searchParams)
     return (
        <ClientOnly>
         <ClientBenefit

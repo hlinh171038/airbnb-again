@@ -29,7 +29,9 @@ const Navbar:React.FC<NavbarProps> = ({
     
     if(path === '/rent2')
     {
-        return <NavbarRent />
+        return <NavbarRent 
+            session = {session}
+        />
     }
     if(path === '/contact' || path === `/contact/${params.contactId}`)
     {

@@ -145,6 +145,14 @@ const RentManager:React.FC<RentManagerProps> =({
                     subtitle="Chuyển sang loptop để quản lí mục cho thuê"
                     center
                 />
+                <div className="px-4 py-4" >
+                    <div 
+                        onClick={()=>router.push('/rent2')}
+                        className="text-[0.8rem] underline hover:text-neutral-500 cursor-pointer"
+                    >
+                        Trở lại
+                    </div>
+                </div>
             </div>
             <div className="hidden lg:block">
                 <div className="flex items-center justify-end  py-2">

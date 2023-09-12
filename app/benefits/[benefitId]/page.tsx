@@ -5,12 +5,15 @@ import { useSearchParams } from "next/navigation"
 import ClientBenefitId from "./ClientBenefitId"
 import getReservation from "@/app/actions/getReservations"
 import getCurrentUser from "@/app/actions/getCurrentUser"
-import { getListing } from "@/app/actions/getListing"
+import getListing, { IListingsParams } from "@/app/actions/getListing"
 
-const BenefitId = async() =>{
+interface HomeProps {
+    searchParams : IListingsParams
+  }
+const BenefitId = async({searchParams}:HomeProps) =>{
     const currentUser = await getCurrentUser()
     const reservation = await getReservation({userId:currentUser?.id})
-    const listing = await getListing()
+    const listing = await getListing(searchParams)
     return (
         <ClientOnly>
             <ClientBenefitId 

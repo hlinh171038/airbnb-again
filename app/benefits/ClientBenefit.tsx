@@ -21,6 +21,7 @@ const ClientBenefit:React.FC<ClientBenefitProps> = ({
     currentUser
 }) =>{
     const router = useRouter()
+    console.log(listing)
     const checkExist = (id:string) =>{
        let result= mergeArr.some((item)=>{
             if(item.listingId === id){
@@ -61,7 +62,8 @@ const ClientBenefit:React.FC<ClientBenefitProps> = ({
     const takeMounth = useMemo(()=>{
         let result = listing?.filter((item)=>item.userId === currentUser?.id);
         // find the smallest element in array
-        let smallest=result[0]
+        let smallest=result[0];
+       // console.log(smallest);
         result.forEach((item)=>{
             if(item.createdAt < smallest.createdAt){
                 smallest = item
