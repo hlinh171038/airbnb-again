@@ -19,15 +19,17 @@ const RentPopUp:React.FC<RentPopUpProps> =({
     return (
         <div className='w-full border-b-[1px]'>
             <div className='flex flex-row gap-10 items-center justify-between py-4'>
-                <span> {label}</span> 
-                {!isOpen ?
-                <BiDownArrow 
-                    onClick={handlePopUp}
-                    /> : 
-                <BiUpArrow  
-                    onClick={handlePopUp}
-                />
-                }
+                <div className='text-sm font-bold'> {label}</div> 
+                <div className='transition-all'>
+                    {!isOpen ?
+                    <BiDownArrow 
+                        onClick={handlePopUp}
+                        /> : 
+                    <BiUpArrow  
+                        onClick={handlePopUp}
+                    />
+                    }
+                </div>
                
             </div>
                 <div 
@@ -36,7 +38,7 @@ const RentPopUp:React.FC<RentPopUpProps> =({
                         ${isOpen ? "h-0 overflow-hidden": "h-full"}
                     `}
                 >
-                    <p className='text-sm text-muted text-neutral-600 pb-4'>{content}</p>
+                    <p className='text-sm text-justify text-neutral-600 pb-4'>{content}</p>
                 </div>
         </div>
     )

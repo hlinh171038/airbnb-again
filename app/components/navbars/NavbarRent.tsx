@@ -78,7 +78,7 @@ const NavbarRent:React.FC<NavbarRentProps> = ({
                     alt="logo"
                 />
                </div>
-               <div className="flex items-center gap-4">
+               <div className="hidden xl:flex items-center gap-4">
                     <div  
                         onClick={handleManager}
                         className="text-sm hover:opacity-[.8] cursor-pointer"

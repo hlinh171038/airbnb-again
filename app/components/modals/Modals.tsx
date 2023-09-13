@@ -119,7 +119,7 @@ const Modals:React.FC<ModalsProps> = ({
               <div
                className={`
                 
-                py-4
+                pb-4
                 border-0
                 bg-white
                 ${!rent && "rounded-lg"}
@@ -134,7 +134,7 @@ const Modals:React.FC<ModalsProps> = ({
                   justify-between
                   items-center
                   px-2
-                  py-1
+                  py-4
                  "
                 >
                    <div>
@@ -142,7 +142,7 @@ const Modals:React.FC<ModalsProps> = ({
                    </div>
                   <button
                    onClick={handleCloseModal}
-                   className="hover:text-neutral-400 transition"
+                   className="hover:text-neutral-400 transition "
                   >
                     <IoMdClose size={18}/>
                   </button>
@@ -158,7 +158,8 @@ const Modals:React.FC<ModalsProps> = ({
                   className={`
                      absolute 
                       bottom-4
-                      px-20
+                      px-4
+                      md:px-20
                      w-full
                      ${firstStep ?"flex justify-end":"flex justify-between gap-8"}
                   `}

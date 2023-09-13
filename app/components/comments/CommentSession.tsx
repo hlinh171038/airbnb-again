@@ -148,7 +148,7 @@ const CommentSession:React.FC<CommentProps> =({
         <div className="font-light text-sm">Bạn đánh giá chúng tôi bao nhiêu sao ?</div>
         <div className="flex cursor-pointer ">
            {starts && starts.map((start)=>{
-                 return <div className="start" id={start} onClick={()=>handleFillStar(start)}>
+                 return <div  className="start" id={start} onClick={()=>handleFillStar(start)}>
                             <AiFillStar />
                         </div>
            })}
@@ -206,6 +206,7 @@ const CommentSession:React.FC<CommentProps> =({
                 {commentById.length >0 && commentById.slice(start,end).map((comment)=>{
                     return (
                         <CommentItem
+                            key={comment.id}
                             allUser = {allUser}
                             createdAt ={comment.createdAt}
                             description = {comment.description}

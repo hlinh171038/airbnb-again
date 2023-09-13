@@ -50,7 +50,6 @@ const FilterModal = () =>{
     const router = useRouter();
     const params = useParams();
 
-    console.log(mainroom)
     // 
     const handleChange = (event: Event, newValue: number | number[]) => {
         if (typeof newValue === 'number') {

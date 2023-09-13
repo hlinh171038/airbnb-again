@@ -31,8 +31,8 @@ const Counter:React.FC<CounterProps> =({
     return (
         <div className="flex flex-row justify-between items-center">
             <div className="flex flex-col gap-1">
-                <span className="capitalize text-semibold ">{title}</span>
-                <span className="text-sm text-muted text-neutral-400 font-light">{subtitle}</span>
+                <span className="capitalize font-bold  ">{title}</span>
+                <span className="text-sm  text-neutral-400 font-light">{subtitle}</span>
             </div>
             <div className="flex ga-1">
                 <div

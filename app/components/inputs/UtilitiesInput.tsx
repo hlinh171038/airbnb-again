@@ -45,12 +45,12 @@ const UtilitiesInput:React.FC<UtilitiesInputProps> = ({
         flex-col
         items-center
         justify-center
-        gap-2
+        gap-1
         transition
         hover:text-neutral-800
         hover:border-neutral-800
         
-        py-4
+        py-2
         border-[1px]
         rounded-lg
         ${selected && "border-neutral-800"}

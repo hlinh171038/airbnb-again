@@ -5,7 +5,7 @@ import RentPopUp from "./RentPopUp"
 const RentHeader3 =() =>{
     return (
         <div className="py-6">
-            <span className="text-2xl md:text-3xl font-semibold">Giải đáp thắc mắc của bạn</span>
+            <span className="text-xl  font-semibold">Giải đáp thắc mắc của bạn</span>
             <RentPopUp
                 label="Chỗ của tôi có phù hợp để cho thuê trên Airbnb không?"
                 content="Khách của Airbnb quan tâm đến mọi loại chỗ ở. Chúng tôi có các mục cho thuê nhà nhỏ, cabin, nhà trên cây và rất nhiều loại hình chỗ ở khác. Ngay cả một căn phòng trống cũng có thể trở thành nơi ở tuyệt vời."

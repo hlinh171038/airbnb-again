@@ -26,7 +26,6 @@ const CategoryInput:React.FC<CategoryInputProps> = ({
 
     
     const handleStyle = useCallback(()=>{
-        console.log('try')
          setIsStyle(true)
           setTimeout(()=>{
             setIsStyle(false)
@@ -51,7 +50,7 @@ const CategoryInput:React.FC<CategoryInputProps> = ({
             hover:text-neutral-800
             hover:border-neutral-800
             
-            py-4
+            py-2
             border-[1px]
             rounded-lg
             ${selected && "border-neutral-800"}
@@ -60,13 +59,14 @@ const CategoryInput:React.FC<CategoryInputProps> = ({
             `}
         >
             {house ? (
-                <div className="flex flex-row justify-between items-center w-full px-8">
-                    <Header 
-                        title={label}
-                        subtitle={description as string}
-                        
-                    />
-                    <Icon size={34} className={`transition ${isStyle ?"scale-75 ": "scale-100 "}`} />
+                <div className="flex flex-row justify-between items-center w-full px-4">
+                    <div>
+                        <div className="font-bold text-sm">
+                            {label}
+                        </div>
+                        <div className="font-light text-sm">{description}</div>
+                    </div>
+                    <Icon size={34} className={`hidden md:block transition ${isStyle ?"scale-75 ": "scale-100 "}`} />
                     </div>
             ):
             <div className="flex flex-col justify-center items-center">

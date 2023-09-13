@@ -18,14 +18,14 @@ const Header:React.FC<HeaderProps> =({
     white
 }) =>{
     return (
-        <div className={` ${rent ?"mt-6":"pt-2"} ${center ? 'text-center':'text-start'}`}>
+        <div className={`px-4 ${rent ?"mt-6":"pt-2"} ${center ? 'text-center':'text-start'}`}>
         <h1 className={`${big ?'font-bold uppercase text-xl md:text-2xl':'font-bold uppercase'} 
                             mt-4
                         ${white && 'text-white'}
                         `}>
             {title}
         </h1>
-        <p className="text-neutral-400 text-semibold text-sm text-muted">{subtitle}</p>
+        <p className="text-neutral-400 text-semibold text-sm ">{subtitle}</p>
     </div>
     )
 }

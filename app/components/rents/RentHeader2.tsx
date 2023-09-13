@@ -17,6 +17,7 @@ const RentHeader2 = () =>{
             <div className="mt-4 text-start md:text-center">
                 <span className="text-xl md:text-4xl font-semibold text-center">Cho thuê trên Airbnb với chương trình bảo vệ toàn diện</span>
                 <table className="w-full mt-6">
+                    <tbody>
                     <tr >
                         <td></td>
                         <td className="text-sm md:text-md text-center">Airbnb</td>
@@ -273,6 +274,7 @@ const RentHeader2 = () =>{
                             />
                         </td>
                     </tr>
+                    </tbody>
                 </table>
                 <RentContent 
                     title=""

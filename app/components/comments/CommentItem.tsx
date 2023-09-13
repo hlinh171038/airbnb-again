@@ -93,7 +93,7 @@ const CommentItem:React.FC<CommentItemProps> = ({
             <div className='px-12 py-2 flex'>
                 {handleStar(star).map((item)=>{
                     return (
-                        <div className={item}><AiFillStar/></div>
+                        <div  className={item}><AiFillStar/></div>
                     )
                 })}
             </div>

@@ -49,7 +49,8 @@ const ImageUpload:React.FC<ImageUploadProps> =({
                         items-center
                         gap-4
                         text-neutral-600
-                        h-[450px]
+                        h-[300px]
+                        md:h-[450px]
                         "
                     >
                         <TbPhotoPlus size={60} />

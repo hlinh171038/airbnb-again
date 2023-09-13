@@ -513,7 +513,7 @@ const RentModal = () =>{
     let bodyContent = (
         <div className="md:grid grid-cols-2 gap-8 ">
            <div className="flex justify-center items-center">
-                <span className=" mt-4 text-2xl md:text-4xl font-semibold text-center w-full md:w-2/3">Bắt đầu trên Airbnb thật dễ dàng</span>
+                <span className=" px-4 mt-4 text-xl md:text-2xl font-semibold text-start md:text-center w-full md:w-2/3">Bắt đầu trên Airbnb thật dễ dàng</span>
            </div>
            <div className="px-4 py-8 ">
             <div className="mb-4">
@@ -550,14 +550,12 @@ const RentModal = () =>{
         bodyContent =(
             <div className="flex flex-col gap-8">
                 <Header 
-                    title="Điều nào sau đây mô tả chính xác nơi ở của bạn"
+                    title="Mô tả chính xác nơi ở của bạn"
                     subtitle="Chọn một nơi mô tả phù hợp nhất"
-                    center
-                    big
-                   
+                    center 
                 />
                 {/* LIST OF CATEGORY */}
-                <div className="grid grid-cols-1 px-16 sm:grid-cols-2 md:grid-cols-3 max-h-[50vh] overflow-y-auto gap-5">
+                <div className="grid grid-cols-1 px-4 md:px-16 sm:grid-cols-2 md:grid-cols-3 max-h-[50vh] overflow-y-auto gap-5">
                     {categories.map((item) =>{
                         return <CategoryInput
                                     key={item.label}
@@ -583,7 +581,6 @@ const RentModal = () =>{
                     title="Quốc gia của bạn ở đâu ?"
                     subtitle="Chọn quốc gia của bạn..."
                     center
-                    big
                 />
                 <CountrySelect 
                     value={location}
@@ -599,35 +596,34 @@ const RentModal = () =>{
 
     if(step === STEPS.INFO){
         bodyContent=(
-            <div className="flex px-8 py-5  justify-center">
-                <div className="w-full sm:w-1/2 flex flex-col gap-8">
+            <div className="flex px-4  justify-center">
+                <div className="w-full sm:w-1/2 flex flex-col gap-4">
                     <Header 
-                        title ="Chia sẻ thông tin cơ bản về chỗ ở của bạn"
-                        subtitle="Sau này, bạn sẽ bổ sung những thông tin khác, như loại giường chẳng hạn.e"
+                        title ="Thông tin cơ bản."
+                        subtitle="Bạn sẽ bổ sung thông tin."
                         center
-                        big
                     />
                     <Counter
-                        title="Number of guest"
-                        subtitle="How to guest to do allow ?"
+                        title="Số lượng khách"
+                        subtitle="Số lượng khách bạn có thể phục vụ ?"
                         value={guestCount}
                         onChange={(value)=>setCustomValue("guestCount",value)}
                     />
                     <Counter
                         title="Số lượng giường ngủ:"
-                        subtitle="Bao nhiêu giường mỗi phòng"
+                        subtitle="Bao nhiêu giường mỗi phòng ?"
                         value={bed}
                         onChange={(value)=>setCustomValue("bed",value)}
                     />
                     <Counter
-                        title="Number of room"
-                        subtitle="How to room to do allow ?"
+                        title="Số lượng phòng"
+                        subtitle="Số lượng phòng khách sạn có sẵn ?"
                         value={roomCount}
                         onChange={(value)=>setCustomValue("roomCount",value)}
                     />
                     <Counter
-                        title="Number of bathroomCount"
-                        subtitle="How to bathroom to do allow ?"
+                        title="Số lượng phòng tắm"
+                        subtitle="Bao nhiêu phòng tắm có sẵn ?"
                         value={bathroomCount}
                         onChange={(value)=>setCustomValue("bathroomCount",value)}
                     />
@@ -639,12 +635,11 @@ const RentModal = () =>{
     if(step === STEPS.HOUSE)
     {
         bodyContent =(
-            <div className="flex justify-center items-center w-full">
-                <div className="w-full lg:w-1/2 flex flex-col gap-4 px-4">
+            <div className="flex justify-center items-center w-full px-4">
+                <div className="w-full lg:w-1/2 flex flex-col gap-4 ">
                     <Header 
-                        title="Khách có thể sử dụng loại phòng tắm nào?"
-                        subtitle=""
-                        big
+                        title="Dạng căn hộ sử dụng ?"
+                        subtitle="Chọn môt tả đúng nhất"
                         center
                     />
                     <div className="flex flex-col gap-4 sm:mt-8 px-4">
@@ -668,12 +663,11 @@ const RentModal = () =>{
     if(step ===STEPS.WHO)
     {
         bodyContent = (
-            <div className="flex justify-center items-center w-full">
-                <div className="flex flex-col gap-4 w-full md:w-1/2 px-4">
+            <div className="flex justify-center items-center w-full px-4">
+                <div className="flex flex-col gap-4 w-full md:w-1/2 ">
                     <Header 
-                        title="đối tượng có thể thuê phòng của bạn ?"
-                        subtitle="Bạn có thể chọn nhiều đối tượng khách hàng khác nhau, có thể thay đổi về sau."
-                        big
+                        title="đối tượng thuê phòng ?"
+                        subtitle="Chọn đối tượng bạn có thể phục vụ"
                         center
                         />
                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:mt-4 md:mt-8 ">
@@ -701,7 +695,6 @@ const RentModal = () =>{
                     <Header 
                         title="Làm cho chỗ ở của bạn trở nên nổi bật"
                         subtitle="Ở bước này, bạn sẽ thêm một số tiện nghi được cung cấp tại chỗ ở của bạn, cùng với 5 bức ảnh trở lên. Sau đó, bạn sẽ soạn tiêu đề và nội dung mô tả."
-                        big
                     />
                     <Image 
                         src="/house-modal.webp"
@@ -717,17 +710,15 @@ const RentModal = () =>{
     if(step === STEPS.UTILITIES)
     {
         bodyContent = (
-            <div className="flex flex-col gap-4 w-full flex flex-row justify-center items-center ">
+            <div className="flex flex-col gap-4 w-full  justify-center items-center ">
                <div className="w-full px-4 sm:w-1/2 ">
                 <Header 
-                        title="Cho khách biết chỗ ở của bạn có những gì"
-                        subtitle="Bạn có thể thêm tiện nghi sau khi đăng mục cho thuê."
-                        big
+                        title="Tiện ích "
+                        subtitle="Chọn tất cả tiện ích bạn đang có sẵn."
                         center
                     />
                     <div className="  max-h-[60vh] overflow-y-auto">
                                 <div className="py-4">
-                                    <p className="font-bold py-4">Bạn có nhưng tiện nghi cơ bản nào ?</p>
                                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                                         { utilitiesArr.map((utility ) =>{
                                             return <UtilitiesInput 
@@ -753,9 +744,8 @@ const RentModal = () =>{
             <div className="flex flex-row justify-center items-center  ">
                 <div className="w-full flex flex-col gap-4 md:w-1/2 px-4">
                     <Header 
-                        title="Bổ sung bức ảnh chụp chỗ ở thuộc danh mục nhà nông trại của bạn"
-                        subtitle="Về sau, bạn vẫn có thể đăng thêm hoặc thay đổi ảnh."
-                        big
+                        title="Danh mục ảnh"
+                        subtitle="Danh mục ảnh về khách sạn của bạn."
                     />
                     <ImageUpload 
                         value={imageSrc}
@@ -775,7 +765,6 @@ const RentModal = () =>{
                     <Header 
                         title="Bây giờ, hãy đặt tiêu đề cho chỗ ở thuộc danh mục nhà nông trại của bạn"
                         subtitle="Tiêu đề ngắn cho hiệu quả tốt nhất. Đừng lo lắng, bạn luôn có thể thay đổi tiêu đề sau."
-                        big
                     />
                     <Input 
                         id="title"
@@ -807,9 +796,8 @@ const RentModal = () =>{
                 <div>
                     <div className="mb-8 mt-4">
                         <Header 
-                            title="Tiếp theo, hãy mô tả chỗ ở thuộc danh mục căn hộ của bạn"
+                            title="Đặc trưng danh mục"
                             subtitle="Chúng tôi sẽ sử dụng thông tin này để bắt đầu tạo nội dung mô tả của bạn."
-                            big 
                             center
                         />
                     </div>
@@ -838,7 +826,6 @@ const RentModal = () =>{
                     <Header 
                         title="Hoàn thiện và đăng"
                         subtitle="Cuối cùng, bạn sẽ chọn bắt đầu với việc đón tiếp khách có kinh nghiệm hoặc không, sau đó bạn sẽ đặt giá theo đêm. Hãy trả lời một vài câu hỏi nhanh và đăng mục cho thuê khi bạn đã sẵn sàng."
-                        big
                     />
                     <Image 
                         src="/house-modal.webp"
@@ -860,16 +847,15 @@ const RentModal = () =>{
                     title="Bạn có sẵn phòng trong khoảng thời gian nào ?"
                     subtitle="Chọn ngày bạn có thể cho thuê phòng, có thể cập nhật trong thời gian tới."
                     center
-                    big
                 />
                    <div>
-                    <div className="flex">
-                        <div>Ngày bắt đầu :</div>
-                        <div>{new Date().getDate()} thg</div>
-                        <div>{new Date().getMonth()+1}-</div>
-                        <div>{new Date().getFullYear()}</div>
+                    <div className="flex text-sm ">
+                        <div className="font-bold">Ngày bắt đầu :</div>
+                        <div  className="font-light">{new Date().getDate()} thg</div>
+                        <div className="font-light">{new Date().getMonth()+1}-</div>
+                        <div className="font-light">{new Date().getFullYear()}</div>
                     </div>
-                    <div>Ngày kết thúc :</div>
+                    <div className="font-bold text-sm">Ngày kết thúc : <span className="font-light text-[0.7rem]">Chọn ngày kết thúc cho thuê</span></div>
                     <Input 
                         id="night"
                         label="Night"
@@ -889,9 +875,8 @@ const RentModal = () =>{
             <div className="flex justify-center items-centerpt-12 px-4 w-full h-full">
                <div className="flex flex-col gap-4 w-full sm:w-1/2 h-full">
                 <Header 
-                        title="Bây giờ, hãy đặt mức giá mà bạn muốn"
+                        title="Bây giờ, hãy đặt mức giá mà bạn muốn và bắt đầu cho thuê"
                         subtitle="Bạn có thể thay đổi giá này bất cứ lúc nào."
-                        big 
                         center
                     />
                    <div className="w-full h-full">

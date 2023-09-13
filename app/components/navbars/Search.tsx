@@ -11,7 +11,6 @@ const Search = () =>{
     const filterModal = useFilter()
     const handleOpenSearch = useCallback(()=>{
         searchModal.onOpen()
-        console.log(searchModal.isOpen)
     },[searchModal])
     return (
         <div

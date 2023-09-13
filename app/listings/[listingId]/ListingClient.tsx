@@ -20,6 +20,8 @@ import CommentSession from "@/app/components/comments/CommentSession";
 import ListingRule from "@/app/components/listings/ListingRule";
 import Footer from "@/app/components/Footer";
 import ListingBillMobile from "@/app/components/listings/ListingBillMobile";
+import Map from "@/app/components/Map";
+import useCountries from "@/app/hooks/useCountries";
 
 
 
@@ -55,7 +57,12 @@ const ListingClient:React.FC<ListingClientProps> =({
     const [dateRange, setDateRange] = useState(initialDateRange);
     const [countDay,setCountDay] = useState(1) ;
     const [isFixed, setIsFixed] = useState(false);
+    const country = useCountries();
     const scrollThreshold = 70;
+
+    // take country name from usecountries
+    const {getByValue} = country;
+    const countryName = getByValue(listing?.locationValue);
 
     const disabledDates = useMemo(() =>{
         let dates:Date[] = [];
@@ -232,6 +239,10 @@ const ListingClient:React.FC<ListingClientProps> =({
                         allUser ={allUser}
                     />
                     <hr />
+                    <Map 
+                        center={countryName?.latlng}
+                    />
+                    <hr/>
                     <ListingRule
                         guestCount = {listing.guestCount}
                         utilities = {listing.utilities}
