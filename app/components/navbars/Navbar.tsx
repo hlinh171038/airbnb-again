@@ -14,6 +14,7 @@ import NavbarRent from "./NavbarRent"
 import { useCallback, useEffect, useState } from "react"
 import NavbarListingId from "./NavbarListingId"
 import NavbarContact from "./NavbarContact"
+import NavbarLID from "./NavbarLID"
 
 
 interface NavbarProps {
@@ -36,6 +37,11 @@ const Navbar:React.FC<NavbarProps> = ({
     if(path === '/contact' || path === `/contact/${params.contactId}`)
     {
         return <NavbarContact />
+    }
+    if(path === `/listings/${params.listingId}`){
+        return <NavbarLID 
+            session={session}
+        />
     }
 
     return (

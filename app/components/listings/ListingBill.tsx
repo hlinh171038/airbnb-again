@@ -314,7 +314,6 @@ const ListingBill:React.FC<ListingBillProps> = ({
                             uppercase 
                             text-[0.6rem] 
                             px-2 py-2 
-                            transition 
                             cursor-pointer
                             flex
                             justify-between
@@ -356,29 +355,16 @@ const ListingBill:React.FC<ListingBillProps> = ({
                             items-center
                         "
                     >
-                        {who?.map(item =>{
-                        if(item[0])
-                        {
-                            return (
-                                    <label className="flex justify-between items-center px-2">{item}
-                                        <input 
-                                            type="radio" 
-                                            checked={true}
-                                            name="radio"
-                                            className="px-2"
-                                    />
-                                    </label>
-                            )
-                        }else{
-                            return (
-                                <label className="flex justify-between items-center px-2">{item}
+                        {who.map((item)=>{
+                           return (
+                                <label key={item} className="flex justify-between items-center px-2">{item}
                                     <input 
                                         type="radio" 
                                         name="radio"
+                                        className="px-2"
                                 />
                                 </label>
                         )
-                        }
                         })}
                     </div>
                     <div className="flex justify-between items-center my-4">
@@ -473,10 +459,12 @@ const ListingBill:React.FC<ListingBillProps> = ({
                         <div>
                             <button 
                                 onClick={onCreateReservation}
-                                className="
+                                disabled={isLoading}
+                                className={
+                                    `
                                     rounded-lg
                                     disabled:opacity-70
-                                    disabled:cursor-pointer
+                                    disabled:cursor-not-allowed
                                     hover:opacity-80
                                     px-2
                                     py-1
@@ -484,7 +472,8 @@ const ListingBill:React.FC<ListingBillProps> = ({
                                     bg-rose-600
                                     border-none
                                     text-white
-                                "
+                                    `
+                                }
                             >
                                 Đặt phòng
                             </button>
@@ -496,10 +485,11 @@ const ListingBill:React.FC<ListingBillProps> = ({
                     ):(
                         <div>
                             <button 
+                                disabled={true}
                                 className="
                                     rounded-lg
                                     disabled:opacity-70
-                                    disabled:cursor-pointer
+                                    disabled:cursor-not-allowed
                                     hover:opacity-80
                                     px-2
                                     py-1

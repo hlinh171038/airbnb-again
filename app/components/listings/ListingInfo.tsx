@@ -125,7 +125,7 @@ const ListingInfo:React.FC<ListingInfoProps> = ({
             </div>
             <hr/>
             <div className="flex flex-col gap-6">
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 text-sm font-light">
                         {category && (
                         <ListingCategory
                             icon={category.icon}
@@ -182,6 +182,7 @@ const ListingInfo:React.FC<ListingInfoProps> = ({
                         {
                             utilitiesCustome.map(item =>{
                                 return <UtilityItem 
+                                            key={item.label}
                                             label={item.label}
                                             description ={item.description}
                                             icon ={item.icon}
@@ -194,7 +195,6 @@ const ListingInfo:React.FC<ListingInfoProps> = ({
                 
             </div>
             <hr />
-            {/* <Map center={coordinates} /> */}
         </div>
     )
 }

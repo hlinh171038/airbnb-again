@@ -84,7 +84,7 @@ const NavMobile = ({
                 <div>Trang chủ</div>
               </div>
               <div 
-                onClick={()=>router.push('/rent2')}
+                onClick={()=>router.push('/trips')}
                 className={`flex flex-col justify-center items-center cursor-pointer ${path === '/trips' && "text-rose-500"}`}
                 >
                 <div><FaAirbnb  size={30} className={`text-neutral-400 hover:text-neutral-500 transition-all ${path === '/trips' && "text-rose-500 hover:text-rose-600"} `}/></div>

@@ -6,7 +6,13 @@ import { TbAdjustmentsHorizontal } from 'react-icons/tb'
 import {useCallback} from 'react'
 import useFilter from '@/app/hooks/useFilter'
 
-const Search = () =>{
+interface SearchProps {
+    listingId?: boolean
+}
+
+const Search:React.FC<SearchProps> = ({
+    listingId
+}) =>{
     const searchModal = useSearchModal()
     const filterModal = useFilter()
     const handleOpenSearch = useCallback(()=>{
@@ -15,7 +21,7 @@ const Search = () =>{
     return (
         <div
            
-            className="
+            className={`
                 border-[1px]
                 rounded-full
                 hover:shadow-lg
@@ -27,7 +33,8 @@ const Search = () =>{
                 shadow-md
                 md:shadow-none
                 md:w-auto
-            "
+                ${listingId ?"hidden ":"border-[1px] rounded-full hover:shadow-lg px-2 py-1 transition cursor-pointer w-full shadow-md md:shadow-none md:w-auto"}
+            `}
         >   
             <div
                 className="
@@ -40,7 +47,7 @@ const Search = () =>{
             >
                 <div 
                     onClick={handleOpenSearch}
-                    className='flex md:hidden gap-4 md:gap-2'>
+                    className={`flex md:hidden gap-4 md:gap-2 `}>
                     <div
                         className="
                             p-2

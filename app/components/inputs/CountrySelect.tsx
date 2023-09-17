@@ -24,6 +24,7 @@ const CountrySelect:React.FC<CountrySelectProps> =({
     const {getAll} = useCountries()
     return (
         <Select
+        required={value === null}
         placeholder="Any where"
         value={value}
         onChange={(value)=>onChange(value as CountrySelectValue)}

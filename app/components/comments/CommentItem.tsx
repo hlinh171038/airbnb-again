@@ -50,20 +50,18 @@ const CommentItem:React.FC<CommentItemProps> = ({
         for(let i=1;i<=5;i++)
         {
             if(i<=number){
-                star.push('text-yellow-400') 
+                star.push({style:'text-yellow-400',id:i}) 
             }else{
-                star.push('text-neutral-400') 
+                star.push({style:'text-neutral-400',id:i}) 
             }
         }
         return star
     },[])
-
     //handle read more
     const handleReadMore = useCallback(()=>{
         setIsReadMore(!isReadMore);
     },[isReadMore])
 
-    console.log(checkImage(userId))
     return (
         <div className='mb-4'>
             {/* header */}
@@ -93,7 +91,7 @@ const CommentItem:React.FC<CommentItemProps> = ({
             <div className='px-12 py-2 flex'>
                 {handleStar(star).map((item)=>{
                     return (
-                        <div  className={item}><AiFillStar/></div>
+                        <div key={item.id} className={item.style}><AiFillStar/></div>
                     )
                 })}
             </div>

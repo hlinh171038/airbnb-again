@@ -20,10 +20,7 @@ const UtilitiesInput:React.FC<UtilitiesInputProps> = ({
    
     const [isStyle,setIsStyle] = useState(false);
     const [isSelected,setIsSelected] = useState(false)
-
-        console.log(label)
         const handleStyle = useCallback(()=>{
-            console.log('try')
             setIsStyle(true)
             setTimeout(()=>{
                 setIsStyle(false)

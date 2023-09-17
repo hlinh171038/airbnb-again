@@ -45,77 +45,77 @@ export const categories = [
     {
       label: 'Biển',
       icon: TbBeach,
-      description: 'This property is close to the beach!',
+      description: 'Nơi bạn ở giáp biển !',
     },
     {
       label: 'Cối xoay ',
       icon: GiWindmill,
-      description: 'This property is has windmills!',
+      description: 'Cánh đồng cối xoay gió!',
     },
     {
       label: 'Hiện đại',
       icon: MdOutlineVilla,
-      description: 'This property is modern!'
+      description: 'Thành thị hiện đại, sôi động, nhiều tiện ích!'
     },
     {
       label: 'Vùng quê',
       icon: TbMountain,
-      description: 'This property is in the countryside!'
+      description: 'Vùng đồng quê yên bình, thư giản!'
     },
     {
       label: 'Hồ bơi',
       icon: TbPool,
-      description: 'This is property has a beautiful pool!'
+      description: 'Nhà ở có hồ bơi cá nhân!'
     },
     {
       label: 'Đảo',
       icon: GiIsland,
-      description: 'This property is on an island!'
+      description: 'Vùng đảo!'
     },
     {
       label: 'Hồ ',
       icon: GiBoatFishing,
-      description: 'This property is near a lake!'
+      description: 'Gần hồ tự nhiên, mát mẻ, trong lành!'
     },
     {
       label: 'Băng',
       icon: FaSkiing,
-      description: 'This property has skiing activies!'
+      description: 'Vùng băng tuyết phủ, trải nghiệm, khám phá!'
     },
     {
       label: 'Lâu đài',
       icon: GiCastle,
-      description: 'This property is an ancient castle!'
+      description: 'Kiến trúc lâu đài!'
     },
     {
       label: 'Hang',
       icon: GiCaveEntrance,
-      description: 'This property is in a spooky cave!'
+      description: 'Hang động phục chế !'
     },
     {
       label: 'Cấm trại',
       icon: GiForestCamp,
-      description: 'This property offers camping activities!'
+      description: 'Khu vực cấm trại!'
     },
     {
       label: 'Vùng cực',
       icon: BsSnow,
-      description: 'This property is in arctic environment!'
+      description: 'Tái hiện vùng cực !'
     },
     {
       label: 'Sa mạc',
       icon: GiCactus,
-      description: 'This property is in the desert!'
+      description: 'Khu vực tái phục dựng sa mạc'
     },
     {
       label: 'Nhà chồi',
       icon: GiBarn,
-      description: 'This property is in a barn!'
+      description: 'Nhà chồi trên đồi !'
     },
     {
       label: 'Nhà Lux',
       icon: IoDiamond,
-      description: 'This property is brand new and luxurious!'
+      description: 'Kiến trúc Luxury sang trọng bậc nhất Airbnb!'
     }
   ]
 const Categories =() =>{

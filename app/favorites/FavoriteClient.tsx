@@ -51,7 +51,6 @@ const FavoriteClient:React.FC<FavoriteClientProps> =({
     for(let i=0; i<Math.ceil(favoriteArr.length /countPerPage);i++){
         pagin.push(i);
     }
-    console.log(pagin)
     //handle pagination
      // handle change pagination
      const handlePagination = useCallback((e:any,p: any)=>{
@@ -117,8 +116,6 @@ const FavoriteClient:React.FC<FavoriteClientProps> =({
         setOpen(false)
     },[sort])
 
-   
-    console.log(empty)
     return (
         <div> 
              <div className="w-full h-auto relative">

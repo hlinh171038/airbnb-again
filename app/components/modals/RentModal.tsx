@@ -294,18 +294,18 @@ const RentModal = () =>{
         formState: { errors },
       } = useForm<FieldValues>({
         defaultValues:{
-            category: '',
+            category: categories[0].label,
             location: null,
             guestCount: 1,
             roomCount: 1,
             bed: 1,
-            house: '',
+            house: houseArr[0].label,
             who:[],
             bathroomCount: 1,
             imageSrc: '',
             utilities:[],
-            type: '',
-            price: 1,
+            type: typeArr[0].label,
+            price: 0,
             title: '',
             night: '',
             description: ''
@@ -347,6 +347,7 @@ const RentModal = () =>{
       const house = watch('house');
       const who = watch('who');
       const type = watch('type');
+      const price = watch('price');
       
     
       // create specical set value, because method setCustomValue (react-hook-form) by default not set value
@@ -403,7 +404,6 @@ const RentModal = () =>{
         let sel ;
         // create variabel 
         let result:string[] =[...utilities];
-        console.log(result)
        
         //check 
         if(result.length === 0)
@@ -894,6 +894,30 @@ const RentModal = () =>{
             </div>
         )
     }
+
+    // location: null,
+    //         guestCount: 1,
+    //         roomCount: 1,
+    //         bed: 1,
+    //         house: houseArr[0].label,
+    //         who:[],
+    //         bathroomCount: 1,
+    //         imageSrc: '',
+    //         utilities:[],
+    //         type: typeArr[0].label,
+    //         price: 0,
+    //         title: '',
+    //         night: '',
+    //         description: ''
+    // handle check fill all
+    const handleCheckAllFill = useMemo(()=>{
+        if(step === STEPS.PRICE){
+            if(location === null || who.length === 0 || imageSrc === '' || utilities.length === 0 || price <10000 ){
+                return false
+            }
+        }
+        return true
+    },[step,location])
     return (
         <Modals 
             isOpen={rentModal.isOpen}
@@ -905,6 +929,7 @@ const RentModal = () =>{
             secondaryAction={step ===STEPS.START ? undefined : onBack}
             body={bodyContent}
             rent
+            checkRent= {handleCheckAllFill}
             lastStep={step ===STEPS.PRICE ?true:false}
             firstStep = {step === STEPS.START ? true: false}
         />

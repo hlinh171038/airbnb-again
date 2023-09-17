@@ -6,6 +6,7 @@ import { useState, useEffect, useCallback } from "react";
 import {IoMdClose} from 'react-icons/io'
 import Button from "../Button";
 import Logo from "../navbars/Logo";
+import { toast } from "react-hot-toast";
 
 interface ModalsProps {
     isOpen: boolean;
@@ -19,6 +20,7 @@ interface ModalsProps {
     secondaryAction?: () =>void;
     secondaryActionLabel?:string;
     rent?:boolean;
+    checkRent?:boolean;
     step?:boolean;
     lastStep?: boolean;
     firstStep?: boolean;
@@ -36,6 +38,7 @@ const Modals:React.FC<ModalsProps> = ({
     secondaryAction,
     secondaryActionLabel,
     rent,
+    checkRent,
     lastStep,
     firstStep,
     tripId
@@ -58,13 +61,23 @@ const Modals:React.FC<ModalsProps> = ({
 
     // handle submit
     const handleSubmit = useCallback(()=>{
-   
+      if(rent ){
+        if(checkRent){
+          onSubmit()
+        }else {
+          toast.error("Bạn chắc chắn đã điền đầy đủ thông tin và giá > 10000 vnđ.");
+          return;
+        }
+      }else {
         if(disabled) {
             return ;
         }
         onSubmit()
+      }
+     
     },[disabled,onSubmit])
 
+   
     
     // handle secondary actions
 
@@ -210,11 +223,13 @@ const Modals:React.FC<ModalsProps> = ({
                     
                   `}
                 >
+                 
                     <Button
-                     disabled={disabled}
-                     onClick={handleSubmit} 
-                     label={actionLabel}
-                   />
+                      disabled={disabled}
+                      onClick={handleSubmit} 
+                      label={actionLabel}
+                    />
+                   
                   {secondaryAction && secondaryActionLabel  && (
                     <Button 
                       disabled={disabled}
