@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation"
 import { SafeUser } from "@/app/types"
 import { toast } from "react-hot-toast"
 import Image from "next/image"
+import useLoginModal from "@/app/hooks/useLoginModal"
 
 interface NavbarRentProps {
     session?: SafeUser | null
@@ -20,6 +21,7 @@ const NavbarRent:React.FC<NavbarRentProps> = ({
 }) =>{
     const [bounch, setBounch] = useState(false);
     const rentModal = useRentModal();
+    const loginModal = useLoginModal();
     const router = useRouter()
 
     // handle manager
@@ -43,7 +45,13 @@ const NavbarRent:React.FC<NavbarRentProps> = ({
         
     },[router,toast,session])
 
-    
+    // handleOpenRent
+    const handleOpenRent = useCallback(()=>{
+        if(!session){
+            return loginModal.onOpen();
+        }
+        rentModal.onOpen()
+    },[rentModal,loginModal])
    useEffect(()=>{
     if(typeof  window !== undefined){
         window.addEventListener('scroll',()=>{
@@ -105,7 +113,7 @@ const NavbarRent:React.FC<NavbarRentProps> = ({
                     <div className=" min-w-[200px] ">
                     <Button 
                         label="Airbnb Setup"
-                        onClick={rentModal.onOpen}
+                        onClick={handleOpenRent}
                         icon={MdOutlineAddHomeWork}
                     /> 
                     </div>
