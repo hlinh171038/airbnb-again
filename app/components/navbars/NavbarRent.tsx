@@ -5,7 +5,7 @@ import Button from "../Button"
 import Logo from "./Logo"
 import {MdOutlineAddHomeWork} from 'react-icons/md'
 import Container from "../Container"
-import {useState,useCallback} from 'react'
+import {useState,useCallback, useEffect} from 'react'
 import { useRouter } from "next/navigation"
 import { SafeUser } from "@/app/types"
 import { toast } from "react-hot-toast"
@@ -43,12 +43,14 @@ const NavbarRent:React.FC<NavbarRentProps> = ({
         
     },[router,toast,session])
 
+    
+   useEffect(()=>{
     if(typeof  window !== undefined){
         window.addEventListener('scroll',()=>{
             setBounch(window.scrollY > 100)
         });
     }
-   
+   },[])
     return (
       
          <div 

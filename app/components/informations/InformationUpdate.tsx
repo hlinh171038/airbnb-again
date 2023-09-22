@@ -20,7 +20,7 @@ const InformationUpdate:React.FC<InformationUpdateProps> =({
 }) =>{
     const [info,setInfo] = useState(false)
     const router = useRouter()
-    console.log(info)
+    
     useEffect(() => {
         if(!information){
             setInfo(true)

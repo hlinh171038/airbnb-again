@@ -49,7 +49,7 @@ const CategoryInput:React.FC<CategoryInputProps> = ({
             transition
             hover:text-neutral-800
             hover:border-neutral-800
-            
+            cursor-pointer
             py-2
             border-[1px]
             rounded-lg

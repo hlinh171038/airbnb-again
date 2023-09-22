@@ -230,6 +230,14 @@ const RentManager:React.FC<RentManagerProps> =({
                         <Pagination count={pagin.length} variant="outlined" shape="rounded" className="flex justify-end" onChange={handlePagination}/>
                     </Stack>
                 </div>
+                <div className="px-4 py-4" >
+                    <div 
+                        onClick={()=>router.push('/rent2')}
+                        className="text-[0.8rem] underline hover:text-neutral-500 cursor-pointer"
+                    >
+                        Trở lại
+                    </div>
+                </div>
             </div>
         </div>
     )

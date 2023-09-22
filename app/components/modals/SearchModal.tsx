@@ -337,10 +337,14 @@ const SearchModal = () =>{
                                         >
                                             <div className='font-bold text-sm'>Thời gian</div>
                                             <div className='font-light text-[0.8rem] flex justify-between gap-2'>
-                                                {dateRange ?<div>{dateRange.startDate?.getDate()}/{ dateRange.startDate?.getMonth() && dateRange.startDate?.getMonth()+1}/{ dateRange.startDate?.getFullYear()}</div> :"Thêm ngày"}
-                                                <span>-</span>
-                                                {dateRange ?<div>{dateRange.endDate?.getDate()}/{ dateRange.endDate?.getMonth() && dateRange.endDate?.getMonth()+1}/{ dateRange.endDate?.getFullYear()}</div> :"Thêm ngày"}
-                                            </div>
+                                                {dateRange.startDate === dateRange.endDate ?"Chọn ngày":
+                                                <div className='flex justify-between gap-2'>
+                                                    {dateRange ?<div>{dateRange.startDate?.getDate()}/{ dateRange.startDate?.getMonth() && dateRange.startDate?.getMonth()+1}/{ dateRange.startDate?.getFullYear()}</div> :"Thêm ngày"}
+                                                        <span>-</span>
+                                                    {dateRange ?<div>{dateRange.endDate?.getDate()}/{ dateRange.endDate?.getMonth() && dateRange.endDate?.getMonth()+1}/{ dateRange.endDate?.getFullYear()}</div> :"Thêm ngày"} 
+                                                    </div>}
+                                                
+                                                </div>
                                     </div>
                                     <div className={` mt-2 ${navdate ?"block":"hidden"}`}>
                                     <DateRange

@@ -76,10 +76,9 @@ const TripsClient:React.FC<TripsClientProps> = ({
 
     // handle value
     const handleValue = useCallback((value:string)=>{
+        setCurrentPage(1);
         if(value === 'all')
         {
-            console.log('try')
-            console.log(reservations)
             setUppdateRe(reservations);
             return;
         }
@@ -118,9 +117,6 @@ const TripsClient:React.FC<TripsClientProps> = ({
             setIsFixed(pageY!== null && pageY.getBoundingClientRect().top <= scrollThreshold);
         });
         
-    
-    
-    console.log(isFixed)
     return (
        <div>
          

@@ -2,6 +2,7 @@
 "use client"
 import Container from '@/app/components/Container'
 import Footer from '@/app/components/Footer'
+import Header from '@/app/components/Header'
 import {caroselArr} from '@/app/components/contact/ContactMenuMain'
 import Image from 'next/image'
 import { useParams, useRouter } from 'next/navigation'
@@ -50,14 +51,33 @@ const ContactIdClient =() =>{
     return (
         
        <div >
-         <Container>
-            <div className="flex text-sm font-light px-4 py-4">
+        <div className="w-full h-auto relative">
+                    <div className="w-full h-[300px] absolute top-0 left-0 bg-neutral-950/60 flex items-center justify-center">
+                        <Header
+                            title="Bài viết"
+                            subtitle="Bài viết Airbnb"
+                            big
+                            center
+                            white
+                        />
+                    </div>
+                    <Image
+                        src="/title-03.webp"
+                        width={1000}
+                        height={1000}
+                        alt="trips"
+                        objectPosition="top"
+                        className="w-full h-[300px] object-cover "
+                    />
+            </div>
+            <div className="flex text-sm font-light px-4 py-4 ">
                 <div className='cursor-pointer font-bold hover:text-neutral-500' onClick={()=>router.push('/contact')}>Trang chủ /</div>
                 <div>Tìm chỗ ở phù hợp với bạn</div>
             </div>
+         <Container>
             <div
                 className='
-                    mt-8
+                    mt-2
                     grid
                     grid-cols-1
                     md:grid-cols-3
@@ -88,17 +108,17 @@ const ContactIdClient =() =>{
                         />
 
                     </div>
-                    <div className='font-light'>Muốn giúp tìm một nơi tuyệt vời để ở? Dưới đây là những lĩnh vực hàng đầu mà khách có thắc mắc khi tìm kiếm chuyến đi tiếp theo.</div>
-                    <div className ="font-light py-4">{contactId?.content}</div>
+                    <div className='font-light text-justify'>Muốn giúp tìm một nơi tuyệt vời để ở? Dưới đây là những lĩnh vực hàng đầu mà khách có thắc mắc khi tìm kiếm chuyến đi tiếp theo.</div>
+                    <div className ="font-light py-4 text-justify">{contactId?.content}</div>
                     <hr/>
                     <div>
                         {cata.map((item)=>{
                             return (
-                                <div className='border-b-[1px] py-4'>
+                                <div className='border-b-[1px] py-4 '>
                                     <div className='font-bold '>
                                         {item.title}
                                     </div>
-                                    <div className='font-light '>
+                                    <div className='font-light text-justify'>
                                         {item.content}
                                     </div>
                                 </div>
@@ -112,7 +132,7 @@ const ContactIdClient =() =>{
                         <div>
                             {caroselArr.map((item)=>{
                                 return (
-                                    <div className='text-sm font-light underline italic'>
+                                    <div className='text-sm font-light underline italic cursor-pointer hover:text-neutral-600'>
                                         {item.title}
                                     </div>
                                 )

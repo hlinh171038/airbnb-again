@@ -62,15 +62,15 @@ const ContactHost =() =>{
             </div>
             <div>
                     <div className="w-full">
-                        <div className="grid grid-cols-2  items-center gap-4 text-sm font-light w-full"> 
+                        <div className="grid grid-cols-2  items-center gap-6 text-sm font-light w-full"> 
                                 <div className="flex gap-2">
-                                    <LiaHandPointerSolid/> 
+                                    
                                     <div className="flex justify-start">Dễ dàng cho thuê nhà với </div>
                                 </div>
-                                <div className="w-full flex justify-start  sm:w-auto sm:col-span-1">
+                                <div className="w-full flex justify-end  sm:w-auto sm:col-span-1">
                                 <span 
-                                    onClick={()=>router.push('/rent')}
-                                    className=" cursor-pointer flex items-center gap-4 bg-rose-500 hover:bg-rose-400 text-white px-2 py-2 rounded-lg animate-pulse">
+                                    onClick={()=>router.push('/rent2')}
+                                    className=" cursor-pointer flex items-center  gap-4 bg-rose-500 hover:bg-rose-400 text-white px-2 py-2 rounded-lg animate-pulse">
                                     <div className="hidden sm:block">
                                         <SiAirbnb/>
                                     </div>
@@ -82,19 +82,19 @@ const ContactHost =() =>{
                         </div>
                         <div className="grid grid-cols-2  items-center gap-4 text-sm font-light w-full"> 
                                 <div className="flex gap-2">
-                                    <LiaHandPointerSolid/> 
+                                     
                                     <div className="flex justify-start">Hướng dẫn riêng từ một chủ nhà siêu câp </div>
                                 </div>
-                                <div className="w-full flex w-auto sm:col-span-1 px-4">
+                                <div className="w-full flex  justify-end w-auto sm:col-span-1 ">
                                     <span className="underline cursor-pointer">kết nối ngay.</span>
                                 </div>
                         </div>
                         <div className="grid grid-cols-2  items-center gap-4 text-sm font-light w-full"> 
                                 <div className="flex gap-2">
-                                    <LiaHandPointerSolid/> 
+                                    
                                     <div className="flex justify-start">Hổ trợ đặt biệt từ </div>
                                 </div>
-                                <div className="w-full flex justify-start sm:w-auto sm:col-span-1">
+                                <div className="w-full flex justify-end sm:w-auto sm:col-span-1">
                                     <span className="underline cursor-pointer">Airbnb.</span>
                                 </div>
                         </div>

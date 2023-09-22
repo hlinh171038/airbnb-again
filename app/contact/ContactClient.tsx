@@ -149,6 +149,7 @@ const ContactClient:React.FC<ContactClientProps>= ({
                         {menu2.map((item)=>{
                             return (
                                 <ContactItem
+                                    key={item.title}
                                     title={item.title}
                                     description={item.description}
                                     img ={item.img}

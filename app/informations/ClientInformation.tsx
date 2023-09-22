@@ -38,7 +38,6 @@ const ClientInformation:React.FC<ClientInformationProps> =({
     // const [category,setCategory] = useState('tài khoản')
     const params = useSearchParams();
     let category = params?.get('category') 
-    console.log(information)
 
     let bodyContent = (
         <div>

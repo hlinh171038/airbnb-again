@@ -149,7 +149,7 @@ const FavoriteClient:React.FC<FavoriteClientProps> =({
                 <div className={`absolute top-8 right-0 bg-neutral-100 w-full transition-all overflow-hidden px-4 ${open ?"h-auto  py-4":"h-0 "}`}>
                     {sortFavorite.map((item)=>{
                         return (
-                            <div className="text-sm font-light cursor-pointer capitalize hover:text-neutral-600 transition-all" 
+                            <div key={item.label} className="text-sm font-light cursor-pointer capitalize hover:text-neutral-600 transition-all" 
                                 onClick={()=>setSort(`${item.label}`)}>{item.label}</div>
                         )
                     })}

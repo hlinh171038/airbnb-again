@@ -98,7 +98,7 @@ const NavMobile = ({
                 <div>Yêu thích</div>
               </div>
               <div 
-                onClick={()=>router.push('/contact')}
+                onClick={()=>router.push('/contact?category=Khách')}
                 className={`flex flex-col justify-center items-center cursor-pointer ${path === '/contact' && "text-rose-500"}`}
                 >
                 <div><BiMessage  size={30}className={`text-neutral-400 hover:text-neutral-500 transition-all ${path === '/contact' && "text-rose-500 hover:text-rose-600"} `}/></div>

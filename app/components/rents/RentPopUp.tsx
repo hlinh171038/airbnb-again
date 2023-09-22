@@ -12,7 +12,7 @@ const RentPopUp:React.FC<RentPopUpProps> =({
     label,
     content
 })=>{
-    const [isOpen,setIsOpen] = useState(false);
+    const [isOpen,setIsOpen] = useState(true);
     const handlePopUp = useCallback(()=>{
         setIsOpen(!isOpen);
     },[isOpen])
@@ -20,7 +20,7 @@ const RentPopUp:React.FC<RentPopUpProps> =({
         <div className='w-full border-b-[1px]'>
             <div className='flex flex-row gap-10 items-center justify-between py-4'>
                 <div className='text-sm font-bold'> {label}</div> 
-                <div className='transition-all'>
+                <div className='transition-all cursor-pointer'>
                     {!isOpen ?
                     <BiDownArrow 
                         onClick={handlePopUp}

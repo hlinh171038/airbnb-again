@@ -74,7 +74,7 @@ const UserMenu:React.FC<UserMenuProps> = ({
     // handle contact
     const handleRent = useCallback(()=>{
         setIsOpen(false)
-        router.push('/rent')
+        router.push('/rent2')
     },[isOpen, router])
 
     //handle information

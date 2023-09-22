@@ -21,7 +21,6 @@ const ClientBenefit:React.FC<ClientBenefitProps> = ({
     currentUser
 }) =>{
     const router = useRouter()
-    console.log(listing)
     const checkExist = (id:string) =>{
        let result= mergeArr.some((item)=>{
             if(item.listingId === id){
@@ -42,8 +41,11 @@ const ClientBenefit:React.FC<ClientBenefitProps> = ({
             //console.log(mergeArr)
           let result = mergeArr.find((item) =>item.id === reservation[i-1].id);
           //console.log(result);
-          result.count +=1;
-          result.totalPrice +=reservation[i].totalPrice;
+          if(result){
+            result.count +=1;
+            result.totalPrice +=reservation[i].totalPrice;
+          }
+          
         }else{
             let updateArr = {...reservation[i], count:1}
             mergeArr.push(updateArr)
@@ -122,7 +124,7 @@ const ClientBenefit:React.FC<ClientBenefitProps> = ({
             <div className="hidden lg:block">
             <div className="px-4 py-4">
                 <table className="w-full  text-center ">
-                    
+                    <tbody>
                     <tr>
                        <th className="text-start"> Doanh thu theo tháng</th>
                        <th>Số lượng đặt phòng</th>
@@ -142,6 +144,7 @@ const ClientBenefit:React.FC<ClientBenefitProps> = ({
                         <td >{item.status ? 'hoàn thành': 'cập nhật'}</td>
                     </tr>
                   })}
+                  </tbody>
                 </table>
                 
             </div>

@@ -95,14 +95,25 @@ const FilterModal = () =>{
         filterModal,
         router
     ])
-
+    
+    //handle Reset
+    const handleReset = useCallback(()=>{
+        setTypehouse('');
+        setMainroom(0);
+        setGuestCount(0);
+        setPet(0);
+        setBedroom(0);
+        setBath(0);
+        setPrice(0);
+        setPlace('')
+    },[typehouse, mainroom, guestCount, bath, pet, bedroom, bath, price, place])
     const bodyContent = (
         <div className="grid grid-cols-1 px-4 py-4 max-h-[70vh] overflow-y-auto gap-5">
             <Header
                 title="Loại nơi ở"
                 subtitle="Tìm phòng, nhà nguyên căn hoặc bất kì loại chổ ở nào."
             />
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col w-full gap-2 md:flex-row justify-between items-center">
                 {type.map((item)=>{
                     return (
                         <TypeItem
@@ -122,7 +133,7 @@ const FilterModal = () =>{
                         title="Số lượng khách"
                         subtitle=""
                     />
-                    <div className="flex items-center gap-1 my-2">
+                    <div className="flex flex-wrap items-center gap-1 my-2">
                         {room.map((item)=>{
                             return (
                                 <div 
@@ -141,7 +152,7 @@ const FilterModal = () =>{
                         title="Số lượng pet"
                         subtitle=""
                     />
-                    <div className="flex items-center gap-1 my-2">
+                    <div className="flex flex-wrap items-center gap-1 my-2">
                         {room.map((item)=>{
                             return (
                                 <div 
@@ -160,7 +171,7 @@ const FilterModal = () =>{
                         title="Phòng ngủ"
                         subtitle=""
                     />
-                    <div className="flex items-center gap-1 my-2">
+                    <div className="flex flex-wrap items-center gap-1 my-2">
                         {room.map((item)=>{
                             return (
                                 <div 
@@ -179,7 +190,7 @@ const FilterModal = () =>{
                         title="Giường ngủ"
                         subtitle=""
                     />
-                    <div className="flex items-center gap-1 my-2">
+                    <div className="flex flex-wrap items-center gap-1 my-2">
                         {room.map((item)=>{
                             return (
                                 <div 
@@ -198,7 +209,7 @@ const FilterModal = () =>{
                         title="Phòng tắm"
                         subtitle=""
                     />
-                    <div className="flex items-center gap-1 my-2">
+                    <div className="flex flex-wrap items-center gap-1 my-2">
                         {room.map((item)=>{
                             return (
                                 <div 
@@ -240,7 +251,7 @@ const FilterModal = () =>{
                     title="Nơi bạn muốn đến"
                     subtitle="Có rất nhiều sự lựa chọn với Airbnb.com"
                 />
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid text-center grid-cols-3 gap-2">
                     {categories.map((category)=>{
                         return <div 
                                     onClick={()=>setPlace(category.label)}
@@ -263,7 +274,7 @@ const FilterModal = () =>{
                         <div className="font-bold text-sm">Đặt phòng</div>
                         <div className="text-[0.8rem] font-light">Nhà phòng cho thuê bạn có thể đặt mà không chờ chủ nhà chấp thuận.</div>
                     </div>
-                    <div onClick={()=>setToggle2(!toggle2)}>
+                    <div onClick={()=>setToggle2(!toggle2)} className="cursor-pointer">
                         {toggle2 ? <div><BsToggle2Off size={25}/></div>:<div><BsToggle2On size={25}/></div>}
                     </div>
                 </div>
@@ -272,7 +283,7 @@ const FilterModal = () =>{
                         <div className="font-bold text-sm">Tự nhận phòng</div>
                         <div className="text-[0.8rem] font-light">Dễ dàng vào chổ ở ngay khi bạn đến.</div>
                     </div>
-                    <div onClick={()=>setToggle1(!toggle1)}>
+                    <div onClick={()=>setToggle1(!toggle1)} className="cursor-pointer">
                         {toggle1 ? <div><BsToggle2Off size={25}/></div>:<div><BsToggle2On size={25}/></div>}
                     </div>
                 </div>
@@ -288,7 +299,7 @@ const FilterModal = () =>{
                         <div className="font-bold text-sm">Chủ nhà siêu cấp</div>
                         <div className="text-[0.8rem] font-light">Ở cùng với chủ nhà được công nhận.</div>
                     </div>
-                    <div onClick={()=>setToggle3(!toggle3)}>
+                    <div onClick={()=>setToggle3(!toggle3)} className="cursor-pointer">
                         {toggle3 ? <div><BsToggle2Off size={25}/></div>:<div><BsToggle2On size={25}/></div>}
                     </div>
                 </div>
@@ -297,7 +308,7 @@ const FilterModal = () =>{
                         <div className="font-bold text-sm">Airbnb plus</div>
                         <div className="text-[0.8rem] font-light">Mỗi nhà plus đều được xét duyệt về mặt chất lượng.</div>
                     </div>
-                    <div onClick={()=>setToggle4(!toggle4)}>
+                    <div onClick={()=>setToggle4(!toggle4)} className="cursor-pointer">
                         {toggle4 ? <div><BsToggle2Off size={25}/></div>:<div><BsToggle2On size={25}/></div>}
                     </div>
                 </div>
@@ -312,6 +323,8 @@ const FilterModal = () =>{
             title="filter Product"
             actionLabel="Lộc "
             body={bodyContent}
+            secondaryActionLabel="Xóa thông tin"
+            secondaryAction={handleReset}
         />
     )
 }

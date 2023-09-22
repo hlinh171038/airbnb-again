@@ -18,7 +18,7 @@ const TypeItem:React.FC<TypeItemProps> = ({
     return (
         <div 
             onClick={onClick}
-            className={`cursor-pointer border-[1px] rounded-lg px-4 hover:bg-neutral-100 py-2 flex justify-center items-center flex-col text-sm font-light ${selected ?"bg-neutral-100":"bg-none"}`}>
+            className={` w-full lg:w-auto cursor-pointer border-[1px] rounded-lg px-4 hover:bg-neutral-100 py-2 flex justify-center items-center flex-col text-sm font-light ${selected ?"bg-neutral-100":"bg-none"}`}>
             <div><Icon size={25}/></div>
             <div>{label}</div>
         </div>

@@ -427,7 +427,6 @@ const RentModal = () =>{
                     }
                     //toggle
                    let re = result.filter((item:any) =>item !== value);
-                   console.log(re);
                     setCustomValue("utilities", re);
                     return;
                 }
@@ -459,7 +458,6 @@ const RentModal = () =>{
         let sel ;
         // create variabel 
         let result:string[] =[...who];
-        console.log(result)
        
         //check 
         if(result.length === 0)
