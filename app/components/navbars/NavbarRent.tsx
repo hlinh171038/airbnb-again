@@ -109,7 +109,7 @@ const NavbarRent:React.FC<NavbarRentProps> = ({
                     </div>
                </div>
                <div className=" flex-row items-center justify-end hidden sm:flex">
-                <span className="text-sm text-muted text-semibold mr-3">Are you ready for rent ?</span>
+                <span className="text-sm text-muted text-semibold mr-3">Cho thuê phòng ?</span>
                     <div className=" min-w-[200px] ">
                     <Button 
                         label="Airbnb Setup"

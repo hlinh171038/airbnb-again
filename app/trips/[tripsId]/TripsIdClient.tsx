@@ -82,7 +82,7 @@ const TripsIdClient:React.FC<TripsIdClientProps> =({
                 </div>
                 <div className="w-full flex justify-end px-4">
                     <div 
-                        onClick={()=>router.push('/contact')}
+                        onClick={()=>router.push('/contact?category=Khách')}
                         className="underline text-blue-500 italic cursor-pointer text-[0.8rem] font-light"
                     >
                         Liên hệ chúng tôi
