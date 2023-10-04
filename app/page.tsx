@@ -1,3 +1,4 @@
+
 import Image from 'next/image'
 import ClientOnly from './components/ClientOnly'
 import { getServerSession } from "next-auth/next"
@@ -14,6 +15,7 @@ import { getComment } from './actions/getComment'
 interface HomeProps {
   searchParams : IListingsParams
 }
+
 const Home = async ({searchParams}:HomeProps)=> {
   const listing = await getListing(searchParams);
   const currentUser = await getCurrentUser();
