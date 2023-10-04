@@ -7,6 +7,7 @@ import ClientBenefit from "./ClientBenefit"
 interface BenefitPageProps {
     searchParams : IListingsParams
   }
+export const dynamic = 'auto'
 const BenefitPage = async({searchParams}:BenefitPageProps) =>{
     const currentUser = await getCurrentUser()
     const reservation = await getReservation({userId:currentUser?.id})
