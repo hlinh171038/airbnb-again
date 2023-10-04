@@ -20,7 +20,7 @@ import FilterModal from './components/modals/FilterModal'
 
 
 const inter = Inter({ subsets: ['latin'] })
-export const dynamic = 'auto';
+export const dynamic = 'force-dynamic';
 export const metadata: Metadata = {
   title: 'Airbnb App',
   description: 'Airbnb app clone',

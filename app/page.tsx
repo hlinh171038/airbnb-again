@@ -15,7 +15,7 @@ import { getComment } from './actions/getComment'
 interface HomeProps {
   searchParams : IListingsParams
 }
-export const dynamic = 'auto'
+export const dynamic = 'force-dynamic'
 const Home = async ({searchParams}:HomeProps)=> {
   const listing = await getListing(searchParams);
   const currentUser = await getCurrentUser();
