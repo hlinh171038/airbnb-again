@@ -33,7 +33,7 @@ const ClientProfile:React.FC<ClientProfileProps> = ({
             return ;
         }
         router.push('/rent2');
-    },[currentUser, toast,router]);
+    },[currentUser,router]);
 
     // handle navigate information
     const handleNavigateInformatiion = useCallback(()=>{
@@ -43,7 +43,7 @@ const ClientProfile:React.FC<ClientProfileProps> = ({
         }
         router.push('/informations')
 
-    },[currentUser,toast, router]);
+    },[currentUser, router]);
 
     //handle navigate contact
     const handleNavigateContact =useCallback(()=>{
@@ -59,7 +59,7 @@ const ClientProfile:React.FC<ClientProfileProps> = ({
             setIsLoggin(false);
             return;
         }
-    },[isLoggin])
+    },[currentUser])
 
     return (
         <div className="mb-16">

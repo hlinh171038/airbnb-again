@@ -55,7 +55,7 @@ const FavoriteClient:React.FC<FavoriteClientProps> =({
      // handle change pagination
      const handlePagination = useCallback((e:any,p: any)=>{
         setCurrentPage(p)
-    },[currentPage]);
+    },[]);
 
     // handle Open sort
     const handleOpen = useCallback(()=>{
@@ -114,7 +114,7 @@ const FavoriteClient:React.FC<FavoriteClientProps> =({
         }
         setFavoriteArr(arr);
         setOpen(false)
-    },[sort])
+    },[sort,favoriteListing])
 
     return (
         <div> 
@@ -174,6 +174,7 @@ const FavoriteClient:React.FC<FavoriteClientProps> =({
             >
                 {favoriteArr.slice(start,end).map((item) =>{
                     return <ListingCard 
+                                key={item.id}
                                 currentUser={currentUser}
                                 data ={item}
                                 comment={comment}

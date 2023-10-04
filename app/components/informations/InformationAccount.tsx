@@ -28,7 +28,7 @@ const InformationAccount:React.FC<InformationAccountProps> =({
         }else {
             setInfo(false)
         }
-    }, [])
+    }, [information])
     const {
         register,
         handleSubmit,

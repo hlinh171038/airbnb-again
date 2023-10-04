@@ -75,7 +75,7 @@ const Modals:React.FC<ModalsProps> = ({
         onSubmit()
       }
      
-    },[disabled,onSubmit])
+    },[disabled,onSubmit,checkRent, rent])
 
    
     

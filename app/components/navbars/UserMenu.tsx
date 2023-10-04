@@ -47,41 +47,41 @@ const UserMenu:React.FC<UserMenuProps> = ({
             return loginModal.onOpen()
         }
         rentModal.onOpen()
-    },[])
+    },[loginModal,rentModal,session])
     const handleFavorite = useCallback(()=>{
         setIsOpen(false)
         router.push('/favorites')
-    },[isOpen, router])
+    },[router])
 
     // handle trips
     const handleTrips = useCallback(()=>{
         setIsOpen(false)
         router.push('/trips')
-    },[isOpen, router])
+    },[router])
 
     // handle home
     const handleHome = useCallback(()=>{
         setIsOpen(false)
         router.push('/')
-    },[isOpen, router])
+    },[router])
 
     // handle contact
     const handleContact = useCallback(()=>{
         setIsOpen(false)
         router.push('/contact?category=Khách')
-    },[isOpen, router])
+    },[router])
 
     // handle contact
     const handleRent = useCallback(()=>{
         setIsOpen(false)
         router.push('/rent2')
-    },[isOpen, router])
+    },[router])
 
     //handle information
     const handleInformation = useCallback(()=>{
         setIsOpen(false)
         router.push('/informations?category=thông%20tin%20cá%20nhân')
-    },[isOpen, router])
+    },[router])
 
 
     return (

@@ -71,7 +71,7 @@ const ListingCard:React.FC<ListingCardProps> =({
             return cal+currentValue?.start
         },0);
         return filterallcomment.length>0 ? (result / filterallcomment.length).toFixed(2): '0.00'
-    },[comment])
+    },[comment,data.id])
     return (
         <div
             onClick={()=> router.push(`/listings/${data.id}`)}

@@ -30,13 +30,13 @@ const CategoryInput:React.FC<CategoryInputProps> = ({
           setTimeout(()=>{
             setIsStyle(false)
          },200)
-    },[isStyle])
+    },[])
     useEffect(()=>{
        if(selected)
        {
         handleStyle()
        }
-    },[selected])
+    },[selected,handleStyle])
     return (
         <div
             onClick={()=>onClick(label)}

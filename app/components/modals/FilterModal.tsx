@@ -106,7 +106,7 @@ const FilterModal = () =>{
         setBath(0);
         setPrice(0);
         setPlace('')
-    },[typehouse, mainroom, guestCount, bath, pet, bedroom, bath, price, place])
+    },[])
     const bodyContent = (
         <div className="grid grid-cols-1 px-4 py-4 max-h-[70vh] overflow-y-auto gap-5">
             <Header

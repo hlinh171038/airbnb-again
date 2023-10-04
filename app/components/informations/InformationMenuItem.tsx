@@ -40,7 +40,7 @@ const InformationMenuItem:React.FC<InformationMenuItemProps> =({
 
         // push router
         router.push(url);
-    },[params,router])
+    },[params,router,label])
     return (
         <div
             onClick={handleUrl}

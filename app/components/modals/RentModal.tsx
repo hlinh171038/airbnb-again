@@ -361,7 +361,7 @@ const RentModal = () =>{
 
     const Map = useMemo(()=>dynamic(()=>import('../Map'),{
         ssr:false
-    }),[location]);
+    }),[]);
     const onBack = () =>{
         setStep((value)=> value - 1);
     }
@@ -915,7 +915,7 @@ const RentModal = () =>{
             }
         }
         return true
-    },[step,location])
+    },[step,location,imageSrc,price,utilities.length,who.length])
     return (
         <Modals 
             isOpen={rentModal.isOpen}

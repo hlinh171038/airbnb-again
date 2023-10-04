@@ -27,7 +27,7 @@ const InformationUpdate:React.FC<InformationUpdateProps> =({
         }else {
             setInfo(false)
         }
-    }, [])
+    }, [information])
     const {
         register,
         handleSubmit,

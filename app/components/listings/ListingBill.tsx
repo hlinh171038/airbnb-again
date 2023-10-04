@@ -68,7 +68,7 @@ const ListingBill:React.FC<ListingBillProps> = ({
     const commentById = useMemo(()=>{
         const result =comments.filter((item)=>item.listingId === id);
         return result
-    },[])
+    },[comments,id])
    
     // handle open calendar
     const handleOpenCalendar = useCallback(()=>{
@@ -88,7 +88,7 @@ const ListingBill:React.FC<ListingBillProps> = ({
         }
         
         setCountAdult(number)
-    },[countAdult, guestCount])
+    },[guestCount])
 
     const handleMinus = useCallback((number:number)=>{
         if(number<1 || number >guestCount)
@@ -98,7 +98,7 @@ const ListingBill:React.FC<ListingBillProps> = ({
         }
         
         setCountAdult(number)
-    },[countAdult,guestCount])
+    },[guestCount])
 
     // handle add child
     const handleAddChild =useCallback((number:number)=>{
@@ -109,7 +109,7 @@ const ListingBill:React.FC<ListingBillProps> = ({
         }
         
         setCountChild(number)
-    },[countChild, guestCount])
+    },[])
 
     const handleMinusChild = useCallback((number:number)=>{
         if(number<0 || number >10)
@@ -118,7 +118,7 @@ const ListingBill:React.FC<ListingBillProps> = ({
         }
         
         setCountChild(number)
-    },[countChild])
+    },[])
 
     // add pet
     const handleAddPet =useCallback((number:number)=>{
@@ -128,7 +128,7 @@ const ListingBill:React.FC<ListingBillProps> = ({
         }
         
         setCountPet(number)
-    },[countPet, guestCount])
+    },[])
 
     const handleMinusPet = useCallback((number:number)=>{
         if(number<0 || number >2)
@@ -137,7 +137,7 @@ const ListingBill:React.FC<ListingBillProps> = ({
         }
         
         setCountPet(number)
-    },[countPet])
+    },[])
 
     // handle submit reservation
     const onCreateReservation = useCallback(()=>{
@@ -176,7 +176,8 @@ const ListingBill:React.FC<ListingBillProps> = ({
         countAdult,
         id,
         router,
-        loginModal
+        loginModal,
+        setDateRange
     ])
 
     // handle count all star

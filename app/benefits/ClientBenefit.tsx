@@ -58,7 +58,7 @@ const ClientBenefit:React.FC<ClientBenefitProps> = ({
             return cal +=item.totalPrice
         },0);
         return result
-    },[])
+    },[mergeArr])
 
     // show mounth
     const takeMounth = useMemo(()=>{
@@ -88,7 +88,7 @@ const ClientBenefit:React.FC<ClientBenefitProps> = ({
         mounth.push(obj);
        }
        return mounth
-    },[]);
+    },[currentUser?.id,listing,reservation]);
 
     
   

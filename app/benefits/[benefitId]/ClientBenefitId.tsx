@@ -28,7 +28,7 @@ const ClientBenefitId:React.FC<ClientBenefitIdProps> = ({
     const benefit = useMemo(()=>{
         let result = reservation.filter((item)=> new Date(item.startDate).getMonth()+1 === Number(id) )
         return result
-    },[])
+    },[id,reservation])
 
     return (
         <div>

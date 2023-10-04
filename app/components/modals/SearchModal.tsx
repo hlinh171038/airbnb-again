@@ -58,7 +58,7 @@ const SearchModal = () =>{
 
 
     // import map
-    const Map = useMemo(() => dynamic(()=>import('../Map'),{ssr:false}), [location])
+    const Map = useMemo(() => dynamic(()=>import('../Map'),{ssr:false}), [])
 
     // handle change step
     const handleClickNav = useCallback((item:string)=>{
@@ -71,7 +71,7 @@ const SearchModal = () =>{
         }else {
             setStep(STEPS.GUEST)
         }
-    },[step])
+    },[])
 
     //handle delete
     const handleDelete = useCallback(()=>{
@@ -88,7 +88,7 @@ const SearchModal = () =>{
         setNavlocation(false);
         setNavdate(false);
         setNavcount(false);
-    },[step,location,dateRange,guestCount,roomCount,bathroomCount,navlocation,navdate,navcount])
+    },[])
 
     // handle submit
     const handleSubmit =useCallback(()=>{
@@ -131,7 +131,6 @@ const SearchModal = () =>{
         // push router
         router.push(url)
     },[
-        step,
         location,
         router,
         guestCount,
@@ -139,6 +138,7 @@ const SearchModal = () =>{
         dateRange,
         params,
         roomCount,
+        searchModal
     ])
 
     // handle navbar open search

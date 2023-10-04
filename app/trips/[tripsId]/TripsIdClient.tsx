@@ -29,7 +29,7 @@ const TripsIdClient:React.FC<TripsIdClientProps> =({
         
         let result = reservation.find((item)=>item.listingId === trip?.id)
         return result
-    },[])
+    },[reservation,trip?.id])
     return (
         <div className="flex flex-col gap-4">
             {/* header */}

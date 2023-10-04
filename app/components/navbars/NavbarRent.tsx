@@ -33,7 +33,7 @@ const NavbarRent:React.FC<NavbarRentProps> = ({
             return;
         }
         
-    },[router, toast,session])
+    },[router,session])
 
     const handleBenefits = useCallback(()=>{
         if(session){
@@ -43,7 +43,7 @@ const NavbarRent:React.FC<NavbarRentProps> = ({
             return;
         }
         
-    },[router,toast,session])
+    },[router,session])
 
     // handleOpenRent
     const handleOpenRent = useCallback(()=>{
@@ -51,7 +51,7 @@ const NavbarRent:React.FC<NavbarRentProps> = ({
             return loginModal.onOpen();
         }
         rentModal.onOpen()
-    },[rentModal,loginModal])
+    },[rentModal,loginModal,session])
    useEffect(()=>{
     if(typeof  window !== undefined){
         window.addEventListener('scroll',()=>{

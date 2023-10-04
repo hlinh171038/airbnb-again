@@ -42,7 +42,7 @@ const CommentItem:React.FC<CommentItemProps> = ({
             }
         }
         return 'Anonymos'
-    },[])
+    },[allUser])
 
     // handle star
     const handleStar = useCallback((number:number)=>{

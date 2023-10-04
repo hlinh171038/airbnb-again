@@ -49,7 +49,7 @@ const useFavorites =({
             toast.error("Some thing went wrong")
         }
 
-    },[currentUser, hasFavorite,router,loginModal])
+    },[currentUser, hasFavorite,router,loginModal,listingId])
 
     return {
         toggleFavorite,

@@ -31,7 +31,7 @@ const NavbarListingId = ({
     // handle open book
     const handleOpenBook =useCallback(()=>{
       bookModal.onOpen()
-    },[bookModal.onOpen])
+    },[bookModal])
 
 
     return <div 

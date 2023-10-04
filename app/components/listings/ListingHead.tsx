@@ -63,7 +63,7 @@ const ListingHead:React.FC<ListingHeadProps> =({
     const commentById = useMemo(()=>{
         const result =comments.filter((item)=>item.listingId === id);
         return result
-    },[])
+    },[comments,id])
 
      // handle count all star
      const handleCountAllStar = useCallback(()=>{

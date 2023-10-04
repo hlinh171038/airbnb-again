@@ -47,7 +47,7 @@ const ContactIdClient =() =>{
     const contactId = useMemo(()=>{
        let result =  caroselArr.find((item)=> item.id === params.contactId);
         return result;
-        },[caroselArr, params])
+        },[params])
     return (
         
        <div >
@@ -114,7 +114,7 @@ const ContactIdClient =() =>{
                     <div>
                         {cata.map((item)=>{
                             return (
-                                <div className='border-b-[1px] py-4 '>
+                                <div className='border-b-[1px] py-4 ' key={item.title}>
                                     <div className='font-bold '>
                                         {item.title}
                                     </div>
@@ -132,7 +132,7 @@ const ContactIdClient =() =>{
                         <div>
                             {caroselArr.map((item)=>{
                                 return (
-                                    <div className='text-sm font-light underline italic cursor-pointer hover:text-neutral-600'>
+                                    <div key={item.title} className='text-sm font-light underline italic cursor-pointer hover:text-neutral-600'>
                                         {item.title}
                                     </div>
                                 )

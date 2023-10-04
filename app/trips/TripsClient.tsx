@@ -41,7 +41,7 @@ const TripsClient:React.FC<TripsClientProps> = ({
     const handleSelect = useCallback((item:string)=>{
         setSelectValue(item);
         setToggle(false);
-    },[selectValue]);
+    },[]);
 
     // handle toogle selected
     const handleToggleSelect = useCallback(()=>{
@@ -72,7 +72,7 @@ const TripsClient:React.FC<TripsClientProps> = ({
             })
         }
         setUppdateRe(arr);
-    },[selectValue]);
+    },[selectValue,reservations]);
 
     // handle value
     const handleValue = useCallback((value:string)=>{
@@ -99,7 +99,7 @@ const TripsClient:React.FC<TripsClientProps> = ({
     // handle change pagination
     const handlePagination = useCallback((e:any,p: any)=>{
         setCurrentPage(p)
-    },[currentPage]);
+    },[]);
 
     const handleOpenSidebar =useCallback(()=>{
        if(openSidebar === true)
@@ -210,7 +210,7 @@ const TripsClient:React.FC<TripsClientProps> = ({
                         <BiDownArrow className="absolute top-[0.5rem] right-0" size={10} onClick={handleToggleSelect}/>
                                 <div className={`absolute top-7 right-0 bg-neutral-100 w-[200px] px-2 py-2 ${toggle ?"block": "hidden"}`} >
                                     {select.map((item: string) =>{
-                                        return <div onClick={()=>handleSelect(item)} className={`capitalize hover:bg-neutral-200    `}>{item}</div>
+                                        return <div key={item} onClick={()=>handleSelect(item)} className={`capitalize hover:bg-neutral-200    `}>{item}</div>
                                     })}
                                 </div>
                         </div>

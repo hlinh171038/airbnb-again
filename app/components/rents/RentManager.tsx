@@ -32,7 +32,7 @@ const RentManager:React.FC<RentManagerProps> =({
     const filter = useMemo(()=>{
         let result = listing.filter((item)=>item.userId === currentUser?.id);
          return result;
-     },[listing])
+     },[listing,currentUser?.id])
 
      const [rootArray,setRootArray] = useState(filter)
      const [arrayListing,setArrayListing] = useState(filter)
@@ -50,7 +50,7 @@ const RentManager:React.FC<RentManagerProps> =({
      // handle pagination
      const handlePagination = useCallback((e:any,p: any)=>{
         setCurrentPage(p)
-    },[currentPage]);
+    },[]);
      //handle deleted
      const handleDeleted = useCallback((id:string)=>{
         setIsActive(true);
@@ -68,7 +68,7 @@ const RentManager:React.FC<RentManagerProps> =({
             .finally(()=>{
                 setIsActive(false)
             })
-     },[router,isActive])
+     },[router])
 
      // handle sort
      const handleSort = useCallback((title:string) =>{
@@ -116,7 +116,7 @@ const RentManager:React.FC<RentManagerProps> =({
             let result = filter.filter((item)=> new Date(item.night)> new Date());
             setArrayListing(result)
         }
-     },[titleSort])
+     },[filter])
      
     return (
         <div>
@@ -190,7 +190,7 @@ const RentManager:React.FC<RentManagerProps> =({
                     
                         {arrayListing.slice(start,end).map((item)=>{
                             return (
-                                <tr>
+                                <tr key={item.id}>
                                     <td className="text-start">{item?.title}</td>
                                     <td>{item?.id}</td>
                                     <td>

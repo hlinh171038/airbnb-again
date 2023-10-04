@@ -47,7 +47,7 @@ const CommentSession:React.FC<CommentProps> =({
     const commentById = useMemo(()=>{
         const result =comments.filter((item)=>item.listingId === listingId);
         return result
-    },[])
+    },[comments,listingId])
     const starts = ['1','2','3','4','5'];
 
     // pagination
@@ -62,7 +62,7 @@ const CommentSession:React.FC<CommentProps> =({
     // handle change pagination
     const handlePagination = useCallback((e:any,p: any)=>{
         setCurrentPage(p)
-    },[currentPage])
+    },[])
     // post comment
     const handleComment = useCallback(()=>{
         if(!currentUser)
@@ -99,7 +99,7 @@ const CommentSession:React.FC<CommentProps> =({
             setComment('');
             setIsStar(0);
         })
-    },[currentUser,loginModel,isStar,isLoading,comment,router])
+    },[currentUser,loginModel,isStar,comment,router,label,listingId])
 
     const handleFillStar =(item:string) =>{
         for(let i=0;i<6;i++)

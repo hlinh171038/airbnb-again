@@ -69,7 +69,7 @@ const ListingBillMobile:React.FC<ListingBillMobileProps> =({
     const commentById = useMemo(()=>{
         const result =comments.filter((item)=>item.listingId === id);
         return result
-    },[])
+    },[comments,id])
 
     // handle close book
     const handleCloseBook =()=>{
@@ -110,7 +110,7 @@ const ListingBillMobile:React.FC<ListingBillMobileProps> =({
         }
         
         setCountAdult(number)
-    },[countAdult, guestCount])
+    },[guestCount])
 
     const handleMinus = useCallback((number:number)=>{
         if(number<1 || number >guestCount)
@@ -120,7 +120,7 @@ const ListingBillMobile:React.FC<ListingBillMobileProps> =({
         }
         
         setCountAdult(number)
-    },[countAdult,guestCount])
+    },[guestCount])
 
     // handle add child
     const handleAddChild =useCallback((number:number)=>{
@@ -131,7 +131,7 @@ const ListingBillMobile:React.FC<ListingBillMobileProps> =({
         }
         
         setCountChild(number)
-    },[countChild, guestCount])
+    },[])
 
     const handleMinusChild = useCallback((number:number)=>{
         if(number<0 || number >10)
@@ -140,7 +140,7 @@ const ListingBillMobile:React.FC<ListingBillMobileProps> =({
         }
         
         setCountChild(number)
-    },[countChild])
+    },[])
 
     // add pet
     const handleAddPet =useCallback((number:number)=>{
@@ -150,7 +150,7 @@ const ListingBillMobile:React.FC<ListingBillMobileProps> =({
         }
         
         setCountPet(number)
-    },[countPet, guestCount])
+    },[])
 
     const handleMinusPet = useCallback((number:number)=>{
         if(number<0 || number >2)
@@ -159,7 +159,7 @@ const ListingBillMobile:React.FC<ListingBillMobileProps> =({
         }
         
         setCountPet(number)
-    },[countPet])
+    },[])
 
     // handle submit reservation
     const onCreateReservation = useCallback(()=>{
@@ -198,7 +198,8 @@ const ListingBillMobile:React.FC<ListingBillMobileProps> =({
         countAdult,
         id,
         router,
-        loginModal
+        loginModal,
+        setDateRange
     ])
 
 
