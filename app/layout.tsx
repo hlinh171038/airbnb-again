@@ -55,7 +55,7 @@ export default async function RootLayout({
         <div className=' pt-19 '>
           {children}
         </div>
-        <NavMobile />
+        <NavMobile session={session}/>
         </body>
     </html>
   )

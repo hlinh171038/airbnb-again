@@ -72,7 +72,7 @@ const SearchModal = () =>{
             setStep(STEPS.GUEST)
         }
     },[])
-
+  
     //handle delete
     const handleDelete = useCallback(()=>{
         setStep(STEPS.LOCATION);

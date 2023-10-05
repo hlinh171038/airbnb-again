@@ -22,23 +22,23 @@ const InformationPerson:React.FC<InformationPersonProps> = ({
                 <div className="col-span-1 md:col-span-2 flex flex-col gap-4 mb-8 md:mt-8">
                         <div className="flex items-center">
                             <div className="text-sm font-bold">Tên pháp lý :</div>
-                            <div className="text-sm font-light">{information?.name}</div>
+                            <div className="text-sm font-light">{!information ?<span className="text-[0.8rem] text-neutral-600 ml-2">Cập nhật</span>:information?.name}</div>
                         </div>
                         <div className="flex items-center">
                             <div className="text-sm font-bold">Email :</div>
-                            <div className="text-sm font-light">{information?.email}</div>
+                            <div className="text-sm font-light">{!information ?<span className="text-[0.8rem] text-neutral-600 ml-2">Cập nhật</span>:information?.email}</div>
                         </div>
                         <div className="flex items-center">
                             <div className="text-sm font-bold">Số điện thoại :</div>
-                            <div className="text-sm font-light">{information?.phone}</div>
+                            <div className="text-sm font-light">{!information ?<span className="text-[0.8rem] text-neutral-600 ml-2">Cập nhật</span>:information?.phone}</div>
                         </div>
                         <div className="flex items-center">
                             <div className="text-sm font-bold">Địa chỉ hiện tại :</div>
-                            <div className="text-sm font-light">{information?.address}</div>
+                            <div className="text-sm font-light">{!information ?<span className="text-[0.8rem] text-neutral-600 ml-2">Cập nhật</span>:information?.address}</div>
                         </div>
                         <div className="flex items-center">
                             <div className="text-sm font-bold">Liên hệ khuẩn cấp :</div>
-                            <div className="text-sm font-light">{information?.emerency}</div>
+                            <div className="text-sm font-light">{!information ?<span className="text-[0.8rem] text-neutral-600 ml-2">Cập nhật</span>:information?.emerency}</div>
                         </div>
                     </div>
             

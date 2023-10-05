@@ -14,6 +14,10 @@ import { Pagination, Stack } from "@mui/material"
 import Footer from "../components/Footer"
 import TripsSearchMobile from "../components/trips/TripSearchMobile"
 import Image from "next/image"
+import ClientOnly from "../components/ClientOnly"
+import { useRouter } from "next/navigation"
+import useSearchModal from "../hooks/useSearch"
+import SearchModal from "../components/modals/SearchModal"
 
 interface TripsClientProps {
     currentUser: SafeUser | null
@@ -26,6 +30,8 @@ const TripsClient:React.FC<TripsClientProps> = ({
     currentUser,
     reservations =[]
 }) =>{
+    const router = useRouter()
+    const searchModel = useSearchModal();
     const [selectValue,setSelectValue] = useState('mới nhất');
     const [rootReservation,setRootReservation] = useState(reservations)
     const [uppdateRe,setUppdateRe] = useState(reservations)
@@ -37,7 +43,11 @@ const TripsClient:React.FC<TripsClientProps> = ({
     const [isFixed,setIsFixed] = useState(false);
     const scrollThreshold = 70;
 
-
+    //handle navigate search for trips
+    const handleSearchForTrips = useCallback(()=>{
+        router.push('/');
+    },[router])
+    //handle selected
     const handleSelect = useCallback((item:string)=>{
         setSelectValue(item);
         setToggle(false);
@@ -117,6 +127,34 @@ const TripsClient:React.FC<TripsClientProps> = ({
             setIsFixed(pageY!== null && pageY.getBoundingClientRect().top <= scrollThreshold);
         });
         
+
+        // check empty trips
+        if(reservations.length === 0)
+    {
+        return (
+            <ClientOnly>
+                <Container >
+                    <div className="font-bold text-2xl py-4">Chuyến đi</div>
+                    
+                    <div className="py-4">
+                        <div className="text-md font-bold ">Chưa có chuyến đi nào được đặt ... vẫn chưa!</div>
+                        <div className="text-[0.8rem] font-light pb-4">Đă đến lúc phải bụi hành lý và bắt đầu chuẩn bị cho chuyến phiêu lưu tiếp theo của bạn rồi.</div>
+                        <hr/>
+                        <div
+                            className=" py-4  "
+                        >
+                            <button 
+                            onClick={handleSearchForTrips}
+                            className="border-[1px] rounded-lg px-4 py-4 hover:bg-neutral-200 transition text-sm" >Bắt đầu tìm kiếm</button>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div className="text-[0.8rem] py-4">Bạn không tìm thấy đặt phòng/ đặt chổ của mình ở đây? <span onClick={()=>router.push('/contact?category=Khách')} className="underline cursor-pointer">Truy cập Trung tâm trợ giúp</span></div>
+                </Container>
+
+            </ClientOnly>
+        )
+    }
     return (
        <div>
          

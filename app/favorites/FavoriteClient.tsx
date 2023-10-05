@@ -9,6 +9,8 @@ import Footer from "../components/Footer";
 import {useState,useCallback,useMemo,useEffect} from 'react'
 import { BiDownArrow } from "react-icons/bi";
 import { Pagination, Stack } from "@mui/material";
+import ClientOnly from "../components/ClientOnly";
+import { useRouter } from "next/navigation";
 
 const sortFavorite = [
     {
@@ -36,6 +38,7 @@ const FavoriteClient:React.FC<FavoriteClientProps> =({
     favoriteListing = [],
     comment=[]
 }) =>{
+    const router = useRouter()
     const [sort,setSort] = useState('mới nhất');
     const [open,setOpen] = useState(false);
     const [favoriteArr,setFavoriteArr] = useState(favoriteListing);
@@ -116,6 +119,31 @@ const FavoriteClient:React.FC<FavoriteClientProps> =({
         setOpen(false)
     },[sort,favoriteListing])
 
+    console.log(favoriteListing)
+    // check empty
+    if(favoriteListing.length === 0) 
+    {
+       return  <ClientOnly>
+                <Container >
+                    <div className="font-bold text-2xl py-4">Yêu thích</div>
+                    
+                    <div className="py-4">
+                        <div className="text-md font-bold " >Tạo danh sách yêu thích đầu tiên</div>
+                        <div className="text-[0.8rem] font-light pb-4">Đă đến lúc phải bụi hành lý và bắt đầu chuẩn bị cho chuyến phiêu lưu tiếp theo cảu bạn rồi.</div>
+                        <hr/>
+                        <div
+                            className=" py-4  "
+                        >
+                            <button className="border-[1px] rounded-lg px-4 py-4 hover:bg-neutral-200 transition text-sm cursor-pointer" onClick={()=>router.push('/')}>Bắt đầu tìm kiếm</button>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div className="text-[0.8rem] py-4 cursor-pointer">Bạn không tìm thấy đặt phòng/ đặt chổ của mình ở đây? <span onClick={()=>router.push('/contact?category=Khách')} className="underline cursor-pointer">Truy cập Trung tâm trợ giúp</span></div>
+                </Container>
+
+            </ClientOnly>
+    }
+
     return (
         <div> 
              <div className="w-full h-auto relative">
@@ -157,7 +185,7 @@ const FavoriteClient:React.FC<FavoriteClientProps> =({
               
            </div>
         </div>
-        {empty && <div className="w-full flex justify-center items-center mt-16 text-neutral-600">Listing is empty</div>}
+        {/* {empty && <div className="w-full flex justify-center items-center mt-16 text-neutral-600">Listing is empty</div>} */}
         <Container >
             <div 
                 className="

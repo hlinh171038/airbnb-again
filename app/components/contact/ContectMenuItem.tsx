@@ -48,8 +48,6 @@ const ContectMenuItem:React.FC<ContectMenuItemProps> = ({
             onClick={handleClick}
             className={`
                 transition-all
-                text-md
-                md:text-lg
                 ${selected && "border-b-[1px] border-rose-600 text-rose-600"}
             `}
         >

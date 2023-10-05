@@ -12,6 +12,8 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { BiDownArrow } from "react-icons/bi";
 import { Pagination, Stack } from "@mui/material";
+import ClientOnly from "../ClientOnly";
+import Container from "../Container";
 
 interface RentManagerProps {
     listing: Listing[];
@@ -118,6 +120,29 @@ const RentManager:React.FC<RentManagerProps> =({
         }
      },[filter])
      
+
+     // check empty
+     if(filter.length === 0){
+        return  <ClientOnly>
+                    <Container >
+                        <div className="font-bold text-2xl py-4">Cho thuê</div>
+                        
+                        <div className="py-4">
+                            <div className="text-md font-bold " >Danh mục trống</div>
+                            <div className="text-[0.8rem] font-light pb-4">Đă đến lúc bạn bắt đầu cho thuê phòng với Airbnb.</div>
+                            <hr/>
+                            <div
+                                className=" py-4  "
+                            >
+                                <button className="border-[1px] rounded-lg px-4 py-4 hover:bg-neutral-200 transition text-sm cursor-pointer" onClick={()=>router.push('/rent2')}>Bắt đầu cho thuê</button>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div className="text-[0.8rem] py-4 cursor-pointer">Bạn gặp khó khăn / chưa biết cách cho thuê phòng !!!<span onClick={()=>router.push('/contact?category=Khách')} className="underline cursor-pointer">Truy cập Trung tâm trợ giúp</span></div>
+                    </Container>
+    
+                </ClientOnly>
+       }
     return (
         <div>
             <div className="w-full h-auto relative">

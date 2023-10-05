@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation"
 import { useCallback,useEffect,useState } from "react"
 import { toast } from "react-hot-toast"
 import { signOut } from "next-auth/react"
+import useLoginModal from "../hooks/useLoginModal"
 
 
 interface ClientProfileProps {
@@ -23,6 +24,7 @@ interface ClientProfileProps {
 const ClientProfile:React.FC<ClientProfileProps> = ({
     currentUser
 }) =>{
+    const loginModal = useLoginModal()
     const [isLoggin,setIsLoggin] = useState(false);
     const router = useRouter()
 
@@ -61,6 +63,10 @@ const ClientProfile:React.FC<ClientProfileProps> = ({
         }
     },[currentUser])
 
+    // handle Loggin
+    const handleLoggin = useCallback(()=>{
+        loginModal.onOpen();
+    },[loginModal])
     return (
         <div className="mb-16">
             {/* header */}
@@ -211,24 +217,45 @@ const ClientProfile:React.FC<ClientProfileProps> = ({
                         <div><AiOutlineGlobal/></div>
                         <div>Tiếng Việt (VN)</div>
                     </div>
+                   {currentUser ? (
+                     <div 
+                     onClick={handleLogout}
+                     className={`
+                         rounded-md 
+                         flex 
+                         items-center 
+                         justify-center 
+                         border-[1px] 
+                         py-2 
+                       
+                         hover:bg-neutral-100
+                         my-4
+                         transition-all
+                         ${currentUser ? " cursor-pointer " :"cursor-not-allowed"}
+                     `}
+                 >
+                     Đăng xuất
+                 </div>
+                   ):(
                     <div 
-                        onClick={handleLogout}
-                        className={`
-                            rounded-md 
-                            flex 
-                            items-center 
-                            justify-center 
-                            border-[1px] 
-                            py-2 
-                          
-                            hover:bg-neutral-100
-                            my-4
-                            transition-all
-                            ${currentUser ? " cursor-pointer " :"cursor-not-allowed"}
-                        `}
-                    >
-                        Đăng xuất
-                    </div>
+                    onClick={handleLoggin}
+                    className={`
+                        rounded-md 
+                        flex 
+                        items-center 
+                        justify-center 
+                        border-[1px] 
+                        py-2 
+                      
+                        hover:bg-neutral-100
+                        my-4
+                        transition-all
+                        ${currentUser ? " cursor-pointer " :"cursor-not-allowed"}
+                    `}
+                >
+                    Đăng nhập
+                </div>
+                   )}
                     <div className="my-4">
                         <div className="flex justify-center text-[0.8rem]">
                             <div>Trợ giúp & hỗ trợ</div>
