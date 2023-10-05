@@ -88,7 +88,7 @@ const NavMobile:React.FC<NavMobileProps> = ({
         loginModal.onOpen()
         router.push('/')
       }else {
-        router.push('/contact')
+        router.push('/contact?category=Khách')
       }
 
     }

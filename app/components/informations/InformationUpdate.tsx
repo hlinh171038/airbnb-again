@@ -131,7 +131,7 @@ const InformationUpdate:React.FC<InformationUpdateProps> =({
                             type={!info ?'submit':"button"}
                             value="Cập nhật thông tin" 
                             className={`
-                                px-4 py-2 bg-rose-600 text-white rounded-md hover:bg-rose-500 capitalize 
+                                px-4 py-2 bg-rose-600 text-white rounded-md hover:bg-rose-500 capitalize text-sm
                                 ${info ?"cursor-not-allowed":"cursor-pointer"}
                             `}/>
                     </form>
@@ -152,7 +152,7 @@ const InformationUpdate:React.FC<InformationUpdateProps> =({
                             <FcLock size={40}/>
                         </div>
                         <div>
-                            <div className="font-bold text-md ">không hiển thị thông tin ở đây</div>
+                            <div className="font-bold text-sm ">không hiển thị thông tin ở đây</div>
                             <div className="text-[0.8rem] text-neutral-600 font-light">Chỉ có bạn mới được thấy thông tin bảo mật này</div>
                         </div>
                     </div>
@@ -161,7 +161,7 @@ const InformationUpdate:React.FC<InformationUpdateProps> =({
                             <AiFillTool size={40} className="text-neutral-400"/>
                         </div>
                         <div>
-                            <div className="font-bold text-md ">Bạn có thể cập nhật thông tin</div>
+                            <div className="font-bold text-sm ">Bạn có thể cập nhật thông tin</div>
                             <div className="text-[0.8rem] text-neutral-600 font-light">
                                 Cập nhật lại thông tin miễn phí 
                                 <span className="underline hover:opacity-[0.5] cursor-pointer px-2">tại đây</span> trên Airbnb.
@@ -176,7 +176,7 @@ const InformationUpdate:React.FC<InformationUpdateProps> =({
                             <GiShare size={40} className="text-rose-400"/>
                         </div>
                         <div>
-                            <div className="font-bold text-md ">Bạn có thể chia sẻ </div>
+                            <div className="font-bold text-sm">Bạn có thể chia sẻ </div>
                            
                             <div className="text-[0.8rem] text-neutral-600 font-light">
                             Airbnb chỉ tiết lộ thông tin liên lạc cho Chủ nhà/Người tổ chức và khách sau khi đặt phòng/đặt chỗ được xác nhận.

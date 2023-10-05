@@ -43,13 +43,13 @@ const ClientProfile:React.FC<ClientProfileProps> = ({
             toast.error('Loggin to see informations');
             return ;
         }
-        router.push('/informations')
+        router.push('/informations?category=thông%20tin%20cá%20nhân')
 
     },[currentUser, router]);
 
     //handle navigate contact
     const handleNavigateContact =useCallback(()=>{
-        router.push('/contact');
+        router.push('/contact?category=Khách');
     },[router]);
 
     // handle logged out
