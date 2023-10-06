@@ -12,7 +12,7 @@ const Avatar:React.FC<AvatarProps> =({
 }) =>{
     return (
         <Image
-            src={session ? session?.image as string : "/placeholder.jpg"}
+            src={session ? session?.image as string : "/placeholder.webp"}
             alt="Avatar"
             width={40}
             height={40}
