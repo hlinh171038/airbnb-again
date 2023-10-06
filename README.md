@@ -1,46 +1,40 @@
 # MY AIRBNB CLONE
-<hr/>
-<img src="![Alt text](image.png)">
 
-### Description
+![alt text](https://iili.io/HhB2ZhX.png)
+
+## Description
 <p>Airbnb website is online maketplace to book and for rent. It's focus to two object, guest who want to use service and owner who want to sell service. In addition, you can save your trip, your favorite and read artical about travel,... </p>
 
-### Tech Stack
-<div>
-  <span className="font-bold">Front-End :</span>
-  <span>HTML,CSS,SCSS,TypeScript,Tailwind,NextJS,Prisma,NextAuth,...</span>
-</div>
-<div>
-  <span className="font-bold">Database :</span>
-  <span>MongoDB<span>
-</div>
+## Tech Stack
+  **Front-End:**HTML,CSS,SCSS,TypeScript,Tailwind,NextJS,Prisma,NextAuth,...
+  **Database:**MongoDB
 
-### Feature
-  1.Guest
-    - Register Account.
-    - Login with Google, Github,..
-    - Home page (view all room post by all owner, search, filter product by name, price, numeric, day,...)
-    - Detail page (view detail specific room and allow us reservation if enough condition, comment, share,...)
-    - Trip Page (show all your trip which you are booked, filter, sort)
-    - Favorite Page (show your favorite room, filter, sort)
-    - Manager Account Page (show account information, create or update account)
-    - Contact Us Page ( contain artical, help custome contact with us)
-  2.Owner
-    - Rent Page (allow owner create room for rent, create thier's information).
-    - Manager Page (manager thier's room)
-    - Sale page (manager monthly sales )
+## Feature
+1. **Guest**
+    - ### Register Account.
+    - ### Login with Google, Github,..
+    - ### Home page (view all room post by all owner, search, filter product by name, price, numeric, day,...)
+    - ### Detail page (view detail specific room and allow us reservation if enough condition, comment, share,...)
+    - ### Trip Page (show all your trip which you are booked, filter, sort)
+    - ### Favorite Page (show your favorite room, filter, sort)
+    - ### Manager Account Page (show account information, create or update account)
+    - ### Contact Us Page ( contain artical, help custome contact with us)
+2. **Owner**
+    - ### Rent Page (allow owner create room for rent, create thier's information).
+    - ### Manager Page (manager thier's room)
+    - ### Sale page (manager monthly sales )
 
-### Demo
-Link : [![website](./img/globe-light.svg)](https://airbnb-again.vercel.app/)
+## Demo
+Link : [![website]](https://airbnb-again.vercel.app/)
 Video Demo : [Vite Setup with shadcn/ui: Step-by-Step Guide to Easy Integration! #shadcn #ui](https://www.youtube.com/watch?v=PKbDGN2nxFc)
 
-### ScreenShots
-  <img src="![Alt text](image.png)">
+## ScreenShots
+ 
 
-### Author
- <a href="mailto:hoanglinh171038@gmail.com">Linh Thái</a>
+## Author
+ - [Linh Thái](https://www.facebook.com/Linh201199)
 
-### Run Locally
+## Run Locally
 Clone the project
 
 ```bash
