@@ -11,18 +11,18 @@
 
 ## Feature
 1. **Guest**
-    - ### Register Account.
-    - ### Login with Google, Github,..
-    - ### Home page (view all room post by all owner, search, filter product by name, price, numeric, day,...)
-    - ### Detail page (view detail specific room and allow us reservation if enough condition, comment, share,...)
-    - ### Trip Page (show all your trip which you are booked, filter, sort)
-    - ### Favorite Page (show your favorite room, filter, sort)
-    - ### Manager Account Page (show account information, create or update account)
-    - ### Contact Us Page ( contain artical, help custome contact with us)
+    -  Register Account.
+    -  Login with Google, Github,..
+    -  Home page (view all room post by all owner, search, filter product by name, price, numeric, day,...)
+    -  Detail page (view detail specific room and allow us reservation if enough condition, comment, share,...)
+    -  Trip Page (show all your trip which you are booked, filter, sort)
+    -  Favorite Page (show your favorite room, filter, sort)
+    -  Manager Account Page (show account information, create or update account)
+    -  Contact Us Page ( contain artical, help custome contact with us)
 2. **Owner**
-    - ### Rent Page (allow owner create room for rent, create thier's information).
-    - ### Manager Page (manager thier's room)
-    - ### Sale page (manager monthly sales )
+    -  Rent Page (allow owner create room for rent, create thier's information).
+    -  Manager Page (manager thier's room)
+    -  Sale page (manager monthly sales )
 
 ## Demo
 Link : [![website]](https://airbnb-again.vercel.app/)
