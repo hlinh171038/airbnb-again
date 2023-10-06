@@ -11,7 +11,7 @@ const NavbarContact = ()=>{
             <div className="flex gap-4 my-6 fixed top-[-27px] left-0 z-60 bg-white w-full px-4 py-6 z-50 shadow-md">
                 <Image
                     onClick={()=>router.push('/')}
-                    src="/logo.png"
+                    src="/logo.webp"
                     alt="Logo"
                     width={70}
                     height={70}
