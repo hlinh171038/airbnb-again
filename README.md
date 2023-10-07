@@ -1,6 +1,6 @@
 # MY AIRBNB CLONE
 
-![alt text](https://iili.io/HhB2ZhX.png)
+![alt text]([https://iili.io/HhB2ZhX.png](https://res-console.cloudinary.com/djdxykrcz/thumbnails/v1/image/upload/v1696645053/c2NyZWVuc2hvdF9ob21lcGFnZV9reTBlbTA=/grid_landscape))
 
 ## Description
 <p>Airbnb website is online maketplace to book and for rent. It's focus to two object, guest who want to use service and owner who want to sell service. In addition, you can save your trip, your favorite and read artical about travel,... </p>
