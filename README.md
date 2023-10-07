@@ -6,8 +6,8 @@
 <p>Airbnb website is online maketplace to book and for rent. It's focus to two object, guest who want to use service and owner who want to sell service. In addition, you can save your trip, your favorite and read artical about travel,... </p>
 
 ## Tech Stack
-  **Front-End:**HTML,CSS,SCSS,TypeScript,Tailwind,NextJS,Prisma,NextAuth,...
-  **Database:**MongoDB
+  **Front-End**:HTML,CSS,SCSS,TypeScript,Tailwind,NextJS,Prisma,NextAuth,...
+  **Database**:MongoDB
 
 ## Feature
 1. **Guest**
@@ -29,7 +29,20 @@ Link : [![website]](https://airbnb-again.vercel.app/)
 Video Demo : [Vite Setup with shadcn/ui: Step-by-Step Guide to Easy Integration! #shadcn #ui](https://www.youtube.com/watch?v=PKbDGN2nxFc)
 
 ## ScreenShots
- 
+
+ # Desktop
+  - Detail each room
+  ![Alt text](image-3.png)
+  - Contact Us Page
+  ![Alt text](image-4.png)
+  - Manager Saling each month
+  ![Alt text](image-5.png)
+
+ # Mobile
+ ![Alt text](image-6.png)
+ ![Alt text](image-7.png)
+ ![Alt text](image-8.png)
+  
 
 ## Author
  - [Linh Thái](https://www.facebook.com/Linh201199)
