@@ -32,17 +32,20 @@ Video Demo : [Vite Setup with shadcn/ui: Step-by-Step Guide to Easy Integration!
 
  # Desktop
   - Detail each room
-  - ![Alt text](image-3.png)
+
+  ![Alt text](image-3.png)
+
   - Contact Us Page
-  - ![Alt text](image-4.png)
+
+  ![Alt text](image-4.png)
+
   - Manager Saling each month
-  - ![Alt text](image-5.png)
+
+   ![Alt text](image-5.png)
 
  # Mobile
  ![Alt text](image-6.png)
-
  ![Alt text](image-7.png)
- 
  ![Alt text](image-8.png)
   
 
