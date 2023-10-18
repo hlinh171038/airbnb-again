@@ -5,6 +5,10 @@ import { User } from "@prisma/client";
 import Image from "next/image";
 import { SafeUser } from '@/app/types';
 import { AiFillStar } from 'react-icons/ai';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import useLoginModal from '@/app/hooks/useLoginModal';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 
 interface CommentItemProps {
@@ -12,17 +16,24 @@ interface CommentItemProps {
     star:number;
     createdAt: string;
     allUser: User[];
-    userId: string
+    userId: string;
+    currentUser: SafeUser | null;
+    id: string;
 }
 const CommentItem:React.FC<CommentItemProps> = ({
     description,
     star,
     createdAt,
     userId,
-    allUser =[]
+    allUser =[],
+    currentUser,
+    id
 }) =>{
     const [isReadMore,setIsReadMore] = useState(false)
     const [isOpen,setIsOpen] = useState(false);
+    const [toggle, setToggle] = useState(true);
+    const loginModel = useLoginModal()
+    
 
     const checkImage = useCallback((item:any) => {
         for(let i=0;i<allUser.length;i++)
@@ -62,30 +73,56 @@ const CommentItem:React.FC<CommentItemProps> = ({
         setIsReadMore(!isReadMore);
     },[isReadMore])
 
+    //handle toggle comment
+    const handleToggleComment = useCallback(()=>{
+        setToggle(!toggle)
+    },[toggle])
+
+    // handle delete comment
+    const handleDeleteComment = useCallback(()=>{
+        if(!currentUser){
+            loginModel.onOpen()
+        }
+        // check if this is your comment
+        if(userId === currentUser?.id){
+            axios.post(`/api/deletecomment`,{id})
+        }else {
+            toast.error("không thể xóa comment của người khác")
+        }
+    },[currentUser,loginModel,userId])
     return (
         <div className='mb-4'>
             {/* header */}
             <div
                 className='
                     flex
-                    justify-start
-                    
+                    justify-between
+                    items-center
                 '
             >
-                <Image
-                    src={checkImage(userId ) as string}
-                    alt="Avatar"
-                    width={50}
-                    height={50}
-                    className='rounded-full '
-                />
-                <div>
-                    <div className='font-bold px-2'>{checkName(userId)}</div>
-                    <div className='text-sm font-light px-2'>
-                        {new Date(createdAt).getDate()} thg
-                        {new Date(createdAt).getMonth()}-
-                        {new Date(createdAt).getFullYear()}
+                <div className='flex justify-between items-center'>
+                    <Image
+                        src={checkImage(userId ) as string}
+                        alt="Avatar"
+                        width={50}
+                        height={50}
+                        className='rounded-full '
+                    />
+                    <div>
+                        <div className='font-bold px-2'>{checkName(userId)}</div>
+                        <div className='text-sm font-light px-2'>
+                            {new Date(createdAt).getDate()} thg
+                            {new Date(createdAt).getMonth() + 1}-
+                            {new Date(createdAt).getFullYear()}
+                        </div>
                     </div>
+                </div>
+                <div className='relative'>
+                   <MoreVertIcon className='text-neutral-600 hover:text-neutral-400 cursor-pointer' onClick={handleToggleComment}/>
+                   <div className={`bg-neutral-100 text-neutral-600 text-sm p-1 transition-all duration-300 ${toggle ? "hidden":"absolute top-6 right-1 w-max"}`}>
+                    <div className='cursor-pointer text-sm hover:text-neutral-600' onClick={handleDeleteComment}>Xóa bình luận</div>
+                    <div className='cursor-pointer text-sm hover:text-neutral-600'>Cập nhật </div>
+                   </div>
                 </div>
             </div>
             <div className='px-12 py-2 flex'>
@@ -105,6 +142,7 @@ const CommentItem:React.FC<CommentItemProps> = ({
                     rounded-lg
                     font-light
                     text-sm
+                    overflow-hidden
                     '
                     >
                 {description.length>235 ? isReadMore? description: description.substring(0,235) +'...': description}

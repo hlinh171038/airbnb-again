@@ -43,6 +43,7 @@ const CommentSession:React.FC<CommentProps> =({
     const loginModel = useLoginModal();
    
 
+  
     // show comment with current id
     const commentById = useMemo(()=>{
         const result =comments.filter((item)=>item.listingId === listingId);
@@ -51,11 +52,11 @@ const CommentSession:React.FC<CommentProps> =({
     const starts = ['1','2','3','4','5'];
 
     // pagination
-    const start = currentPage * countPerPages -countPerPages;
+    const start = currentPage * countPerPages - countPerPages;
     const end = countPerPages * currentPage;
 
     const pagin = [];
-    for(let i=0;i<Math.ceil(comments.length/countPerPages);i++)
+    for(let i=0;i<Math.ceil(commentById.length/countPerPages);i++)
     {
         pagin.push(i)
     }
@@ -136,11 +137,11 @@ const CommentSession:React.FC<CommentProps> =({
             py-8
         "
         >
-        <div className="flex items-end my-4">
+        <div className="flex items-end my-4 ">
             <div className="text-yellow-500">
                 <AiFillStar size={50}/> 
             </div>
-            <div className="text-sm underline">{handleCountAllStar()}</div>
+            <div className="font-semibold flex items-center">{handleCountAllStar()}</div>
             
             <div className="text-sm underline flex"><BsDot/>{commentById.length} đánh giá</div>
         </div>
@@ -212,6 +213,8 @@ const CommentSession:React.FC<CommentProps> =({
                             description = {comment.description}
                             star = {comment.start}
                             userId = {comment.userId}
+                            id={comment.id}
+                            currentUser = {currentUser}
                         />
                     )
                 })}
