@@ -9,6 +9,8 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import useComment from '@/app/hooks/useComment';
+import { useRouter } from 'next/navigation';
 
 
 interface CommentItemProps {
@@ -33,7 +35,8 @@ const CommentItem:React.FC<CommentItemProps> = ({
     const [isOpen,setIsOpen] = useState(false);
     const [toggle, setToggle] = useState(true);
     const loginModel = useLoginModal()
-    
+    const commentModal = useComment()
+    const router = useRouter()
 
     const checkImage = useCallback((item:any) => {
         for(let i=0;i<allUser.length;i++)
@@ -86,10 +89,27 @@ const CommentItem:React.FC<CommentItemProps> = ({
         // check if this is your comment
         if(userId === currentUser?.id){
             axios.post(`/api/deletecomment`,{id})
+            .then(()=>{
+                toast.success('Đã xóa')
+            })
+            .catch(()=>{
+                toast.error('Xảy ra lỗi, thử lại sau !!!')
+            })
         }else {
             toast.error("không thể xóa comment của người khác")
         }
-    },[currentUser,loginModel,userId])
+    },[currentUser,id,loginModel,userId])
+
+    // handle update comment
+    const handleUpdateComment = useCallback(()=>{
+        if(!currentUser){
+            loginModel.onOpen()
+        }
+        // check if this is your comment
+        if(userId === currentUser?.id){
+            router.push(`/updateComment/${id}`)
+        }
+    },[currentUser,loginModel,userId,id, router])
     return (
         <div className='mb-4'>
             {/* header */}
@@ -121,7 +141,7 @@ const CommentItem:React.FC<CommentItemProps> = ({
                    <MoreVertIcon className='text-neutral-600 hover:text-neutral-400 cursor-pointer' onClick={handleToggleComment}/>
                    <div className={`bg-neutral-100 text-neutral-600 text-sm p-1 transition-all duration-300 ${toggle ? "hidden":"absolute top-6 right-1 w-max"}`}>
                     <div className='cursor-pointer text-sm hover:text-neutral-600' onClick={handleDeleteComment}>Xóa bình luận</div>
-                    <div className='cursor-pointer text-sm hover:text-neutral-600'>Cập nhật </div>
+                    <div className='cursor-pointer text-sm hover:text-neutral-600' onClick={handleUpdateComment}>Cập nhật </div>
                    </div>
                 </div>
             </div>

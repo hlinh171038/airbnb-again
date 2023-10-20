@@ -18,17 +18,19 @@ import { BsDot } from "react-icons/bs";
 
 
 interface CommentProps {
-    listingId: string;
+    listingId?: string;
     currentUser : SafeUser | null;
     comments:SafeComment[],
-    allUser: User[]
+    allUser?: User[];
+    modal?:boolean
 }
 
 const CommentSession:React.FC<CommentProps> =({
     listingId,
     currentUser,
     comments=[],
-    allUser=[]
+    allUser=[],
+    modal
 }) =>{
     const [isStar, setIsStar] = useState(0);
     const [comment,setComment] =useState('');
@@ -163,17 +165,18 @@ const CommentSession:React.FC<CommentProps> =({
            />
            <textarea 
                 onChange={(e)=>setComment(e.target.value)}
-                className="
-                    w-full 
-                    h-[300px]
-                    border-[1px]
-                    shadow-md
-                    px-2
-                    py-2
-                    cursor-pointer
-                    text-sm
-                    font-light
-                    "
+                className={`
+                w-full 
+               
+                border-[1px]
+                shadow-md
+                px-2
+                py-2
+                cursor-pointer
+                text-sm
+                font-light
+                 ${modal ? "h-[100px]":"h-[300px]"}
+                `}
                 placeholder="Để lại một vài cảm nghĩ về khách sạn của chúng tôi..."
                 >
            
