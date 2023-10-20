@@ -108,6 +108,8 @@ const CommentItem:React.FC<CommentItemProps> = ({
         // check if this is your comment
         if(userId === currentUser?.id){
             router.push(`/updateComment/${id}`)
+        }else {
+            toast.error('Không thể xóa bình luận của người khác !!!')
         }
     },[currentUser,loginModel,userId,id, router])
     return (

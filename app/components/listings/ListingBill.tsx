@@ -72,11 +72,13 @@ const ListingBill:React.FC<ListingBillProps> = ({
    
     // handle open calendar
     const handleOpenCalendar = useCallback(()=>{
+        setIsSelected(false)
         setIsCalendar(!isCalendar);
     },[isCalendar]);
 
     // handle selected
     const handleSelected = useCallback(()=>{
+        setIsCalendar(true)
         setIsSelected(!isSelected)
     },[isSelected])
 
@@ -289,7 +291,7 @@ const ListingBill:React.FC<ListingBillProps> = ({
                            shadow-md
                             w-full
                             h-auto
-                            z-60
+                            z-40
                            
                             ${isCalendar ?"hidden" :"block"}
                         `} 
