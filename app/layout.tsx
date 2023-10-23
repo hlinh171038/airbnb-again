@@ -16,10 +16,6 @@ import getListingById from './actions/getListingById'
 import getListing, { IListingsParams } from './actions/getListing'
 import SearchModal from './components/modals/SearchModal'
 import FilterModal from './components/modals/FilterModal'
-import UpdateCommentModal from './components/modals/UpdatecommentModal'
-import { getComment } from './actions/getComment'
-
-
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -37,7 +33,6 @@ export default async function RootLayout({
   children: React.ReactNode,
 }) {
     const session = await getCurrentUser()
-    const comment = await getComment()
   return (
 
     <html lang="en">
@@ -50,7 +45,6 @@ export default async function RootLayout({
           <RentModal />
           <FilterModal />
           <SearchModal />
-          <UpdateCommentModal session={session} comment={comment}/>
         </ClientOnly>
         <div className=' pt-19 '>
           {children}

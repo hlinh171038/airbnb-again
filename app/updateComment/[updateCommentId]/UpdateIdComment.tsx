@@ -88,9 +88,6 @@ const UpdateIdComment:React.FC<UpdateIdCommentProps> = ({
         }
         setIsStar(item);
     }
-
-    console.log(commentById)
-    console.log(showStar)
     return (
         <div className={`
         w-full
@@ -125,6 +122,7 @@ const UpdateIdComment:React.FC<UpdateIdCommentProps> = ({
                     subtitle=""
                 />
                 <textarea 
+                        defaultValue={commentById?.description}
                         onChange={(e)=>setCommentContent(e.target.value)}
                         className={`
                         w-full 
@@ -138,10 +136,10 @@ const UpdateIdComment:React.FC<UpdateIdCommentProps> = ({
                         font-light
                        
                         `}
-                        placeholder={commentById?.description}
-                        >
-                            {commentById?.description} 
-                    </textarea>
+                       
+                        />
+                            
+                    
                  </div>
                  {/* button */}
                  <div className="flex justify-between items-center mt-4 mb-4">
