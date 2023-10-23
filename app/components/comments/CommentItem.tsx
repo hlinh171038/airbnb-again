@@ -96,7 +96,7 @@ const CommentItem:React.FC<CommentItemProps> = ({
                 toast.error('Xảy ra lỗi, thử lại sau !!!')
             })
         }else {
-            toast.error("không thể xóa comment của người khác")
+            toast.error("không thể xóa bình luận người khác")
         }
     },[currentUser,id,loginModel,userId])
 
@@ -109,7 +109,7 @@ const CommentItem:React.FC<CommentItemProps> = ({
         if(userId === currentUser?.id){
             router.push(`/updateComment/${id}`)
         }else {
-            toast.error('Không thể xóa bình luận của người khác !!!')
+            toast.error('Không thể cập nhật bình luận người khác !!!')
         }
     },[currentUser,loginModel,userId,id, router])
     return (

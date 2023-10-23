@@ -68,7 +68,7 @@ const UpdateIdComment:React.FC<UpdateIdCommentProps> = ({
                 if(i <= commentById?.start){
                     result.push({style:'text-yellow-400',index:i})
                 }else{
-                    result.push({style:'text-yellow-400',index:i})
+                    result.push({style:'text-neutral-400',index:i})
                 }
             }
         } 
