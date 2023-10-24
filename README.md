@@ -26,7 +26,7 @@
 
 ## Demo
 Link : [![website]](https://airbnb-again.vercel.app/)
-Video Demo : [Vite Setup with shadcn/ui: Step-by-Step Guide to Easy Integration! #shadcn #ui](https://www.youtube.com/watch?v=PKbDGN2nxFc)
+Video Demo : [Youtube](https://www.youtube.com/watch?v=9VzbYxKi_bY&t=2s)
 
 ## ScreenShots
 
