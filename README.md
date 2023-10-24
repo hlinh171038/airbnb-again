@@ -6,8 +6,8 @@
 <p>Airbnb website is online maketplace to book and for rent. It's focus to two object, guest who want to use service and owner who want to sell service. In addition, you can save your trip, your favorite and read artical about travel,... </p>
 
 ## Tech Stack
-  **Front-End**:HTML,CSS,SCSS,TypeScript,Tailwind,NextJS,Prisma,NextAuth,...
-  **Database**:MongoDB
+  - **Front-End**:HTML,CSS,SCSS,TypeScript,Tailwind,NextJS,Prisma,NextAuth,...
+  - **Database**:MongoDB
 
 ## Feature
 1. **Guest**
@@ -25,8 +25,10 @@
     -  Sale page (manager monthly sales )
 
 ## Demo
-Link : [![website]](https://airbnb-again.vercel.app/)
-Video Demo : [Youtube](https://www.youtube.com/watch?v=9VzbYxKi_bY&t=2s)
+- Airbnb Demo : 
+[[https://airbnb-again.vercel.app]](https://airbnb-again.vercel.app/)
+- Video Demo on Youtube : 
+[Airbnb demo video](https://www.youtube.com/watch?v=9VzbYxKi_bY&t=2s)
 
 ## ScreenShots
 
